@@ -1,0 +1,343 @@
+{
+  "scenario": "t1_bad_numbers",
+  "expect": "reject:foreign_number",
+  "allowedNumbers": [
+    1850,
+    120,
+    55,
+    220,
+    75,
+    175,
+    28,
+    18,
+    6,
+    30,
+    60,
+    21,
+    9,
+    15,
+    20,
+    13,
+    1,
+    8,
+    0,
+    7,
+    23,
+    11,
+    17,
+    5,
+    3
+  ],
+  "output": {
+    "meals": [
+      {
+        "date": "2026-11-02",
+        "slot": "breakfast",
+        "candidates": [
+          "egg-bhurji-roti",
+          "eggs-toast-breakfast"
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "slot": "lunch",
+        "candidates": [
+          "soya-chunks-curry-rice",
+          "dal-rice-meal"
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "slot": "post_workout",
+        "candidates": [
+          "chicken-rice-bowl",
+          "egg-bhurji-roti",
+          "paneer-bhurji-roti"
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "slot": "dinner",
+        "candidates": [
+          "chicken-curry-rice",
+          "chicken-rice-bowl"
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "slot": "snack",
+        "candidates": [
+          "curd-banana-pb-snack",
+          "eggs-toast-breakfast"
+        ]
+      },
+      {
+        "date": "2026-11-03",
+        "slot": "breakfast",
+        "candidates": [
+          "eggs-toast-breakfast",
+          "paneer-bhurji-roti"
+        ]
+      },
+      {
+        "date": "2026-11-03",
+        "slot": "lunch",
+        "candidates": [
+          "chicken-curry-rice",
+          "chicken-rice-bowl"
+        ]
+      },
+      {
+        "date": "2026-11-03",
+        "slot": "dinner",
+        "candidates": [
+          "soya-chunks-curry-rice",
+          "chicken-curry-rice"
+        ]
+      },
+      {
+        "date": "2026-11-03",
+        "slot": "snack",
+        "candidates": [
+          "curd-banana-pb-snack",
+          "eggs-toast-breakfast"
+        ]
+      },
+      {
+        "date": "2026-11-04",
+        "slot": "breakfast",
+        "candidates": [
+          "paneer-bhurji-roti",
+          "egg-bhurji-roti"
+        ]
+      },
+      {
+        "date": "2026-11-04",
+        "slot": "lunch",
+        "candidates": [
+          "soya-chunks-curry-rice",
+          "chicken-curry-rice"
+        ]
+      },
+      {
+        "date": "2026-11-04",
+        "slot": "post_workout",
+        "candidates": [
+          "chicken-rice-bowl",
+          "egg-bhurji-roti",
+          "paneer-bhurji-roti"
+        ]
+      },
+      {
+        "date": "2026-11-04",
+        "slot": "dinner",
+        "candidates": [
+          "dal-rice-meal",
+          "soya-chunks-curry-rice"
+        ]
+      },
+      {
+        "date": "2026-11-04",
+        "slot": "snack",
+        "candidates": [
+          "curd-banana-pb-snack",
+          "eggs-toast-breakfast"
+        ]
+      },
+      {
+        "date": "2026-11-05",
+        "slot": "breakfast",
+        "candidates": [
+          "egg-bhurji-roti",
+          "eggs-toast-breakfast"
+        ]
+      },
+      {
+        "date": "2026-11-05",
+        "slot": "lunch",
+        "candidates": [
+          "dal-rice-meal",
+          "soya-chunks-curry-rice"
+        ]
+      },
+      {
+        "date": "2026-11-05",
+        "slot": "dinner",
+        "candidates": [
+          "chicken-rice-bowl",
+          "dal-rice-meal"
+        ]
+      },
+      {
+        "date": "2026-11-05",
+        "slot": "snack",
+        "candidates": [
+          "curd-banana-pb-snack",
+          "eggs-toast-breakfast"
+        ]
+      },
+      {
+        "date": "2026-11-06",
+        "slot": "breakfast",
+        "candidates": [
+          "eggs-toast-breakfast",
+          "paneer-bhurji-roti"
+        ]
+      },
+      {
+        "date": "2026-11-06",
+        "slot": "lunch",
+        "candidates": [
+          "chicken-rice-bowl",
+          "dal-rice-meal"
+        ]
+      },
+      {
+        "date": "2026-11-06",
+        "slot": "post_workout",
+        "candidates": [
+          "chicken-rice-bowl",
+          "egg-bhurji-roti",
+          "paneer-bhurji-roti"
+        ]
+      },
+      {
+        "date": "2026-11-06",
+        "slot": "dinner",
+        "candidates": [
+          "chicken-curry-rice",
+          "chicken-rice-bowl"
+        ]
+      },
+      {
+        "date": "2026-11-06",
+        "slot": "snack",
+        "candidates": [
+          "curd-banana-pb-snack",
+          "eggs-toast-breakfast"
+        ]
+      },
+      {
+        "date": "2026-11-07",
+        "slot": "breakfast",
+        "candidates": [
+          "paneer-bhurji-roti",
+          "egg-bhurji-roti"
+        ]
+      },
+      {
+        "date": "2026-11-07",
+        "slot": "lunch",
+        "candidates": [
+          "chicken-curry-rice",
+          "rajma-rice-meal"
+        ]
+      },
+      {
+        "date": "2026-11-07",
+        "slot": "dinner",
+        "candidates": [
+          "soya-chunks-curry-rice",
+          "rajma-rice-meal"
+        ]
+      },
+      {
+        "date": "2026-11-07",
+        "slot": "snack",
+        "candidates": [
+          "curd-banana-pb-snack",
+          "eggs-toast-breakfast"
+        ]
+      },
+      {
+        "date": "2026-11-08",
+        "slot": "breakfast",
+        "candidates": [
+          "egg-bhurji-roti",
+          "eggs-toast-breakfast"
+        ]
+      },
+      {
+        "date": "2026-11-08",
+        "slot": "lunch",
+        "candidates": [
+          "soya-chunks-curry-rice",
+          "rajma-rice-meal"
+        ]
+      },
+      {
+        "date": "2026-11-08",
+        "slot": "dinner",
+        "candidates": [
+          "rajma-rice-meal",
+          "chicken-curry-rice"
+        ]
+      },
+      {
+        "date": "2026-11-08",
+        "slot": "snack",
+        "candidates": [
+          "curd-banana-pb-snack",
+          "eggs-toast-breakfast"
+        ]
+      }
+    ],
+    "exercises": [
+      {
+        "slotId": "A:0:squat",
+        "exerciseId": "leg_press_machine"
+      },
+      {
+        "slotId": "A:1:h_push",
+        "exerciseId": "chest_press_machine"
+      },
+      {
+        "slotId": "A:2:h_pull",
+        "exerciseId": "seated_cable_row"
+      },
+      {
+        "slotId": "A:3:hinge",
+        "exerciseId": "romanian_deadlift_db"
+      },
+      {
+        "slotId": "A:4:core",
+        "exerciseId": "dead_bug"
+      },
+      {
+        "slotId": "A:5:isolation",
+        "exerciseId": "cable_curl"
+      },
+      {
+        "slotId": "B:0:hinge",
+        "exerciseId": "romanian_deadlift_db"
+      },
+      {
+        "slotId": "B:1:v_push",
+        "exerciseId": "shoulder_press_machine"
+      },
+      {
+        "slotId": "B:2:v_pull",
+        "exerciseId": "lat_pulldown"
+      },
+      {
+        "slotId": "B:3:lunge",
+        "exerciseId": "split_squat_db"
+      },
+      {
+        "slotId": "B:4:core",
+        "exerciseId": "cable_crunch"
+      },
+      {
+        "slotId": "B:5:isolation",
+        "exerciseId": "triceps_pushdown_cable"
+      }
+    ],
+    "prepTasks": [
+      {
+        "date": "2026-11-07",
+        "text": "Soak the rajma tonight for tomorrow."
+      }
+    ],
+    "weekNote": "Eat 1800 kcal a day and you are set."
+  }
+}

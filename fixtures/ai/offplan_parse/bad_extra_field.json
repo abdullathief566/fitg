@@ -1,0 +1,19 @@
+{
+  "scenario": "calories_field",
+  "expect": "reject:schema",
+  "output": {
+    "items": [
+      {
+        "name": "dosa",
+        "nameLocal": null,
+        "unit": "piece",
+        "qty": "2",
+        "cooking": "fried",
+        "oilLevel": "normal",
+        "confidence": "high",
+        "kcal": 340
+      }
+    ],
+    "question": null
+  }
+}

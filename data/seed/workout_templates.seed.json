@@ -1,0 +1,591 @@
+{
+  "_note": "Two splits with a preferred list per variant; build-seed.ts expands to six rows `${split}_${variant}` and assigns slotId = `${key}:${index}:${pattern}`.",
+  "splits": [
+    {
+      "split": "full_ab",
+      "daysPerWeek": [
+        1,
+        2,
+        3
+      ],
+      "sessions": [
+        {
+          "key": "A",
+          "name": "Full body A",
+          "importance": 3,
+          "slots": [
+            {
+              "pattern": "squat",
+              "primaryMuscle": "quads",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 120,
+              "importance": 3,
+              "preferred": {
+                "gym": [
+                  "barbell_back_squat",
+                  "goblet_squat_db"
+                ],
+                "machine": [
+                  "leg_press_machine",
+                  "goblet_squat_db"
+                ],
+                "home_db": [
+                  "goblet_squat_db",
+                  "bodyweight_squat"
+                ]
+              }
+            },
+            {
+              "pattern": "h_push",
+              "primaryMuscle": "chest",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 120,
+              "importance": 3,
+              "preferred": {
+                "gym": [
+                  "bench_press_barbell",
+                  "chest_press_machine"
+                ],
+                "machine": [
+                  "chest_press_machine",
+                  "push_up"
+                ],
+                "home_db": [
+                  "floor_press_db",
+                  "push_up"
+                ]
+              }
+            },
+            {
+              "pattern": "h_pull",
+              "primaryMuscle": "upper_back",
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 90,
+              "importance": 3,
+              "preferred": {
+                "gym": [
+                  "seated_cable_row",
+                  "one_arm_row_db"
+                ],
+                "machine": [
+                  "seated_cable_row",
+                  "chest_supported_row_machine"
+                ],
+                "home_db": [
+                  "one_arm_row_db"
+                ]
+              }
+            },
+            {
+              "pattern": "hinge",
+              "primaryMuscle": "hamstrings",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 120,
+              "importance": 2,
+              "preferred": {
+                "gym": [
+                  "romanian_deadlift_barbell",
+                  "romanian_deadlift_db"
+                ],
+                "machine": [
+                  "romanian_deadlift_db",
+                  "glute_bridge"
+                ],
+                "home_db": [
+                  "romanian_deadlift_db",
+                  "glute_bridge"
+                ]
+              }
+            },
+            {
+              "pattern": "core",
+              "primaryMuscle": "core",
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 60,
+              "importance": 1,
+              "preferred": {
+                "gym": [
+                  "dead_bug",
+                  "cable_crunch"
+                ],
+                "machine": [
+                  "dead_bug",
+                  "cable_crunch"
+                ],
+                "home_db": [
+                  "dead_bug",
+                  "bird_dog"
+                ]
+              }
+            },
+            {
+              "pattern": "isolation",
+              "primaryMuscle": "biceps",
+              "sets": 2,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 60,
+              "importance": 1,
+              "preferred": {
+                "gym": [
+                  "db_curl",
+                  "cable_curl"
+                ],
+                "machine": [
+                  "cable_curl",
+                  "db_curl"
+                ],
+                "home_db": [
+                  "db_curl"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "key": "B",
+          "name": "Full body B",
+          "importance": 3,
+          "slots": [
+            {
+              "pattern": "hinge",
+              "primaryMuscle": "hamstrings",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 120,
+              "importance": 3,
+              "preferred": {
+                "gym": [
+                  "romanian_deadlift_barbell",
+                  "romanian_deadlift_db"
+                ],
+                "machine": [
+                  "romanian_deadlift_db",
+                  "glute_bridge"
+                ],
+                "home_db": [
+                  "romanian_deadlift_db",
+                  "glute_bridge"
+                ]
+              }
+            },
+            {
+              "pattern": "v_push",
+              "primaryMuscle": "shoulders",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 90,
+              "importance": 3,
+              "preferred": {
+                "gym": [
+                  "shoulder_press_db",
+                  "shoulder_press_machine"
+                ],
+                "machine": [
+                  "shoulder_press_machine",
+                  "shoulder_press_db"
+                ],
+                "home_db": [
+                  "shoulder_press_db"
+                ]
+              }
+            },
+            {
+              "pattern": "v_pull",
+              "primaryMuscle": "lats",
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 90,
+              "importance": 3,
+              "preferred": {
+                "gym": [
+                  "lat_pulldown",
+                  "assisted_pullup_machine"
+                ],
+                "machine": [
+                  "lat_pulldown",
+                  "assisted_pullup_machine"
+                ],
+                "home_db": [
+                  "db_pullover",
+                  "one_arm_row_db"
+                ]
+              }
+            },
+            {
+              "pattern": "lunge",
+              "primaryMuscle": "quads",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 90,
+              "importance": 2,
+              "preferred": {
+                "gym": [
+                  "walking_lunge_db",
+                  "split_squat_db"
+                ],
+                "machine": [
+                  "split_squat_db",
+                  "reverse_lunge_bw"
+                ],
+                "home_db": [
+                  "split_squat_db",
+                  "reverse_lunge_bw"
+                ]
+              }
+            },
+            {
+              "pattern": "core",
+              "primaryMuscle": "core",
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 60,
+              "importance": 1,
+              "preferred": {
+                "gym": [
+                  "cable_crunch",
+                  "dead_bug"
+                ],
+                "machine": [
+                  "cable_crunch",
+                  "dead_bug"
+                ],
+                "home_db": [
+                  "bird_dog",
+                  "dead_bug"
+                ]
+              }
+            },
+            {
+              "pattern": "isolation",
+              "primaryMuscle": "triceps",
+              "sets": 2,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 60,
+              "importance": 1,
+              "preferred": {
+                "gym": [
+                  "triceps_pushdown_cable",
+                  "overhead_triceps_ext_db"
+                ],
+                "machine": [
+                  "triceps_pushdown_cable"
+                ],
+                "home_db": [
+                  "overhead_triceps_ext_db"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "split": "upper_lower",
+      "daysPerWeek": [
+        4
+      ],
+      "sessions": [
+        {
+          "key": "upper",
+          "name": "Upper body",
+          "importance": 3,
+          "slots": [
+            {
+              "pattern": "h_push",
+              "primaryMuscle": "chest",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 120,
+              "importance": 3,
+              "preferred": {
+                "gym": [
+                  "bench_press_barbell",
+                  "chest_press_machine"
+                ],
+                "machine": [
+                  "chest_press_machine",
+                  "push_up"
+                ],
+                "home_db": [
+                  "floor_press_db",
+                  "push_up"
+                ]
+              }
+            },
+            {
+              "pattern": "v_pull",
+              "primaryMuscle": "lats",
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 90,
+              "importance": 3,
+              "preferred": {
+                "gym": [
+                  "lat_pulldown",
+                  "assisted_pullup_machine"
+                ],
+                "machine": [
+                  "lat_pulldown",
+                  "assisted_pullup_machine"
+                ],
+                "home_db": [
+                  "db_pullover",
+                  "one_arm_row_db"
+                ]
+              }
+            },
+            {
+              "pattern": "v_push",
+              "primaryMuscle": "shoulders",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 90,
+              "importance": 2,
+              "preferred": {
+                "gym": [
+                  "shoulder_press_db",
+                  "shoulder_press_machine"
+                ],
+                "machine": [
+                  "shoulder_press_machine",
+                  "shoulder_press_db"
+                ],
+                "home_db": [
+                  "shoulder_press_db"
+                ]
+              }
+            },
+            {
+              "pattern": "h_pull",
+              "primaryMuscle": "upper_back",
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 90,
+              "importance": 2,
+              "preferred": {
+                "gym": [
+                  "seated_cable_row",
+                  "one_arm_row_db"
+                ],
+                "machine": [
+                  "chest_supported_row_machine",
+                  "seated_cable_row"
+                ],
+                "home_db": [
+                  "one_arm_row_db"
+                ]
+              }
+            },
+            {
+              "pattern": "isolation",
+              "primaryMuscle": "triceps",
+              "sets": 2,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 60,
+              "importance": 1,
+              "preferred": {
+                "gym": [
+                  "triceps_pushdown_cable",
+                  "overhead_triceps_ext_db"
+                ],
+                "machine": [
+                  "triceps_pushdown_cable"
+                ],
+                "home_db": [
+                  "overhead_triceps_ext_db"
+                ]
+              }
+            },
+            {
+              "pattern": "isolation",
+              "primaryMuscle": "biceps",
+              "sets": 2,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 60,
+              "importance": 1,
+              "preferred": {
+                "gym": [
+                  "db_curl",
+                  "cable_curl"
+                ],
+                "machine": [
+                  "cable_curl",
+                  "db_curl"
+                ],
+                "home_db": [
+                  "db_curl"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "key": "lower",
+          "name": "Lower body",
+          "importance": 3,
+          "slots": [
+            {
+              "pattern": "squat",
+              "primaryMuscle": "quads",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 120,
+              "importance": 3,
+              "preferred": {
+                "gym": [
+                  "barbell_back_squat",
+                  "goblet_squat_db"
+                ],
+                "machine": [
+                  "leg_press_machine",
+                  "goblet_squat_db"
+                ],
+                "home_db": [
+                  "goblet_squat_db",
+                  "bodyweight_squat"
+                ]
+              }
+            },
+            {
+              "pattern": "hinge",
+              "primaryMuscle": "hamstrings",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 120,
+              "importance": 3,
+              "preferred": {
+                "gym": [
+                  "romanian_deadlift_barbell",
+                  "romanian_deadlift_db"
+                ],
+                "machine": [
+                  "romanian_deadlift_db",
+                  "glute_bridge"
+                ],
+                "home_db": [
+                  "romanian_deadlift_db",
+                  "glute_bridge"
+                ]
+              }
+            },
+            {
+              "pattern": "lunge",
+              "primaryMuscle": "quads",
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12,
+              "restSec": 90,
+              "importance": 2,
+              "preferred": {
+                "gym": [
+                  "walking_lunge_db",
+                  "split_squat_db"
+                ],
+                "machine": [
+                  "split_squat_db",
+                  "reverse_lunge_bw"
+                ],
+                "home_db": [
+                  "split_squat_db",
+                  "reverse_lunge_bw"
+                ]
+              }
+            },
+            {
+              "pattern": "isolation",
+              "primaryMuscle": "hamstrings",
+              "sets": 2,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 60,
+              "importance": 2,
+              "preferred": {
+                "gym": [
+                  "leg_curl_machine",
+                  "single_leg_glute_bridge"
+                ],
+                "machine": [
+                  "leg_curl_machine",
+                  "single_leg_glute_bridge"
+                ],
+                "home_db": [
+                  "single_leg_glute_bridge"
+                ]
+              }
+            },
+            {
+              "pattern": "isolation",
+              "primaryMuscle": "calves",
+              "sets": 2,
+              "repMin": 12,
+              "repMax": 15,
+              "restSec": 60,
+              "importance": 1,
+              "preferred": {
+                "gym": [
+                  "standing_calf_raise",
+                  "seated_calf_raise_machine"
+                ],
+                "machine": [
+                  "seated_calf_raise_machine",
+                  "standing_calf_raise"
+                ],
+                "home_db": [
+                  "standing_calf_raise"
+                ]
+              }
+            },
+            {
+              "pattern": "core",
+              "primaryMuscle": "core",
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15,
+              "restSec": 60,
+              "importance": 1,
+              "preferred": {
+                "gym": [
+                  "dead_bug",
+                  "cable_crunch"
+                ],
+                "machine": [
+                  "dead_bug",
+                  "cable_crunch"
+                ],
+                "home_db": [
+                  "dead_bug",
+                  "bird_dog"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

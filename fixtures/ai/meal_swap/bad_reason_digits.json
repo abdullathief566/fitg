@@ -1,0 +1,24 @@
+{
+  "scenario": "digits_in_reason",
+  "expect": "reject:foreign_number",
+  "input": {
+    "current": "chicken-curry-rice",
+    "slot": "dinner",
+    "candidates": [
+      "dal-rice-meal",
+      "aloo-gobi-roti-meal",
+      "chicken-rice-bowl",
+      "egg-bhurji-roti",
+      "paneer-bhurji-roti"
+    ]
+  },
+  "allowedNumbers": [],
+  "output": {
+    "picks": [
+      {
+        "slug": "chicken-rice-bowl",
+        "reason": "Only 10 minutes of work"
+      }
+    ]
+  }
+}

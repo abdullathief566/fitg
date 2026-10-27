@@ -1,0 +1,18 @@
+{
+  "scenario": "grams_guess",
+  "expect": "reject:schema",
+  "output": {
+    "items": [
+      {
+        "name": "rice",
+        "nameLocal": "chawal",
+        "unit": "g",
+        "qty": "250",
+        "cooking": "dry",
+        "oilLevel": "low",
+        "confidence": "high"
+      }
+    ],
+    "question": null
+  }
+}

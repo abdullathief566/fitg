@@ -1,0 +1,806 @@
+{
+  "_note": "usda_query is a SEARCH HINT: import-usda.ts shows the matched USDA row for confirmation and pins fdc_id. curated values are filled by the founder from labels/cited references. Never guess numbers. Unit grams are kitchen conventions — verify with a scale.",
+  "foods": [
+    {
+      "key": "egg_whole",
+      "name": "Egg, whole",
+      "category": "egg",
+      "usda_query": "Egg, whole, raw, fresh",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "anda",
+          "hinglish"
+        ],
+        [
+          "egg",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "egg",
+          "grams": 50,
+          "label": "1 egg (50 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "atta_whole_wheat",
+      "name": "Whole wheat flour (atta)",
+      "category": "grain",
+      "usda_query": "Wheat flour, whole-grain",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 1.3,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "atta",
+          "hinglish"
+        ],
+        [
+          "gehun ka atta",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "roti",
+          "grams": 30,
+          "label": "1 roti (30 g atta)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "rice_white_raw",
+      "name": "White rice (raw)",
+      "category": "grain",
+      "usda_query": "Rice, white, long-grain, regular, raw, enriched",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 3,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "chawal",
+          "hinglish"
+        ],
+        [
+          "rice",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "katori",
+          "grams": 50,
+          "label": "1 katori cooked rice (50 g raw)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "dal_toor_raw",
+      "name": "Toor dal (raw)",
+      "category": "pulse",
+      "usda_query": "Pigeon peas (red gram), mature seeds, raw",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 2.5,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "toor dal",
+          "hinglish"
+        ],
+        [
+          "arhar dal",
+          "hinglish"
+        ],
+        [
+          "dal",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "katori",
+          "grams": 60,
+          "label": "1 katori cooked dal (60 g raw)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "chickpeas_raw",
+      "name": "Chickpeas / chana (raw)",
+      "category": "pulse",
+      "usda_query": "Chickpeas (garbanzo beans, bengal gram), mature seeds, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 2.4,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "chana",
+          "hinglish"
+        ],
+        [
+          "chole",
+          "hinglish"
+        ],
+        [
+          "kabuli chana",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "katori",
+          "grams": 60,
+          "label": "1 katori cooked chana (60 g raw)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "kidney_beans_raw",
+      "name": "Kidney beans / rajma (raw)",
+      "category": "pulse",
+      "usda_query": "Beans, kidney, red, mature seeds, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 2.4,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "rajma",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "katori",
+          "grams": 60,
+          "label": "1 katori cooked rajma (60 g raw)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "chicken_breast_raw",
+      "name": "Chicken breast (raw)",
+      "category": "meat",
+      "usda_query": "Chicken, broilers or fryers, breast, meat only, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 0.75,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "murgh",
+          "hinglish"
+        ],
+        [
+          "chicken",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        },
+        {
+          "unit": "piece",
+          "grams": 150,
+          "label": "1 breast piece (150 g raw)"
+        }
+      ]
+    },
+    {
+      "key": "paneer",
+      "name": "Paneer",
+      "category": "dairy",
+      "usda_query": null,
+      "curated": {
+        "kcal": null,
+        "protein_g": null,
+        "carbs_g": null,
+        "fat_g": null,
+        "fiber_g": 0,
+        "reference": "FOUNDER: fill from the paneer pack label you buy"
+      },
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "paneer",
+          "hinglish"
+        ],
+        [
+          "cottage cheese",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        },
+        {
+          "unit": "piece",
+          "grams": 25,
+          "label": "1 cube (25 g)"
+        }
+      ]
+    },
+    {
+      "key": "curd_whole",
+      "name": "Curd / dahi (whole milk)",
+      "category": "dairy",
+      "usda_query": "Yogurt, plain, whole milk",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "dahi",
+          "hinglish"
+        ],
+        [
+          "curd",
+          "en"
+        ],
+        [
+          "yogurt",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "katori",
+          "grams": 150,
+          "label": "1 katori (150 g)"
+        },
+        {
+          "unit": "cup",
+          "grams": 240,
+          "label": "1 cup (240 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "milk_whole",
+      "name": "Milk (whole)",
+      "category": "dairy",
+      "usda_query": "Milk, whole, 3.25% milkfat, with added vitamin D",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "doodh",
+          "hinglish"
+        ],
+        [
+          "milk",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "cup",
+          "grams": 240,
+          "label": "1 glass (240 ml)"
+        },
+        {
+          "unit": "ml",
+          "grams": 1,
+          "label": "ml"
+        }
+      ]
+    },
+    {
+      "key": "oats_rolled",
+      "name": "Rolled oats",
+      "category": "grain",
+      "usda_query": "Cereals, oats, regular and quick, not fortified, dry",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "oats",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "cup",
+          "grams": 80,
+          "label": "1 cup (80 g)"
+        },
+        {
+          "unit": "tbsp",
+          "grams": 5,
+          "label": "1 tbsp (5 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "banana",
+      "name": "Banana",
+      "category": "fruit",
+      "usda_query": "Bananas, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "kela",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "piece",
+          "grams": 100,
+          "label": "1 medium banana (100 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "onion",
+      "name": "Onion",
+      "category": "vegetable",
+      "usda_query": "Onions, raw",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "pyaaz",
+          "hinglish"
+        ],
+        [
+          "kanda",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "piece",
+          "grams": 80,
+          "label": "1 medium onion (80 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "tomato",
+      "name": "Tomato",
+      "category": "vegetable",
+      "usda_query": "Tomatoes, red, ripe, raw, year round average",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "tamatar",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "piece",
+          "grams": 80,
+          "label": "1 medium tomato (80 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "potato",
+      "name": "Potato",
+      "category": "vegetable",
+      "usda_query": "Potatoes, flesh and skin, raw",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "aloo",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "piece",
+          "grams": 150,
+          "label": "1 medium potato (150 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "cauliflower",
+      "name": "Cauliflower",
+      "category": "vegetable",
+      "usda_query": "Cauliflower, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "gobi",
+          "hinglish"
+        ],
+        [
+          "phool gobi",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "capsicum",
+      "name": "Capsicum (green)",
+      "category": "vegetable",
+      "usda_query": "Peppers, sweet, green, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "shimla mirch",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "piece",
+          "grams": 120,
+          "label": "1 capsicum (120 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "cucumber",
+      "name": "Cucumber",
+      "category": "vegetable",
+      "usda_query": "Cucumber, with peel, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "kheera",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "oil_sunflower",
+      "name": "Sunflower oil",
+      "category": "fat",
+      "usda_query": "Oil, sunflower",
+      "staple": true,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "tel",
+          "hinglish"
+        ],
+        [
+          "oil",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "tsp",
+          "grams": 4.5,
+          "label": "1 tsp (4.5 g)"
+        },
+        {
+          "unit": "tbsp",
+          "grams": 13.5,
+          "label": "1 tbsp (13.5 g)"
+        }
+      ]
+    },
+    {
+      "key": "ghee",
+      "name": "Ghee",
+      "category": "fat",
+      "usda_query": "Butter oil, anhydrous",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "ghee",
+          "hinglish"
+        ],
+        [
+          "desi ghee",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "tsp",
+          "grams": 4.5,
+          "label": "1 tsp (4.5 g)"
+        },
+        {
+          "unit": "tbsp",
+          "grams": 13.5,
+          "label": "1 tbsp (13.5 g)"
+        }
+      ]
+    },
+    {
+      "key": "peanut_butter",
+      "name": "Peanut butter",
+      "category": "fat",
+      "usda_query": "Peanut butter, smooth style, without salt",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "peanut butter",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "tbsp",
+          "grams": 16,
+          "label": "1 tbsp (16 g)"
+        }
+      ]
+    },
+    {
+      "key": "whey_isolate",
+      "name": "Whey protein (isolate)",
+      "category": "supplement",
+      "usda_query": null,
+      "curated": {
+        "kcal": null,
+        "protein_g": null,
+        "carbs_g": null,
+        "fat_g": null,
+        "fiber_g": 0,
+        "reference": "FOUNDER: fill from the tub label (per 100 g)"
+      },
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "whey",
+          "en"
+        ],
+        [
+          "protein powder",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "scoop",
+          "grams": 30,
+          "label": "1 scoop (30 g)"
+        }
+      ]
+    },
+    {
+      "key": "roasted_chana",
+      "name": "Roasted chana",
+      "category": "pulse",
+      "usda_query": null,
+      "curated": {
+        "kcal": null,
+        "protein_g": null,
+        "carbs_g": null,
+        "fat_g": null,
+        "fiber_g": null,
+        "reference": "FOUNDER: fill from the pack label"
+      },
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "bhuna chana",
+          "hinglish"
+        ],
+        [
+          "roasted gram",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "bread_whole_wheat",
+      "name": "Whole wheat bread",
+      "category": "grain",
+      "usda_query": "Bread, whole-wheat, commercially prepared",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "brown bread",
+          "en"
+        ],
+        [
+          "atta bread",
+          "hinglish"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "slice",
+          "grams": 32,
+          "label": "1 slice (32 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "soya_chunks",
+      "name": "Soya chunks (dry)",
+      "category": "pulse",
+      "usda_query": null,
+      "curated": {
+        "kcal": null,
+        "protein_g": null,
+        "carbs_g": null,
+        "fat_g": null,
+        "fiber_g": null,
+        "reference": "FOUNDER: fill from the pack label (per 100 g dry)"
+      },
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 3,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "soya chunks",
+          "en"
+        ],
+        [
+          "soya badi",
+          "hinglish"
+        ],
+        [
+          "soy chunks",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "katori",
+          "grams": 30,
+          "label": "1 katori cooked (30 g dry)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "scenario": "prefs",
+  "expect": "valid",
+  "allowedNumbers": [
+    2,
+    7
+  ],
+  "output": {
+    "summary": "Prefers rotis over rice at dinner (2 rotis). Gym moved to 7 PM on Wednesdays. Asked about knee pain on squats — told to see a doctor; plan uses leg press for now."
+  }
+}

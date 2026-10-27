@@ -1,0 +1,38 @@
+{
+  "scenario": "too_long",
+  "expect": "reject:too_long",
+  "input": {
+    "pings": [
+      {
+        "id": "2026-11-04:pre_gym",
+        "type": "pre_gym",
+        "title": "Gym in 15. Full body B.",
+        "body": "6 moves, about 50 min. Romanian deadlift 3×10 at 15 kg, 2.5 kg more than Monday.",
+        "recentWordings": [
+          "Gym in 15. Full body B."
+        ]
+      },
+      {
+        "id": "2026-11-04:pre_dinner",
+        "type": "pre_dinner",
+        "title": "Dinner: dal + rice, 30 min.",
+        "body": "1 tsp oil, not 3. Rice: 1 katori.",
+        "recentWordings": []
+      }
+    ]
+  },
+  "output": {
+    "pings": [
+      {
+        "id": "2026-11-04:pre_gym",
+        "title": "Gym in 15. Full body B.",
+        "body": "6 moves, about 50 min. Romanian deadlift 3×10 at 15 kg, 2.5 kg more than Monday. Bring water, a towel, your earphones and your best attitude today."
+      },
+      {
+        "id": "2026-11-04:pre_dinner",
+        "title": "Dinner: dal + rice, 30 min.",
+        "body": "1 tsp oil, not 3. Rice: 1 katori."
+      }
+    ]
+  }
+}

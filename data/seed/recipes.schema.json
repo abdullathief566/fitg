@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FitG recipe seed entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "name",
+    "cuisine",
+    "meal_slots",
+    "diet_tags",
+    "allergens",
+    "cook_time_min",
+    "cost_tier",
+    "servings",
+    "oil_tsp",
+    "ingredients",
+    "steps",
+    "scale_rules",
+    "protein_addons",
+    "tags",
+    "is_draft"
+  ],
+  "properties": {
+    "requires": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "food keys that must be in the pantry for this recipe to be offered"
+      }
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "cuisine": {
+      "enum": [
+        "indian",
+        "western",
+        "mixed"
+      ]
+    },
+    "meal_slots": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "breakfast",
+          "lunch",
+          "post_workout",
+          "dinner",
+          "snack"
+        ]
+      },
+      "minItems": 1
+    },
+    "diet_tags": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "vegan",
+          "veg",
+          "eggetarian",
+          "non_veg"
+        ]
+      },
+      "minItems": 1
+    },
+    "allergens": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cook_time_min": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cost_tier": {
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "servings": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "oil_tsp": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cooked_yield_g": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "prep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "lead_hours"
+      ],
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "lead_hours": {
+          "type": "number"
+        }
+      }
+    },
+    "ingredients": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "food",
+          "grams",
+          "unit",
+          "qty",
+          "role",
+          "scalable"
+        ],
+        "properties": {
+          "food": {
+            "type": "string",
+            "description": "foods.map.json key"
+          },
+          "grams": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "raw grams per serving"
+          },
+          "unit": {
+            "enum": [
+              "g",
+              "ml",
+              "piece",
+              "katori",
+              "roti",
+              "tsp",
+              "tbsp",
+              "cup",
+              "slice",
+              "scoop",
+              "egg",
+              "plate"
+            ]
+          },
+          "qty": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "role": {
+            "enum": [
+              "base",
+              "protein",
+              "carb",
+              "fat",
+              "veg",
+              "spice"
+            ]
+          },
+          "scalable": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "timer_sec": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "scale_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min_mult",
+        "max_mult",
+        "step"
+      ],
+      "properties": {
+        "min_mult": {
+          "type": "number"
+        },
+        "max_mult": {
+          "type": "number"
+        },
+        "step": {
+          "type": "number"
+        }
+      }
+    },
+    "protein_addons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "protein_addons key"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "is_draft": {
+      "type": "boolean"
+    }
+  }
+}

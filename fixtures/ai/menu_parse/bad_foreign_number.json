@@ -1,0 +1,19 @@
+{
+  "scenario": "invented_count",
+  "expect": "reject:foreign_number",
+  "input": {
+    "text": "Paneer tikka, dal makhani, butter naan"
+  },
+  "allowedNumbers": [],
+  "output": {
+    "options": [
+      {
+        "text": "Dal makhani + 3 butter naan",
+        "foods": [
+          "dal makhani",
+          "butter naan"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "scenario": "no_numbers",
+  "expect": "valid",
+  "input": {
+    "diff": [
+      {
+        "itemId": "mi-dinner",
+        "field": "multiplier",
+        "from": 1,
+        "to": 0.75,
+        "slot": "dinner"
+      },
+      {
+        "itemId": "mi-dinner",
+        "field": "addon",
+        "from": null,
+        "to": "boiled_egg x2",
+        "slot": "dinner"
+      }
+    ]
+  },
+  "allowedNumbers": [
+    1,
+    0.75,
+    2
+  ],
+  "output": {
+    "line": "Lunch is covered — dinner's lighter tonight."
+  }
+}

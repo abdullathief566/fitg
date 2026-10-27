@@ -1,0 +1,9 @@
+# The build pack is the spec: never reformat it.
+docs/
+seed/
+reference/
+fixtures/
+data/seed/
+data/sample/
+*.md
+package-lock.json

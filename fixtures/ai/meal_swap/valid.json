@@ -1,0 +1,32 @@
+{
+  "scenario": "swap_dinner",
+  "expect": "valid",
+  "input": {
+    "current": "chicken-curry-rice",
+    "slot": "dinner",
+    "candidates": [
+      "dal-rice-meal",
+      "aloo-gobi-roti-meal",
+      "chicken-rice-bowl",
+      "egg-bhurji-roti",
+      "paneer-bhurji-roti"
+    ]
+  },
+  "allowedNumbers": [],
+  "output": {
+    "picks": [
+      {
+        "slug": "chicken-rice-bowl",
+        "reason": "Same chicken, quicker to make"
+      },
+      {
+        "slug": "egg-bhurji-roti",
+        "reason": "Eggs are already at home"
+      },
+      {
+        "slug": "dal-rice-meal",
+        "reason": "Light and easy tonight"
+      }
+    ]
+  }
+}

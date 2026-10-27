@@ -282,8 +282,10 @@ create table plan_days (
   is_gym_day          boolean not null,
   kcal_target         int not null,
   protein_target      int not null,
-  prep_tasks          jsonb not null default '[]',     -- [{text, at?}]
+  prep_tasks          jsonb not null default '[]',     -- [{for_date, text, at, recipe_slug}]
   tomorrow_delta_kcal int not null default 0 check (tomorrow_delta_kcal between -200 and 200),
+  ok                  boolean not null default true,   -- the planner hit the day's targets (engines.md §3.4)
+  problems            jsonb not null default '[]',     -- Problem[] when it didn't
   updated_at          timestamptz not null default now(),
   unique (weekly_plan_id, date)
 );
@@ -322,6 +324,7 @@ create table workout_sets (
   target_weight_kg         numeric(5,2) not null,
   target_reps_min          int not null,
   target_reps_max          int not null,
+  target_reps              int not null,               -- the rep target shown for this set (engines.md §2.2)
   rest_sec                 int not null default 90,
   actual_weight_kg         numeric(5,2),
   actual_reps              int,

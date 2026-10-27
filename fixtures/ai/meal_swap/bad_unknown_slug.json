@@ -1,0 +1,24 @@
+{
+  "scenario": "not_in_candidates",
+  "expect": "reject:unknown_slug",
+  "input": {
+    "current": "chicken-curry-rice",
+    "slot": "dinner",
+    "candidates": [
+      "dal-rice-meal",
+      "aloo-gobi-roti-meal",
+      "chicken-rice-bowl",
+      "egg-bhurji-roti",
+      "paneer-bhurji-roti"
+    ]
+  },
+  "allowedNumbers": [],
+  "output": {
+    "picks": [
+      {
+        "slug": "butter-chicken-naan",
+        "reason": "Tastes great"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "scenario": "cafe",
+  "expect": "valid",
+  "input": {
+    "text": "Grilled chicken sandwich, masala omelette, cold coffee"
+  },
+  "allowedNumbers": [],
+  "output": {
+    "options": [
+      {
+        "text": "Grilled chicken sandwich",
+        "foods": [
+          "grilled chicken sandwich"
+        ]
+      },
+      {
+        "text": "Masala omelette",
+        "foods": [
+          "omelette"
+        ]
+      },
+      {
+        "text": "Cold coffee",
+        "foods": [
+          "cold coffee"
+        ]
+      }
+    ]
+  }
+}

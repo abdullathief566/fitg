@@ -1,0 +1,16 @@
+{
+  "scenario": "good_week",
+  "expect": "valid",
+  "allowedNumbers": [
+    3,
+    5,
+    2.5,
+    78.4,
+    78.9
+  ],
+  "output": {
+    "headline": "Three for three. Nice.",
+    "body": "All 3 workouts done and 5 protein days. Bench went up 2.5 kg.",
+    "nextWeekFocus": "Same plan — one more rep on rows."
+  }
+}

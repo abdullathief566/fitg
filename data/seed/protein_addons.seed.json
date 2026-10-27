@@ -1,0 +1,96 @@
+{
+  "protein_addons": [
+    {
+      "key": "boiled_egg",
+      "name": "Boiled egg",
+      "food_key": "egg_whole",
+      "unit": "egg",
+      "grams_per_unit": 50,
+      "diet_tags": [
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantry_food_key": "egg_whole"
+    },
+    {
+      "key": "curd_cup",
+      "name": "Curd (1 katori)",
+      "food_key": "curd_whole",
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantry_food_key": "curd_whole"
+    },
+    {
+      "key": "milk_glass",
+      "name": "Glass of milk",
+      "food_key": "milk_whole",
+      "unit": "cup",
+      "grams_per_unit": 240,
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantry_food_key": "milk_whole"
+    },
+    {
+      "key": "whey_scoop",
+      "name": "Whey (1 scoop)",
+      "food_key": "whey_isolate",
+      "unit": "scoop",
+      "grams_per_unit": 30,
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantry_food_key": "whey_isolate"
+    },
+    {
+      "key": "paneer_50g",
+      "name": "Paneer (50 g)",
+      "food_key": "paneer",
+      "unit": "g",
+      "grams_per_unit": 50,
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantry_food_key": "paneer"
+    },
+    {
+      "key": "soya_chunks_30g",
+      "name": "Soya chunks (30 g dry, cooked in)",
+      "food_key": "soya_chunks",
+      "unit": "g",
+      "grams_per_unit": 30,
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantry_food_key": "soya_chunks"
+    },
+    {
+      "key": "roasted_chana_30g",
+      "name": "Roasted chana (30 g)",
+      "food_key": "roasted_chana",
+      "unit": "g",
+      "grams_per_unit": 30,
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantry_food_key": "roasted_chana"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "_note": "Golden cases T1–T11 from docs/20-engineering/engines.md §5 (computed 2026-10-27 with a reference implementation). Exact — if the code disagrees, the code is wrong.",
+  "cases": [
+    {
+      "id": "T1",
+      "input": { "sex": "male", "ageYears": 28, "heightCm": 175, "weightKg": 75, "goal": "fat_loss", "activity": "desk", "gymDaysPerWeek": 3, "safetyFlags": {} },
+      "expected": { "bmr": 1708.75, "activityFactor": 1.35, "tdee": 2306.8125, "kcal": 1850, "proteinG": 120, "fatG": 55, "carbsG": 220, "displayMode": "full", "floorsApplied": false, "notes": [] }
+    },
+    {
+      "id": "T2",
+      "input": { "sex": "female", "ageYears": 24, "heightCm": 160, "weightKg": 60, "goal": "fat_loss", "activity": "desk", "gymDaysPerWeek": 2, "safetyFlags": {} },
+      "expected": { "bmr": 1319, "activityFactor": 1.3, "kcal": 1370, "proteinG": 95, "fatG": 40, "carbsG": 160, "displayMode": "full", "floorsApplied": false }
+    },
+    {
+      "id": "T3",
+      "input": { "sex": "female", "ageYears": 35, "heightCm": 150, "weightKg": 48, "goal": "fat_loss", "activity": "desk", "gymDaysPerWeek": 2, "safetyFlags": {} },
+      "expected": { "kcal": 1200, "proteinG": 75, "fatG": 35, "carbsG": 145, "displayMode": "full", "floorsApplied": true, "rawKcalBeforeFloor": 1120 }
+    },
+    {
+      "id": "T4",
+      "input": { "sex": "male", "ageYears": 22, "heightCm": 170, "weightKg": 62, "goal": "muscle", "activity": "on_feet", "gymDaysPerWeek": 4, "safetyFlags": {} },
+      "expected": { "bmr": 1577.5, "activityFactor": 1.6, "kcal": 2780, "proteinG": 100, "fatG": 85, "carbsG": 405, "displayMode": "full", "floorsApplied": false }
+    },
+    {
+      "id": "T5",
+      "input": { "sex": "male", "ageYears": 32, "heightCm": 178, "weightKg": 110, "goalWeightKg": 90, "goal": "fat_loss", "activity": "desk", "gymDaysPerWeek": 3, "safetyFlags": {} },
+      "expected": { "bmi": 34.72, "weightUsedKg": 90, "kcal": 2220, "proteinG": 145, "fatG": 70, "carbsG": 255, "displayMode": "full", "floorsApplied": false }
+    },
+    {
+      "id": "T6",
+      "input": { "sex": "male", "ageYears": 28, "heightCm": 175, "weightKg": 75, "goal": "fat_loss", "activity": "desk", "gymDaysPerWeek": 3, "safetyFlags": { "diabetes": true } },
+      "expected": { "adjustPct": 0, "kcal": 2310, "proteinG": 120, "fatG": 70, "carbsG": 300, "displayMode": "full", "notes": ["no_deficit_medical"] }
+    },
+    {
+      "id": "T7",
+      "input": { "sex": "male", "ageYears": 28, "heightCm": 175, "weightKg": 75, "goal": "fat_loss", "activity": "desk", "gymDaysPerWeek": 3, "safetyFlags": { "edHistory": true } },
+      "expected": { "kcal": 1850, "proteinG": 120, "fatG": 55, "carbsG": 220, "displayMode": "habit_only" }
+    },
+    {
+      "id": "T9",
+      "input": { "sex": "male", "ageYears": 30, "heightCm": 180, "weightKg": 72, "goal": "both", "activity": "desk", "gymDaysPerWeek": 3, "safetyFlags": {} },
+      "expected": { "bmi": 22.22, "adjustPct": 0, "kcal": 2300, "proteinG": 115, "fatG": 70, "carbsG": 305, "displayMode": "full" }
+    },
+    {
+      "id": "T10",
+      "input": { "sex": "female", "ageYears": 41, "heightCm": 163, "weightKg": 92, "goalWeightKg": 70, "goal": "fat_loss", "activity": "desk", "gymDaysPerWeek": 2, "safetyFlags": { "glp1": true } },
+      "expected": { "adjustPct": 0, "kcal": 2040, "proteinG": 110, "fatG": 60, "carbsG": 265, "displayMode": "full", "notes": ["no_deficit_medical"] }
+    },
+    {
+      "id": "T11",
+      "input": { "sex": "female", "ageYears": 27, "heightCm": 165, "weightKg": 58, "goal": "get_fit", "activity": "on_feet", "gymDaysPerWeek": 2, "safetyFlags": {} },
+      "expected": { "bmr": 1315.25, "activityFactor": 1.5, "kcal": 1970, "proteinG": 80, "fatG": 60, "carbsG": 280, "displayMode": "full" }
+    }
+  ],
+  "weeklyAdjustT8": {
+    "_note": "T8: fat_loss, adherence 0.8, evaluated week by week, each step feeding the next.",
+    "steps": [
+      { "weeksSinceStart": 3, "prev": 74.0, "this": 73.0, "expected": { "deltaChange": 150, "newDelta": 150, "stallWeeks": 0 } },
+      { "weeksSinceStart": 4, "prev": 73.0, "this": 73.0, "expected": { "deltaChange": 0, "newDelta": 150, "stallWeeks": 1 } },
+      { "weeksSinceStart": 5, "prev": 73.0, "this": 72.95, "expected": { "deltaChange": -150, "newDelta": 0, "stallWeeks": 0 } }
+    ]
+  }
+}

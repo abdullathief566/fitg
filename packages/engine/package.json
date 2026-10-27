@@ -1,0 +1,14 @@
+{
+  "name": "@fitg/engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pure TypeScript engine: every number FitG shows comes from here. Zero runtime dependencies.",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./types": "./src/types/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  }
+}

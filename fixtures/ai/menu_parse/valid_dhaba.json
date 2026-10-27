@@ -1,0 +1,39 @@
+{
+  "scenario": "dhaba_menu",
+  "expect": "valid",
+  "input": {
+    "text": "Tandoori chicken (half) · Dal makhani + 2 butter naan · Paneer tikka · Veg biryani"
+  },
+  "allowedNumbers": [
+    2
+  ],
+  "output": {
+    "options": [
+      {
+        "text": "Tandoori chicken (half)",
+        "foods": [
+          "tandoori chicken"
+        ]
+      },
+      {
+        "text": "Dal makhani + 2 butter naan",
+        "foods": [
+          "dal makhani",
+          "butter naan"
+        ]
+      },
+      {
+        "text": "Paneer tikka",
+        "foods": [
+          "paneer tikka"
+        ]
+      },
+      {
+        "text": "Veg biryani",
+        "foods": [
+          "veg biryani"
+        ]
+      }
+    ]
+  }
+}
