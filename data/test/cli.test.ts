@@ -51,11 +51,11 @@ describe('build-seed CLI', () => {
     expect(readdirSync(join(out, 'seed'))).toHaveLength(6);
   });
 
-  it("--prod (the default) refuses today's data with exit code 1 and lists the offenders", () => {
-    const root = tempRoot();
+  it('--prod (the default) refuses unpinned data with exit code 1 and lists the offenders', () => {
+    const root = tempRoot(); // no usda_pins.json
     const c = capture();
     expect(runBuildSeed([], { root, io: c.io })).toBe(1);
-    expect(c.err.join('\n')).toMatch(/Production build refused[\s\S]*'paneer' curated values are still null/);
+    expect(c.err.join('\n')).toMatch(/Production build refused[\s\S]*'egg_whole' has no USDA pin yet/);
     expect(existsSync(join(root, 'supabase'))).toBe(false);
     expect(existsSync(join(root, 'apps'))).toBe(false);
   });

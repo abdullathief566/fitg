@@ -22,7 +22,7 @@
         "high_protein",
         "indian_home"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "egg-bhurji-roti",
       "name": "Egg bhurji + 2 rotis",
@@ -113,7 +113,7 @@
         "quick",
         "no_cook_skill"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "oats-banana-milk",
       "name": "Oats with milk and banana",
@@ -185,7 +185,7 @@
         "high_protein",
         "indian_home"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "paneer-bhurji-roti",
       "name": "Paneer bhurji + 2 rotis",
@@ -283,7 +283,7 @@
         "indian_home",
         "batch_friendly"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "dal-rice-meal",
       "name": "Dal tadka + rice",
@@ -371,7 +371,7 @@
         "indian_home",
         "batch_friendly"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "chicken-curry-rice",
       "name": "Chicken curry + rice",
@@ -428,6 +428,9 @@
       ],
       "steps": [
         {
+          "text": "Cook the rice."
+        },
+        {
           "text": "Heat 2 tsp oil — not 3. Brown the onion (6 min).",
           "timer_sec": 360
         },
@@ -461,7 +464,7 @@
         "weekend",
         "batch_friendly"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "rajma-rice-meal",
       "name": "Rajma + rice",
@@ -528,6 +531,9 @@
           "text": "Pressure-cook the soaked rajma until soft."
         },
         {
+          "text": "Cook the rice."
+        },
+        {
           "text": "Masala: 1 tsp oil, onion, tomato, ginger-garlic; add rajma and simmer 10 minutes.",
           "timer_sec": 600
         },
@@ -555,7 +561,7 @@
         "indian_home",
         "weekend"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "chana-roti-meal",
       "name": "Chana masala + 2 rotis",
@@ -650,7 +656,7 @@
         "indian_home",
         "veg_heavy"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "aloo-gobi-roti-meal",
       "name": "Aloo gobi + 2 rotis",
@@ -746,7 +752,7 @@
         "high_protein",
         "quick"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "chicken-rice-bowl",
       "name": "Chicken rice bowl with curd",
@@ -832,7 +838,7 @@
       "tags": [
         "no_cook"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "curd-banana-pb-snack",
       "name": "Curd bowl with banana and peanut butter",
@@ -896,7 +902,7 @@
         "high_protein",
         "no_cook"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [
         "whey_isolate"
       ],
@@ -948,7 +954,9 @@
     },
     {
       "cuisine": "indian",
-      "allergens": [],
+      "allergens": [
+        "soy"
+      ],
       "cost_tier": 1,
       "servings": 1,
       "scale_rules": {
@@ -964,7 +972,7 @@
         "indian_home",
         "veg_protein"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "soya-chunks-curry-rice",
       "name": "Soya chunks curry + rice",
@@ -1024,6 +1032,9 @@
       ],
       "steps": [
         {
+          "text": "Cook the rice."
+        },
+        {
           "text": "Soak the soya chunks in hot water for 10 minutes; squeeze out the water.",
           "timer_sec": 600
         },
@@ -1054,7 +1065,7 @@
         "quick",
         "high_protein"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "eggs-toast-breakfast",
       "name": "3 boiled eggs + 2 toast",
@@ -1110,7 +1121,7 @@
       "tags": [
         "component"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "dal-tadka-home",
       "name": "Dal tadka (home style)",
@@ -1181,7 +1192,7 @@
       "tags": [
         "component"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "chicken-curry-home",
       "name": "Chicken curry (home style)",
@@ -1249,7 +1260,7 @@
       "tags": [
         "component"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "rajma-home",
       "name": "Rajma (home style)",
@@ -1320,7 +1331,7 @@
       "tags": [
         "component"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "chana-masala-home",
       "name": "Chana masala (home style)",
@@ -1391,7 +1402,7 @@
       "tags": [
         "component"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "aloo-gobi-home",
       "name": "Aloo gobi (home style)",
@@ -1472,7 +1483,7 @@
       "tags": [
         "component"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "roti-plain",
       "name": "Roti / chapati",
@@ -1519,7 +1530,7 @@
       "tags": [
         "component"
       ],
-      "is_draft": true,
+      "is_draft": false,
       "requires": [],
       "slug": "steamed-rice",
       "name": "Steamed rice",

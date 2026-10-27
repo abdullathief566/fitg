@@ -1,0 +1,131 @@
+{
+  "_note": "Pinned by data/scripts/import-usda.ts --confirm <key>=<fdc_id>. Each pin is the founder-confirmed USDA FoodData Central row for a foods.map.json key.",
+  "pins": [
+    {
+      "key": "atta_whole_wheat",
+      "fdc_id": 168893,
+      "dataset": "sr_legacy",
+      "description": "Wheat flour, whole-grain (Includes foods for USDA's Food Distribution Program)"
+    },
+    {
+      "key": "banana",
+      "fdc_id": 173944,
+      "dataset": "sr_legacy",
+      "description": "Bananas, raw"
+    },
+    {
+      "key": "bread_whole_wheat",
+      "fdc_id": 172688,
+      "dataset": "sr_legacy",
+      "description": "Bread, whole-wheat, commercially prepared"
+    },
+    {
+      "key": "capsicum",
+      "fdc_id": 170427,
+      "dataset": "sr_legacy",
+      "description": "Peppers, sweet, green, raw"
+    },
+    {
+      "key": "cauliflower",
+      "fdc_id": 169986,
+      "dataset": "sr_legacy",
+      "description": "Cauliflower, raw"
+    },
+    {
+      "key": "chicken_breast_raw",
+      "fdc_id": 171077,
+      "dataset": "sr_legacy",
+      "description": "Chicken, broiler or fryers, breast, skinless, boneless, meat only, raw"
+    },
+    {
+      "key": "chickpeas_raw",
+      "fdc_id": 173756,
+      "dataset": "sr_legacy",
+      "description": "Chickpeas (garbanzo beans, bengal gram), mature seeds, raw"
+    },
+    {
+      "key": "cucumber",
+      "fdc_id": 168409,
+      "dataset": "sr_legacy",
+      "description": "Cucumber, with peel, raw"
+    },
+    {
+      "key": "curd_whole",
+      "fdc_id": 171284,
+      "dataset": "sr_legacy",
+      "description": "Yogurt, plain, whole milk"
+    },
+    {
+      "key": "dal_toor_raw",
+      "fdc_id": 172436,
+      "dataset": "sr_legacy",
+      "description": "Pigeon peas (red gram), mature seeds, raw"
+    },
+    {
+      "key": "egg_whole",
+      "fdc_id": 171287,
+      "dataset": "sr_legacy",
+      "description": "Egg, whole, raw, fresh"
+    },
+    {
+      "key": "ghee",
+      "fdc_id": 173412,
+      "dataset": "sr_legacy",
+      "description": "Butter oil, anhydrous"
+    },
+    {
+      "key": "kidney_beans_raw",
+      "fdc_id": 173744,
+      "dataset": "sr_legacy",
+      "description": "Beans, kidney, red, mature seeds, raw"
+    },
+    {
+      "key": "milk_whole",
+      "fdc_id": 171265,
+      "dataset": "sr_legacy",
+      "description": "Milk, whole, 3.25% milkfat, with added vitamin D"
+    },
+    {
+      "key": "oats_rolled",
+      "fdc_id": 173904,
+      "dataset": "sr_legacy",
+      "description": "Cereals, oats, regular and quick, not fortified, dry"
+    },
+    {
+      "key": "oil_sunflower",
+      "fdc_id": 171025,
+      "dataset": "sr_legacy",
+      "description": "Oil, sunflower, linoleic, (approx. 65%)"
+    },
+    {
+      "key": "onion",
+      "fdc_id": 170000,
+      "dataset": "sr_legacy",
+      "description": "Onions, raw"
+    },
+    {
+      "key": "peanut_butter",
+      "fdc_id": 172470,
+      "dataset": "sr_legacy",
+      "description": "Peanut butter, smooth style, without salt"
+    },
+    {
+      "key": "potato",
+      "fdc_id": 170026,
+      "dataset": "sr_legacy",
+      "description": "Potatoes, flesh and skin, raw"
+    },
+    {
+      "key": "rice_white_raw",
+      "fdc_id": 169756,
+      "dataset": "sr_legacy",
+      "description": "Rice, white, long-grain, regular, raw, unenriched"
+    },
+    {
+      "key": "tomato",
+      "fdc_id": 170457,
+      "dataset": "sr_legacy",
+      "description": "Tomatoes, red, ripe, raw, year round average"
+    }
+  ]
+}

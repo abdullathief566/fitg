@@ -17,7 +17,9 @@ import {
   SQL_FILES,
   buildSeed,
   outputDirs,
+  prodSeedRefusals,
   pruneSql,
+  readSeedFiles,
   sqlArray,
   sqlJson,
   sqlNumber,
@@ -25,6 +27,7 @@ import {
   syntheticValueRefusals,
   upsertSql,
 } from '../scripts/build-seed.ts';
+import { readPinsFile } from '../scripts/import-usda.ts';
 import { REPO_ROOT } from '../scripts/util.ts';
 
 const SEED_FILES = [
@@ -104,8 +107,17 @@ describe('sample build', () => {
     expect(result.bundle_version).toMatch(/^[0-9a-f]{8}$/);
   });
 
-  it('keeps drafts with a warning and skips only needs_recipe dishes', () => {
-    expect(result.warnings.join('\n')).toMatch(/kept 20 draft recipe/);
+  it('keeps a draft recipe with a warning (the seed itself has none left)', () => {
+    expect(result.warnings.join('\n')).not.toMatch(/draft/);
+    const root = makeRoot((f) => {
+      f['recipes.seed.json'].recipes[0].is_draft = true;
+    });
+    const r = buildSeed({ mode: 'sample', root, outDir: tempDir() });
+    expect(r.counts.recipes).toBe(result.counts.recipes);
+    expect(r.warnings.join('\n')).toMatch(/kept 1 draft recipe\(s\): egg-bhurji-roti/);
+  });
+
+  it('skips only needs_recipe dishes', () => {
     expect(result.warnings.join('\n')).toMatch(/skipped 22 home dish/);
     const dishes = JSON.parse(read(join(out, 'bundle'), 'home_dishes.json')) as { home_dishes: Array<{ key: string }> };
     expect(dishes.home_dishes.map((d) => d.key)).toEqual([
@@ -323,7 +335,30 @@ describe('failures are loud and write nothing', () => {
 
 describe('--prod refusals', () => {
   it('refuses unpinned USDA foods, null curated values, drafts and needs_recipe dishes — all listed at once', () => {
-    const root = makeRoot(); // today's seed: no pins, null curated values, drafts, needs_recipe dishes
+    // Unfinished data, as the build pack shipped it: the temp root has no usda_pins.json, and the edit below puts back
+    // null curated values, draft recipes and dishes that still need a recipe.
+    const n = { usda: 0, curated: 0, drafts: 0, dishes: 0 };
+    const root = makeRoot((f) => {
+      for (const food of f['foods.map.json'].foods) {
+        if (food.usda_query !== null) {
+          n.usda++;
+          continue;
+        }
+        n.curated++;
+        food.curated = { ...food.curated, kcal: null, protein_g: null, carbs_g: null, fat_g: null };
+        if (food.key === 'roasted_chana') food.curated.fiber_g = null;
+      }
+      for (const r of f['recipes.seed.json'].recipes) {
+        r.is_draft = true;
+        n.drafts++;
+      }
+      for (const d of f['home_dishes.seed.json'].home_dishes) {
+        if (d.key !== 'sambar' && !d.needs_recipe) continue;
+        d.recipe_slug = null;
+        d.needs_recipe = true;
+        n.dishes++;
+      }
+    });
     const out = tempDir();
     const err = expectThrowMatching(
       () => buildSeed({ mode: 'prod', root, outDir: out }),
@@ -334,8 +369,15 @@ describe('--prod refusals', () => {
       /'egg-bhurji-roti' is a draft/,
       /'sambar' needs a recipe/,
     );
-    expect(err.problems).toHaveLength(21 + 4 + 20 + 22);
+    expect(err.problems).toHaveLength(n.usda + n.curated + n.drafts + n.dishes);
     expect(readdirSync(out)).toEqual([]);
+  });
+
+  it("today's seed and pins: every USDA food pinned, curated values filled, every recipe approved", () => {
+    // Checked without the USDA CSVs (they are gitignored); the real --prod build also reads them.
+    const left = prodSeedRefusals(readSeedFiles(REPO_ROOT), readPinsFile(join(REPO_ROOT, 'data/seed/usda_pins.json')));
+    expect(left).toHaveLength(22);
+    expect(left.every((line) => /^home_dishes\.seed\.json: '[a-z_]+' needs a recipe/.test(line))).toBe(true);
   });
 
   it('refuses synthetic values', () => {
