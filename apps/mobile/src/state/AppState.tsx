@@ -218,15 +218,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const startOver = useCallback(async () => {
-    if (!sqlRef.current) return;
-    await wipeAll(sqlRef.current, [...DEVICE_TABLES, 'outbox_commands', 'outbox_logs', 'sync_state', 'kv']);
+    const sql = sqlRef.current;
+    if (!sql) return;
+    await wipeAll(sql, [...DEVICE_TABLES, 'outbox_commands', 'outbox_logs', 'sync_state', 'kv']);
+    // Device preferences survive starting over; only the user's data goes.
+    await kvSet(sql, PREFS.appearance, appearance);
+    await kvSet(sql, PREFS.haptics, hapticsOn);
     offsetRef.current = 0;
     setDevOffsetMs(0);
     setSnapshot(undefined);
     setAnswers(DEFAULT_ANSWERS);
     setLocal(EMPTY_LOCAL);
     setStatus('onboarding');
-  }, []);
+  }, [appearance, hapticsOn]);
 
   const value: AppContextValue = {
     status,

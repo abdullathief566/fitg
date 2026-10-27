@@ -9,7 +9,7 @@ import { completeOnboarding, loadSnapshot, runCommand, type BackendDeps } from '
 import { DEFAULT_ANSWERS, profileFromAnswers, stepProblem, STEPS } from '../src/domain/onboarding';
 import { targetsFor } from '../src/domain/planner';
 import { revealView } from '../src/domain/reveal';
-import { NO_PERMISSIONS, todayView, type LocalContext } from '../src/domain/today';
+import { householdOnly, NO_PERMISSIONS, todayView, type LocalContext } from '../src/domain/today';
 import { memoryDb } from './node-sql';
 import { T1_ANSWERS } from '../test-fixtures/t1';
 
@@ -167,6 +167,15 @@ describe('Today', () => {
     expect(view.journeyDay).toBe(1);
   });
 
+  it('habit-only portions keep household words and drop grams', () => {
+    expect(householdOnly('150 g chicken breast (raw) · 1 katori white rice (180 g) · 2 tsp sunflower oil')).toBe(
+      'chicken breast · 1 katori white rice · 2 tsp sunflower oil',
+    );
+    expect(householdOnly('3 eggs · 2 slices whole wheat bread · + 2 boiled eggs')).toBe(
+      '3 eggs · 2 slices whole wheat bread · + 2 boiled eggs',
+    );
+  });
+
   it('habit-only mode carries no food or body numbers', async () => {
     const d = await deps();
     const answers = { ...T1_ANSWERS, safety: { ...T1_ANSWERS.safety, edHistory: true } };
@@ -175,6 +184,10 @@ describe('Today', () => {
     expect(view.habitOnly).toBe(true);
     expect(view.protein).toBeUndefined();
     expect(view.proteinFoods?.length).toBeGreaterThan(0);
+    for (const time of ['08:10', '13:00', '19:45', '21:30']) {
+      const v = todayView(made, lib, at(MON, time), local);
+      expect(`${v.next.title} ${v.next.subtitle ?? ''}`, time).not.toMatch(/\d+(\.\d+)?\s?(g|ml)\b/);
+    }
     const reveal = revealView(made, lib, at(MON, '07:00'));
     expect(reveal.habitOnly).toBe(true);
   });

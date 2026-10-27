@@ -1,24 +1,33 @@
 # FitG
 
-**Status (2026-10-28):** Phase 1 is built — the engine, contracts, mock AI and seed pipeline, proven by 381 tests.
-Report: `docs/30-build/phase-1-report.md`. Next: Phase 2 (paste the Phase 2 prompt from `PHASE-PROMPTS.md` into
-Codex, running locally on the Mac).
+**Status (2026-10-28):** Phase 2 is built — the app runs on a phone (Expo Go) fully offline: onboarding, the plan
+reveal, Today, Week, workout detail and Settings, on real food data. Reports: `docs/30-build/phase-1-report.md`,
+`docs/30-build/phase-2-report.md`. Next: Phase 3 (Supabase: database, sign-in, sync).
+
+## Try the app on your phone
+1. Install **Expo Go** from the App Store or Google Play (it must be version 58).
+2. On the Mac: `cd ~/Desktop/fitg && npm install && npm run mobile`.
+3. Scan the QR code (iPhone: Camera app; Android: inside Expo Go). Phone and Mac on the same Wi-Fi. If it can't
+   connect, stop it and run `cd apps/mobile && npx expo start --tunnel`.
 
 ## Develop
 ```
 npm install
-npm test                          # every package (CI runs with AI_PROVIDER=mock)
+npm test                          # packages + app domain (vitest) and app UI (jest); CI runs with AI_PROVIDER=mock
 npm run typecheck
 npm run lint
-npm run data:build -- --sample    # seed SQL + phone bundle into data/out/sample/
+npm run data:build -- --prod      # real seed: supabase/seed/*.sql + the app's bundle (needs data/raw/usda CSVs)
+npm run data:build -- --sample    # synthetic values into data/out/sample/ (tests, tools)
+npm run mobile                    # Expo dev server for apps/mobile
 ```
 
 | Package | What |
 |---|---|
+| `apps/mobile` | The Expo app (SDK 58): `app/` routes, `src/` (domain, db, ui, copy, state), `constants/` tokens, `lib/haptics.ts`. |
 | `packages/engine` | Pure TypeScript: targets, workouts, meals, pings, state, commands, validators. Every number comes from here. |
-| `packages/contracts` | Zod schemas: database rows, API bodies, commands, events, AI outputs, seed files; row ↔ engine mappers. |
+| `packages/contracts` | Zod schemas: database rows, API bodies, commands, events, AI outputs, seed files; row ↔ engine mappers; the phone bundle. |
 | `packages/ai` | Provider (mock now, Claude in Phase 5), prompts, context builder, the AI output checks, prices. |
-| `data/` | Seed files, `build-seed.ts`, `import-usda.ts`, `import-exercises.ts`. |
+| `data/` | Seed files, USDA pins, `build-seed.ts`, `import-usda.ts`, `import-exercises.ts`. |
 | `fixtures/ai/` | Mock AI outputs, valid and deliberately bad. |
 
 ---

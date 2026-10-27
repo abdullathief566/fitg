@@ -70,7 +70,7 @@ describe('Today', () => {
       const text = screen.toJSON();
       const all = JSON.stringify(text);
       expect(all).not.toMatch(/\d\s?kcal/);
-      expect(all).not.toMatch(/\d+\s?g protein/);
+      expect(all).not.toMatch(/\d+(\.\d+)?\s?(g|ml)\b/); // no grams of anything: household words only
       await screen.unmount();
     }
   });

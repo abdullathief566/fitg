@@ -151,8 +151,11 @@ export function todayView(snapshot: Snapshot, lib: BundleLib, now: Instant, loca
   const { plan, state, schedule } = engineViews(snapshot, lib, now, local);
   const date = localDateOf(now, tz);
   const nowMs = msOf(now);
-  const next = state.nextStep;
   const habitOnly = targets.displayMode === 'habit_only';
+  const next =
+    habitOnly && state.nextStep.kind === 'meal' && state.nextStep.subtitle
+      ? { ...state.nextStep, subtitle: householdOnly(state.nextStep.subtitle) }
+      : state.nextStep;
 
   const mealStatus = new Map(state.meals.map((m) => [m.itemId, m.status]));
   const statusOf = (refId: string, at: Instant, raw: 'done' | 'skipped' | 'open'): TimelineStatus => {
@@ -248,3 +251,21 @@ export function todayView(snapshot: Snapshot, lib: BundleLib, now: Instant, loca
 
 /** A meal with at least this much protein counts as a "protein food" in habit-only mode. */
 export const PROTEIN_RICH_G = 15;
+
+/**
+ * Habit-only mode (screens.md §5): portions in household words, no grams. "1 katori white rice (180 g)" →
+ * "1 katori white rice"; "150 g chicken breast (raw)" → "chicken breast" (no household unit, so no amount).
+ */
+export function householdOnly(portions: string): string {
+  return portions
+    .split(' · ')
+    .map((p) =>
+      p
+        .replace(/\s*\(\d+(\.\d+)?\s?(g|ml)\)/g, '')
+        .replace(/^\d+(\.\d+)?\s?(g|ml)\s+/, '')
+        .replace(/\s*\(raw\)/, '')
+        .trim(),
+    )
+    .filter(Boolean)
+    .join(' · ');
+}
