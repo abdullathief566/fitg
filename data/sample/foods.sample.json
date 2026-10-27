@@ -225,6 +225,141 @@
       "carbs_g": 33,
       "fat_g": 0.5,
       "fiber_g": 0
+    },
+    {
+      "key": "dal_urad_raw",
+      "synthetic": true,
+      "kcal": 341,
+      "protein_g": 25.2,
+      "carbs_g": 59,
+      "fat_g": 1.6,
+      "fiber_g": 0
+    },
+    {
+      "key": "dal_moong_raw",
+      "synthetic": true,
+      "kcal": 347,
+      "protein_g": 23.9,
+      "carbs_g": 62.6,
+      "fat_g": 1.2,
+      "fiber_g": 0
+    },
+    {
+      "key": "besan",
+      "synthetic": true,
+      "kcal": 387,
+      "protein_g": 22.4,
+      "carbs_g": 57.8,
+      "fat_g": 6.7,
+      "fiber_g": 0
+    },
+    {
+      "key": "tamarind",
+      "synthetic": true,
+      "kcal": 239,
+      "protein_g": 2.8,
+      "carbs_g": 62.5,
+      "fat_g": 0.6,
+      "fiber_g": 0
+    },
+    {
+      "key": "spinach",
+      "synthetic": true,
+      "kcal": 23,
+      "protein_g": 2.9,
+      "carbs_g": 3.6,
+      "fat_g": 0.4,
+      "fiber_g": 0
+    },
+    {
+      "key": "okra",
+      "synthetic": true,
+      "kcal": 33,
+      "protein_g": 1.9,
+      "carbs_g": 7.5,
+      "fat_g": 0.2,
+      "fiber_g": 0
+    },
+    {
+      "key": "carrot",
+      "synthetic": true,
+      "kcal": 41,
+      "protein_g": 0.9,
+      "carbs_g": 9.6,
+      "fat_g": 0.2,
+      "fiber_g": 0
+    },
+    {
+      "key": "peas_green",
+      "synthetic": true,
+      "kcal": 81,
+      "protein_g": 5.4,
+      "carbs_g": 14.5,
+      "fat_g": 0.4,
+      "fiber_g": 0
+    },
+    {
+      "key": "butter",
+      "synthetic": true,
+      "kcal": 717,
+      "protein_g": 0.9,
+      "carbs_g": 0.1,
+      "fat_g": 81.1,
+      "fiber_g": 0
+    },
+    {
+      "key": "fish_carp_raw",
+      "synthetic": true,
+      "kcal": 127,
+      "protein_g": 17.8,
+      "carbs_g": 0,
+      "fat_g": 5.6,
+      "fiber_g": 0
+    },
+    {
+      "key": "mutton_raw",
+      "synthetic": true,
+      "kcal": 109,
+      "protein_g": 20.6,
+      "carbs_g": 0,
+      "fat_g": 2.3,
+      "fiber_g": 0
+    },
+    {
+      "key": "semolina",
+      "synthetic": true,
+      "kcal": 360,
+      "protein_g": 12.7,
+      "carbs_g": 72.8,
+      "fat_g": 1.1,
+      "fiber_g": 0
+    },
+    {
+      "key": "peanuts_raw",
+      "synthetic": true,
+      "kcal": 567,
+      "protein_g": 25.8,
+      "carbs_g": 16.1,
+      "fat_g": 49.2,
+      "fiber_g": 0
+    },
+    {
+      "key": "poha_flattened_rice",
+      "synthetic": true,
+      "kcal": 361,
+      "protein_g": 7.4,
+      "carbs_g": 81.5,
+      "fat_g": 1.6,
+      "fiber_g": 0
+    },
+    {
+      "key": "cream_fresh",
+      "synthetic": true,
+      "kcal": 246,
+      "protein_g": 2,
+      "carbs_g": 3.2,
+      "fat_g": 25,
+      "fiber_g": 0
     }
   ]
 }

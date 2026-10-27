@@ -107,8 +107,8 @@
       "aliases": [
         "sambhar"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "sambar-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "dal",
@@ -118,8 +118,8 @@
       "key": "rasam",
       "name": "Rasam",
       "aliases": [],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "rasam-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "dal",
@@ -131,8 +131,8 @@
       "aliases": [
         "makhani dal"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "dal-makhani-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "dal",
@@ -144,8 +144,8 @@
       "aliases": [
         "kadhi pakora"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "kadhi-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "dal",
@@ -157,8 +157,8 @@
       "aliases": [
         "saag paneer"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "palak-paneer-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "sabzi",
@@ -170,8 +170,8 @@
       "aliases": [
         "paneer makhani"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "paneer-butter-masala-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "sabzi",
@@ -184,8 +184,8 @@
         "bhindi masala",
         "okra"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "bhindi-sabzi-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "sabzi",
@@ -197,8 +197,8 @@
       "aliases": [
         "mix veg"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "mixed-veg-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "sabzi",
@@ -210,8 +210,8 @@
       "aliases": [
         "anda curry"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "egg-curry-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "curry_nonveg",
@@ -223,8 +223,8 @@
       "aliases": [
         "machli curry"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "fish-curry-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "curry_nonveg",
@@ -236,8 +236,8 @@
       "aliases": [
         "gosht"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "mutton-curry-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "curry_nonveg",
@@ -247,8 +247,8 @@
       "key": "poha",
       "name": "Poha",
       "aliases": [],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "poha-home",
+      "needs_recipe": false,
       "unit": "plate",
       "grams_per_unit": 200,
       "category": "breakfast",
@@ -258,8 +258,8 @@
       "key": "upma",
       "name": "Upma",
       "aliases": [],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "upma-home",
+      "needs_recipe": false,
       "unit": "plate",
       "grams_per_unit": 200,
       "category": "breakfast",
@@ -269,8 +269,8 @@
       "key": "khichdi",
       "name": "Khichdi",
       "aliases": [],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "khichdi-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "rice",
@@ -282,8 +282,8 @@
       "aliases": [
         "thayir sadam"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "curd-rice-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "rice",
@@ -295,8 +295,8 @@
       "aliases": [
         "pulao"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "veg-pulao-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "rice",
@@ -308,8 +308,8 @@
       "aliases": [
         "biryani"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "chicken-biryani-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "rice",
@@ -321,8 +321,8 @@
       "aliases": [
         "chitranna"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "lemon-rice-home",
+      "needs_recipe": false,
       "unit": "katori",
       "grams_per_unit": 150,
       "category": "rice",
@@ -332,8 +332,8 @@
       "key": "idli",
       "name": "Idli",
       "aliases": [],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "idli-home",
+      "needs_recipe": false,
       "unit": "piece",
       "grams_per_unit": 40,
       "category": "breakfast",
@@ -346,8 +346,8 @@
         "dosa",
         "dosai"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "plain-dosa-home",
+      "needs_recipe": false,
       "unit": "piece",
       "grams_per_unit": 80,
       "category": "breakfast",
@@ -357,8 +357,8 @@
       "key": "masala_dosa",
       "name": "Masala dosa",
       "aliases": [],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "masala-dosa-home",
+      "needs_recipe": false,
       "unit": "piece",
       "grams_per_unit": 180,
       "category": "breakfast",
@@ -370,8 +370,8 @@
       "aliases": [
         "paratha"
       ],
-      "recipe_slug": null,
-      "needs_recipe": true,
+      "recipe_slug": "aloo-paratha-home",
+      "needs_recipe": false,
       "unit": "piece",
       "grams_per_unit": 120,
       "category": "bread",

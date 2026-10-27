@@ -14,16 +14,34 @@
       "description": "Bananas, raw"
     },
     {
+      "key": "besan",
+      "fdc_id": 174288,
+      "dataset": "sr_legacy",
+      "description": "Chickpea flour (besan)"
+    },
+    {
       "key": "bread_whole_wheat",
       "fdc_id": 172688,
       "dataset": "sr_legacy",
       "description": "Bread, whole-wheat, commercially prepared"
     },
     {
+      "key": "butter",
+      "fdc_id": 173410,
+      "dataset": "sr_legacy",
+      "description": "Butter, salted"
+    },
+    {
       "key": "capsicum",
       "fdc_id": 170427,
       "dataset": "sr_legacy",
       "description": "Peppers, sweet, green, raw"
+    },
+    {
+      "key": "carrot",
+      "fdc_id": 170393,
+      "dataset": "sr_legacy",
+      "description": "Carrots, raw"
     },
     {
       "key": "cauliflower",
@@ -56,16 +74,34 @@
       "description": "Yogurt, plain, whole milk"
     },
     {
+      "key": "dal_moong_raw",
+      "fdc_id": 174256,
+      "dataset": "sr_legacy",
+      "description": "Mung beans, mature seeds, raw"
+    },
+    {
       "key": "dal_toor_raw",
       "fdc_id": 172436,
       "dataset": "sr_legacy",
       "description": "Pigeon peas (red gram), mature seeds, raw"
     },
     {
+      "key": "dal_urad_raw",
+      "fdc_id": 174259,
+      "dataset": "sr_legacy",
+      "description": "Mungo beans, mature seeds, raw"
+    },
+    {
       "key": "egg_whole",
       "fdc_id": 171287,
       "dataset": "sr_legacy",
       "description": "Egg, whole, raw, fresh"
+    },
+    {
+      "key": "fish_carp_raw",
+      "fdc_id": 171952,
+      "dataset": "sr_legacy",
+      "description": "Fish, carp, raw"
     },
     {
       "key": "ghee",
@@ -86,6 +122,12 @@
       "description": "Milk, whole, 3.25% milkfat, with added vitamin D"
     },
     {
+      "key": "mutton_raw",
+      "fdc_id": 175303,
+      "dataset": "sr_legacy",
+      "description": "Game meat, goat, raw"
+    },
+    {
       "key": "oats_rolled",
       "fdc_id": 173904,
       "dataset": "sr_legacy",
@@ -96,6 +138,12 @@
       "fdc_id": 171025,
       "dataset": "sr_legacy",
       "description": "Oil, sunflower, linoleic, (approx. 65%)"
+    },
+    {
+      "key": "okra",
+      "fdc_id": 169260,
+      "dataset": "sr_legacy",
+      "description": "Okra, raw"
     },
     {
       "key": "onion",
@@ -110,6 +158,18 @@
       "description": "Peanut butter, smooth style, without salt"
     },
     {
+      "key": "peanuts_raw",
+      "fdc_id": 172430,
+      "dataset": "sr_legacy",
+      "description": "Peanuts, all types, raw"
+    },
+    {
+      "key": "peas_green",
+      "fdc_id": 170419,
+      "dataset": "sr_legacy",
+      "description": "Peas, green, raw"
+    },
+    {
       "key": "potato",
       "fdc_id": 170026,
       "dataset": "sr_legacy",
@@ -120,6 +180,24 @@
       "fdc_id": 169756,
       "dataset": "sr_legacy",
       "description": "Rice, white, long-grain, regular, raw, unenriched"
+    },
+    {
+      "key": "semolina",
+      "fdc_id": 168933,
+      "dataset": "sr_legacy",
+      "description": "Semolina, unenriched"
+    },
+    {
+      "key": "spinach",
+      "fdc_id": 168462,
+      "dataset": "sr_legacy",
+      "description": "Spinach, raw"
+    },
+    {
+      "key": "tamarind",
+      "fdc_id": 167763,
+      "dataset": "sr_legacy",
+      "description": "Tamarinds, raw"
     },
     {
       "key": "tomato",

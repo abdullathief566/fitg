@@ -47,7 +47,7 @@ describe('build-seed CLI', () => {
     const c = capture();
     expect(runBuildSeed(['--sample', '--out', out], { root: REPO_ROOT, io: c.io })).toBe(0);
     expect(c.out[0]).toMatch(/^FitG seed build \(sample\) — bundle_version [0-9a-f]{8}$/);
-    expect(c.out.join('\n')).toMatch(/foods 25 .* templates 6/);
+    expect(c.out.join('\n')).toMatch(/foods 40 .* templates 6/);
     expect(readdirSync(join(out, 'seed'))).toHaveLength(6);
   });
 

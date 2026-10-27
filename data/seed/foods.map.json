@@ -801,6 +801,482 @@
           "label": "g"
         }
       ]
+    },
+    {
+      "key": "dal_urad_raw",
+      "name": "Urad dal / black gram (raw)",
+      "category": "pulse",
+      "usda_query": "Mungo beans, mature seeds, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 2.4,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "urad dal",
+          "hinglish"
+        ],
+        [
+          "udad dal",
+          "hinglish"
+        ],
+        [
+          "black gram",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "dal_moong_raw",
+      "name": "Moong dal (raw)",
+      "category": "pulse",
+      "usda_query": "Mung beans, mature seeds, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 2.5,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "moong dal",
+          "hinglish"
+        ],
+        [
+          "mung dal",
+          "en"
+        ],
+        [
+          "green gram",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "besan",
+      "name": "Besan (gram flour)",
+      "category": "pulse",
+      "usda_query": "Chickpea flour (besan)",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "besan",
+          "hinglish"
+        ],
+        [
+          "gram flour",
+          "en"
+        ],
+        [
+          "chickpea flour",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "tamarind",
+      "name": "Tamarind",
+      "category": "spice",
+      "usda_query": "Tamarinds, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "imli",
+          "hinglish"
+        ],
+        [
+          "tamarind",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "spinach",
+      "name": "Spinach (palak)",
+      "category": "vegetable",
+      "usda_query": "Spinach, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "palak",
+          "hinglish"
+        ],
+        [
+          "spinach",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "okra",
+      "name": "Okra / bhindi",
+      "category": "vegetable",
+      "usda_query": "Okra, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "bhindi",
+          "hinglish"
+        ],
+        [
+          "lady finger",
+          "en"
+        ],
+        [
+          "okra",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "carrot",
+      "name": "Carrot",
+      "category": "vegetable",
+      "usda_query": "Carrots, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "gajar",
+          "hinglish"
+        ],
+        [
+          "carrot",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "peas_green",
+      "name": "Green peas",
+      "category": "vegetable",
+      "usda_query": "Peas, green, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "matar",
+          "hinglish"
+        ],
+        [
+          "green peas",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "butter",
+      "name": "Butter",
+      "category": "fat",
+      "usda_query": "Butter, salted",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "makhan",
+          "hinglish"
+        ],
+        [
+          "butter",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "tsp",
+          "grams": 4.5,
+          "label": "1 tsp (4.5 g)"
+        },
+        {
+          "unit": "tbsp",
+          "grams": 13.5,
+          "label": "1 tbsp (13.5 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "fish_carp_raw",
+      "name": "Fish, carp (raw)",
+      "category": "fish",
+      "usda_query": "Fish, carp, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 0.78,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "machli",
+          "hinglish"
+        ],
+        [
+          "fish",
+          "en"
+        ],
+        [
+          "carp",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "mutton_raw",
+      "name": "Mutton / goat meat (raw)",
+      "category": "meat",
+      "usda_query": "Game meat, goat, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 0.75,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "mutton",
+          "en"
+        ],
+        [
+          "gosht",
+          "hinglish"
+        ],
+        [
+          "goat meat",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "semolina",
+      "name": "Semolina (rava / sooji)",
+      "category": "grain",
+      "usda_query": "Semolina, unenriched",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "rava",
+          "hinglish"
+        ],
+        [
+          "sooji",
+          "hinglish"
+        ],
+        [
+          "suji",
+          "hinglish"
+        ],
+        [
+          "semolina",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "peanuts_raw",
+      "name": "Peanuts (raw)",
+      "category": "nut",
+      "usda_query": "Peanuts, all types, raw",
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "moongphali",
+          "hinglish"
+        ],
+        [
+          "peanuts",
+          "en"
+        ],
+        [
+          "groundnut",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "poha_flattened_rice",
+      "name": "Poha / flattened rice (dry)",
+      "category": "grain",
+      "usda_query": null,
+      "curated": {
+        "kcal": 361.3,
+        "protein_g": 7.4,
+        "carbs_g": 81.5,
+        "fat_g": 1.6,
+        "fiber_g": 4.3,
+        "reference": "Fortune Poha (thick), AWL Agri Business, pack label for uncooked poha, per 100 g: energy 361.3 kcal, protein 7.4 g, carbohydrate 77.2 g, total fat 1.6 g, dietary fibre 4.3 g. The label lists fibre outside carbohydrate (its energy counts fibre at 2 kcal/g), so carbs_g = 77.2 + 4.3 = 81.5 g to match USDA 'carbohydrate by difference'. Label photo https://images.openfoodfacts.org/images/products/890/600/881/2817/nutrition_en.5.full.jpg (Open Food Facts product 8906008812817), accessed 2026-10-28. USDA SR Legacy and Foundation Foods have no flattened-rice row."
+      },
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "poha",
+          "hinglish"
+        ],
+        [
+          "flattened rice",
+          "en"
+        ],
+        [
+          "beaten rice",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
+    },
+    {
+      "key": "cream_fresh",
+      "name": "Fresh cream",
+      "category": "dairy",
+      "usda_query": null,
+      "curated": {
+        "kcal": 246,
+        "protein_g": 2,
+        "carbs_g": 3.2,
+        "fat_g": 25,
+        "fiber_g": 0,
+        "reference": "Amul Fresh Cream (GCMMF, min 25% milk fat), nutritional information per 100 g: energy 246 kcal, protein 2 g, total carbohydrate 3.2 g, total fat 25 g; 'not a significant source of dietary fiber' (fibre 0). https://amul.com/products/amul-freshcream-info.php (read via the archived copy https://web.archive.org/web/20260315172316/https://amul.com/products/amul-freshcream-info.php), accessed 2026-10-28. USDA creams are 19% or 31-36% fat; Indian cooking cream is 25%."
+      },
+      "staple": false,
+      "is_raw": true,
+      "yield_factor": 1,
+      "cooked_with_oil": false,
+      "aliases": [
+        [
+          "fresh cream",
+          "en"
+        ],
+        [
+          "cream",
+          "en"
+        ]
+      ],
+      "units": [
+        {
+          "unit": "tbsp",
+          "grams": 15,
+          "label": "1 tbsp (15 g)"
+        },
+        {
+          "unit": "g",
+          "grams": 1,
+          "label": "g"
+        }
+      ]
     }
   ]
 }

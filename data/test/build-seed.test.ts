@@ -93,17 +93,17 @@ describe('sample build', () => {
 
   it('succeeds and counts every reference row', () => {
     expect(result.counts).toEqual({
-      foods: 25,
-      food_aliases: 46,
-      food_units: 47,
-      recipes: 20,
-      recipe_ingredients: 81,
-      home_dishes: 7,
+      foods: 40,
+      food_aliases: 86,
+      food_units: 65,
+      recipes: 42,
+      recipe_ingredients: 178,
+      home_dishes: 29,
       protein_addons: 7,
       exercises: 33,
       templates: 6,
     });
-    expect(result.skipped.home_dishes).toHaveLength(22);
+    expect(result.skipped.home_dishes).toEqual([]);
     expect(result.bundle_version).toMatch(/^[0-9a-f]{8}$/);
   });
 
@@ -117,18 +117,22 @@ describe('sample build', () => {
     expect(r.warnings.join('\n')).toMatch(/kept 1 draft recipe\(s\): egg-bhurji-roti/);
   });
 
-  it('skips only needs_recipe dishes', () => {
-    expect(result.warnings.join('\n')).toMatch(/skipped 22 home dish/);
+  it('skips only needs_recipe dishes (the seed has none left)', () => {
+    expect(result.warnings.join('\n')).not.toMatch(/skipped/);
     const dishes = JSON.parse(read(join(out, 'bundle'), 'home_dishes.json')) as { home_dishes: Array<{ key: string }> };
-    expect(dishes.home_dishes.map((d) => d.key)).toEqual([
-      'dal_tadka',
-      'chicken_curry',
-      'rajma',
-      'chana_masala',
-      'aloo_gobi',
-      'roti',
-      'rice',
-    ]);
+    expect(dishes.home_dishes.map((d) => d.key)).toEqual(
+      readRepoJson('data/seed/home_dishes.seed.json').home_dishes.map((d: Json) => d.key),
+    );
+    expect(dishes.home_dishes).toHaveLength(29);
+    const root = makeRoot((f) => {
+      const sambar = f['home_dishes.seed.json'].home_dishes.find((d: Json) => d.key === 'sambar');
+      sambar.recipe_slug = null;
+      sambar.needs_recipe = true;
+    });
+    const r = buildSeed({ mode: 'sample', root, outDir: tempDir() });
+    expect(r.skipped.home_dishes).toEqual(['sambar']);
+    expect(r.counts.home_dishes).toBe(28);
+    expect(r.warnings.join('\n')).toMatch(/skipped 1 home dish\(es\) that still need a recipe: sambar/);
   });
 
   it('writes six SQL files and the bundle, all carrying the bundle_version', () => {
@@ -191,7 +195,7 @@ describe('sample build', () => {
       sample: repoRead('data/sample/foods.sample.json'),
     });
     const recipes = BundleRecipesSchema.parse(JSON.parse(read(join(out, 'bundle'), 'recipes.json'))).recipes;
-    expect(recipes).toHaveLength(20);
+    expect(recipes).toHaveLength(42);
     for (const r of recipes) {
       const fromBundle = recipeNutrition(r, index, 1);
       const inProcess = recipeNutrition(lib.recipes.get(r.slug)!, lib.foods, 1);
@@ -373,16 +377,15 @@ describe('--prod refusals', () => {
     expect(readdirSync(out)).toEqual([]);
   });
 
-  it("today's seed and pins: every USDA food pinned, curated values filled, every recipe approved", () => {
+  it("today's seed and pins pass every --prod refusal (pins, curated values, drafts, needs_recipe dishes)", () => {
     // Checked without the USDA CSVs (they are gitignored); the real --prod build also reads them.
     const left = prodSeedRefusals(readSeedFiles(REPO_ROOT), readPinsFile(join(REPO_ROOT, 'data/seed/usda_pins.json')));
-    expect(left).toHaveLength(22);
-    expect(left.every((line) => /^home_dishes\.seed\.json: '[a-z_]+' needs a recipe/.test(line))).toBe(true);
+    expect(left).toEqual([]);
   });
 
   it('refuses synthetic values', () => {
     const refusals = syntheticValueRefusals(sampleFoodValues(readRepoJson('data/sample/foods.sample.json')));
-    expect(refusals).toHaveLength(25);
+    expect(refusals).toHaveLength(40);
     expect(refusals[0]).toMatch(/'egg_whole' has synthetic/);
     expect(
       syntheticValueRefusals(new Map([['egg_whole', { kcal: 1, protein_g: 1, carbs_g: 1, fat_g: 1, fiber_g: 0 }]])),
@@ -440,7 +443,7 @@ describe('--prod refusals', () => {
     const out = tempDir();
     const r = buildSeed({ mode: 'prod', root, outDir: out });
     expect(r.mode).toBe('prod');
-    expect(r.counts.home_dishes).toBe(7);
+    expect(r.counts.home_dishes).toBe(29);
     expect(r.warnings).toEqual([]);
     const sql = read(join(out, 'seed'), '01_foods.sql');
     expect(sql).not.toContain('SAMPLE BUILD');

@@ -1562,6 +1562,1650 @@
           "text": "Plain cooked rice."
         }
       ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "sambar-home",
+      "name": "Sambar (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 35,
+      "oil_tsp": 1,
+      "cooked_yield_g": 300,
+      "ingredients": [
+        {
+          "food": "dal_toor_raw",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 20,
+          "unit": "g",
+          "qty": 20,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "carrot",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "okra",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tamarind",
+          "grams": 5,
+          "unit": "g",
+          "qty": 5,
+          "role": "spice",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home sambar: toor dal cooked with carrot, bhindi, onion and tomato in tamarind water and sambar powder, 1 tsp oil tadka; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "rasam-home",
+      "name": "Rasam (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 20,
+      "oil_tsp": 0.5,
+      "cooked_yield_g": 300,
+      "ingredients": [
+        {
+          "food": "tomato",
+          "grams": 80,
+          "unit": "g",
+          "qty": 80,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tamarind",
+          "grams": 5,
+          "unit": "g",
+          "qty": 5,
+          "role": "spice",
+          "scalable": true
+        },
+        {
+          "food": "dal_toor_raw",
+          "grams": 10,
+          "unit": "g",
+          "qty": 10,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 2.25,
+          "unit": "tsp",
+          "qty": 0.5,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home rasam: thin tomato and tamarind broth with a little toor dal and rasam powder, half a tsp oil tadka; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "milk"
+      ],
+      "cost_tier": 2,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "dal-makhani-home",
+      "name": "Dal makhani (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 60,
+      "oil_tsp": 2,
+      "cooked_yield_g": 260,
+      "ingredients": [
+        {
+          "food": "dal_urad_raw",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "kidney_beans_raw",
+          "grams": 10,
+          "unit": "g",
+          "qty": 10,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "butter",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        },
+        {
+          "food": "cream_fresh",
+          "grams": 15,
+          "unit": "tbsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home dal makhani: soaked whole urad and a little rajma, slow-cooked in onion-tomato masala with 2 tsp butter and 1 tbsp cream; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "milk"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "kadhi-home",
+      "name": "Kadhi (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 1,
+      "cooked_yield_g": 250,
+      "ingredients": [
+        {
+          "food": "curd_whole",
+          "grams": 100,
+          "unit": "g",
+          "qty": 100,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "besan",
+          "grams": 15,
+          "unit": "g",
+          "qty": 15,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home kadhi: curd whisked with besan and water, simmered, 1 tsp oil tadka, no pakoras; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "milk"
+      ],
+      "cost_tier": 2,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "palak-paneer-home",
+      "name": "Palak paneer (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 2,
+      "cooked_yield_g": 200,
+      "ingredients": [
+        {
+          "food": "spinach",
+          "grams": 125,
+          "unit": "g",
+          "qty": 125,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "paneer",
+          "grams": 50,
+          "unit": "g",
+          "qty": 50,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home palak paneer: blanched spinach puree with onion-tomato masala and paneer cubes, 2 tsp oil; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "milk"
+      ],
+      "cost_tier": 2,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "paneer-butter-masala-home",
+      "name": "Paneer butter masala (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 2,
+      "cooked_yield_g": 200,
+      "ingredients": [
+        {
+          "food": "paneer",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 100,
+          "unit": "g",
+          "qty": 100,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "butter",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        },
+        {
+          "food": "cream_fresh",
+          "grams": 15,
+          "unit": "tbsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home paneer butter masala: tomato-onion gravy with 2 tsp butter and 1 tbsp cream, paneer cubes; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "bhindi-sabzi-home",
+      "name": "Bhindi sabzi (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 25,
+      "oil_tsp": 2,
+      "cooked_yield_g": 150,
+      "ingredients": [
+        {
+          "food": "okra",
+          "grams": 150,
+          "unit": "g",
+          "qty": 150,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home bhindi: sliced bhindi and onion stir-fried dry with haldi and masala in 2 tsp oil; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "mixed-veg-home",
+      "name": "Mixed veg (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 25,
+      "oil_tsp": 2,
+      "cooked_yield_g": 230,
+      "ingredients": [
+        {
+          "food": "potato",
+          "grams": 50,
+          "unit": "g",
+          "qty": 50,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "carrot",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "peas_green",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "cauliflower",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "capsicum",
+          "grams": 20,
+          "unit": "g",
+          "qty": 20,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home mixed veg: potato, carrot, peas, gobi and capsicum in onion-tomato masala, 2 tsp oil; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "egg"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "egg-curry-home",
+      "name": "Egg curry (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 2,
+      "cooked_yield_g": 250,
+      "ingredients": [
+        {
+          "food": "egg_whole",
+          "grams": 100,
+          "unit": "egg",
+          "qty": 2,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home egg curry: boiled eggs in onion-tomato gravy, 2 tsp oil; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "fish"
+      ],
+      "cost_tier": 2,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "fish-curry-home",
+      "name": "Fish curry (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 2,
+      "cooked_yield_g": 250,
+      "ingredients": [
+        {
+          "food": "fish_carp_raw",
+          "grams": 120,
+          "unit": "g",
+          "qty": 120,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home fish curry: carp-family fish (like rohu or katla) simmered in onion-tomato gravy, 2 tsp oil; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 3,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "mutton-curry-home",
+      "name": "Mutton curry (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "non_veg"
+      ],
+      "cook_time_min": 60,
+      "oil_tsp": 3,
+      "cooked_yield_g": 260,
+      "ingredients": [
+        {
+          "food": "mutton_raw",
+          "grams": 120,
+          "unit": "g",
+          "qty": 120,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 13.5,
+          "unit": "tsp",
+          "qty": 3,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home mutton curry: goat meat pressure-cooked in onion-tomato masala, 3 tsp oil; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "peanut"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "poha-home",
+      "name": "Poha (home style)",
+      "meal_slots": [
+        "breakfast",
+        "snack"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 15,
+      "oil_tsp": 1.5,
+      "cooked_yield_g": 205,
+      "ingredients": [
+        {
+          "food": "poha_flattened_rice",
+          "grams": 50,
+          "unit": "g",
+          "qty": 50,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "potato",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "peanuts_raw",
+          "grams": 10,
+          "unit": "g",
+          "qty": 10,
+          "role": "fat",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 6.75,
+          "unit": "tsp",
+          "qty": 1.5,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home poha: rinsed thick poha with onion, potato and peanuts, 1.5 tsp oil tadka, lemon to finish; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "gluten"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "upma-home",
+      "name": "Upma (home style)",
+      "meal_slots": [
+        "breakfast",
+        "snack"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 15,
+      "oil_tsp": 2,
+      "cooked_yield_g": 240,
+      "ingredients": [
+        {
+          "food": "semolina",
+          "grams": 50,
+          "unit": "g",
+          "qty": 50,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "carrot",
+          "grams": 20,
+          "unit": "g",
+          "qty": 20,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "peas_green",
+          "grams": 20,
+          "unit": "g",
+          "qty": 20,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home upma: roasted rava cooked in water with onion, carrot and peas, 2 tsp oil tadka; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "milk"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "khichdi-home",
+      "name": "Khichdi (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 25,
+      "oil_tsp": 1,
+      "cooked_yield_g": 240,
+      "ingredients": [
+        {
+          "food": "rice_white_raw",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "dal_moong_raw",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "ghee",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home khichdi: rice and moong dal pressure-cooked soft with haldi, 1 tsp ghee tadka; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "milk"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "curd-rice-home",
+      "name": "Curd rice (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 20,
+      "oil_tsp": 0.5,
+      "cooked_yield_g": 240,
+      "ingredients": [
+        {
+          "food": "rice_white_raw",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "curd_whole",
+          "grams": 120,
+          "unit": "g",
+          "qty": 120,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 2.25,
+          "unit": "tsp",
+          "qty": 0.5,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home curd rice: soft rice mixed with curd, half a tsp oil tadka with mustard seeds and curry leaves; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "veg-pulao-home",
+      "name": "Veg pulao (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 2,
+      "cooked_yield_g": 220,
+      "ingredients": [
+        {
+          "food": "rice_white_raw",
+          "grams": 50,
+          "unit": "g",
+          "qty": 50,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "carrot",
+          "grams": 20,
+          "unit": "g",
+          "qty": 20,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "peas_green",
+          "grams": 20,
+          "unit": "g",
+          "qty": 20,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home veg pulao: rice cooked with carrot, peas, onion and whole spices in 2 tsp oil; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "milk"
+      ],
+      "cost_tier": 2,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "chicken-biryani-home",
+      "name": "Chicken biryani (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "non_veg"
+      ],
+      "cook_time_min": 60,
+      "oil_tsp": 3,
+      "cooked_yield_g": 320,
+      "ingredients": [
+        {
+          "food": "rice_white_raw",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "chicken_breast_raw",
+          "grams": 80,
+          "unit": "g",
+          "qty": 80,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "curd_whole",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "base",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 20,
+          "unit": "g",
+          "qty": 20,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        },
+        {
+          "food": "ghee",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home chicken biryani: chicken marinated in curd and spices, layered with part-cooked rice and fried onion, 2 tsp oil and 1 tsp ghee; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "peanut"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "lemon-rice-home",
+      "name": "Lemon rice (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 20,
+      "oil_tsp": 2,
+      "cooked_yield_g": 170,
+      "ingredients": [
+        {
+          "food": "rice_white_raw",
+          "grams": 50,
+          "unit": "g",
+          "qty": 50,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "peanuts_raw",
+          "grams": 10,
+          "unit": "g",
+          "qty": 10,
+          "role": "fat",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home lemon rice: cooked rice tossed in a 2 tsp oil tadka of mustard, peanuts, curry leaves and haldi, finished with lemon juice; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "idli-home",
+      "name": "Idli (home style)",
+      "meal_slots": [
+        "breakfast",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 25,
+      "oil_tsp": 0,
+      "cooked_yield_g": 110,
+      "ingredients": [
+        {
+          "food": "rice_white_raw",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "dal_urad_raw",
+          "grams": 10,
+          "unit": "g",
+          "qty": 10,
+          "role": "protein",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home idli: fermented rice and urad dal batter (3 parts rice to 1 part dal), steamed; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "plain-dosa-home",
+      "name": "Plain dosa (home style)",
+      "meal_slots": [
+        "breakfast",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 10,
+      "oil_tsp": 1,
+      "cooked_yield_g": 80,
+      "ingredients": [
+        {
+          "food": "rice_white_raw",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "dal_urad_raw",
+          "grams": 10,
+          "unit": "g",
+          "qty": 10,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home plain dosa: one dosa of rice and urad dal batter on a hot tawa with 1 tsp oil; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "masala-dosa-home",
+      "name": "Masala dosa (home style)",
+      "meal_slots": [
+        "breakfast",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 2,
+      "cooked_yield_g": 180,
+      "ingredients": [
+        {
+          "food": "rice_white_raw",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "dal_urad_raw",
+          "grams": 10,
+          "unit": "g",
+          "qty": 10,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "potato",
+          "grams": 80,
+          "unit": "g",
+          "qty": 80,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 20,
+          "unit": "g",
+          "qty": 20,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home masala dosa: one dosa (1 tsp oil) filled with potato-onion masala (1 tsp oil); used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "gluten"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": false,
+      "requires": [],
+      "slug": "aloo-paratha-home",
+      "name": "Aloo paratha (home style)",
+      "meal_slots": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 1.5,
+      "cooked_yield_g": 120,
+      "ingredients": [
+        {
+          "food": "atta_whole_wheat",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "potato",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 6.75,
+          "unit": "tsp",
+          "qty": 1.5,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home aloo paratha: one atta paratha stuffed with spiced mashed potato, roasted with 1.5 tsp oil; used for Home Food portions."
+        }
+      ]
     }
   ]
 }
