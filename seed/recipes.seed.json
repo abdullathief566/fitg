@@ -1,0 +1,1556 @@
+{
+  "_note": "Drafts (is_draft:true) until the founder approves. No nutrition numbers here: build-seed.ts computes them from foods. Recipes tagged \"component\" are never meal candidates; home dishes use them.",
+  "recipes": [
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "egg",
+        "gluten"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [
+        "curd_cup"
+      ],
+      "tags": [
+        "quick",
+        "high_protein",
+        "indian_home"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "egg-bhurji-roti",
+      "name": "Egg bhurji + 2 rotis",
+      "meal_slots": [
+        "breakfast",
+        "post_workout",
+        "dinner"
+      ],
+      "diet_tags": [
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 15,
+      "oil_tsp": 1,
+      "ingredients": [
+        {
+          "food": "egg_whole",
+          "grams": 100,
+          "unit": "egg",
+          "qty": 2,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "atta_whole_wheat",
+          "grams": 60,
+          "unit": "roti",
+          "qty": 2,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "piece",
+          "qty": 0.5,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "tomato",
+          "grams": 40,
+          "unit": "piece",
+          "qty": 0.5,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Heat 1 tsp oil. Soften the chopped onion and tomato (4 min).",
+          "timer_sec": 240
+        },
+        {
+          "text": "Add the beaten eggs and a pinch of salt and haldi. Stir until just set."
+        },
+        {
+          "text": "Make 2 rotis on a hot tawa."
+        }
+      ]
+    },
+    {
+      "cuisine": "western",
+      "allergens": [
+        "milk",
+        "gluten"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [
+        "whey_scoop",
+        "curd_cup"
+      ],
+      "tags": [
+        "quick",
+        "no_cook_skill"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "oats-banana-milk",
+      "name": "Oats with milk and banana",
+      "meal_slots": [
+        "breakfast",
+        "snack"
+      ],
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 5,
+      "oil_tsp": 0,
+      "ingredients": [
+        {
+          "food": "oats_rolled",
+          "grams": 50,
+          "unit": "g",
+          "qty": 50,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "milk_whole",
+          "grams": 200,
+          "unit": "ml",
+          "qty": 200,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "banana",
+          "grams": 100,
+          "unit": "piece",
+          "qty": 1,
+          "role": "carb",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Simmer the oats in the milk for 3 minutes.",
+          "timer_sec": 180
+        },
+        {
+          "text": "Slice the banana on top."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "milk",
+        "gluten"
+      ],
+      "cost_tier": 2,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [
+        "curd_cup"
+      ],
+      "tags": [
+        "quick",
+        "high_protein",
+        "indian_home"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "paneer-bhurji-roti",
+      "name": "Paneer bhurji + 2 rotis",
+      "meal_slots": [
+        "breakfast",
+        "post_workout",
+        "dinner"
+      ],
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 15,
+      "oil_tsp": 1,
+      "ingredients": [
+        {
+          "food": "paneer",
+          "grams": 100,
+          "unit": "g",
+          "qty": 100,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "atta_whole_wheat",
+          "grams": 60,
+          "unit": "roti",
+          "qty": 2,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "piece",
+          "qty": 0.5,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "tomato",
+          "grams": 40,
+          "unit": "piece",
+          "qty": 0.5,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "capsicum",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Heat 1 tsp oil; cook onion, capsicum and tomato for 4 minutes.",
+          "timer_sec": 240
+        },
+        {
+          "text": "Crumble in the paneer with salt, haldi and garam masala; cook 2 minutes.",
+          "timer_sec": 120
+        },
+        {
+          "text": "Make 2 rotis."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [
+        "curd_cup",
+        "boiled_egg"
+      ],
+      "tags": [
+        "indian_home",
+        "batch_friendly"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "dal-rice-meal",
+      "name": "Dal tadka + rice",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 1,
+      "ingredients": [
+        {
+          "food": "dal_toor_raw",
+          "grams": 60,
+          "unit": "katori",
+          "qty": 1,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "rice_white_raw",
+          "grams": 60,
+          "unit": "katori",
+          "qty": 1.2,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "tomato",
+          "grams": 40,
+          "unit": "piece",
+          "qty": 0.5,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Pressure-cook the washed dal with haldi for 3 whistles."
+        },
+        {
+          "text": "Cook the rice."
+        },
+        {
+          "text": "Tadka: 1 tsp oil, jeera, onion, tomato; pour over the dal."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 2,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [
+        "curd_cup"
+      ],
+      "tags": [
+        "high_protein",
+        "indian_home",
+        "batch_friendly"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "chicken-curry-rice",
+      "name": "Chicken curry + rice",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 2,
+      "ingredients": [
+        {
+          "food": "chicken_breast_raw",
+          "grams": 150,
+          "unit": "g",
+          "qty": 150,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "rice_white_raw",
+          "grams": 60,
+          "unit": "katori",
+          "qty": 1.2,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 60,
+          "unit": "piece",
+          "qty": 0.75,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "piece",
+          "qty": 0.75,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Heat 2 tsp oil — not 3. Brown the onion (6 min).",
+          "timer_sec": 360
+        },
+        {
+          "text": "Add ginger-garlic, tomato and masala; cook until oil separates."
+        },
+        {
+          "text": "Add the chicken and a little water; simmer 15 minutes.",
+          "timer_sec": 900
+        },
+        {
+          "text": "Serve with rice."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [
+        "curd_cup"
+      ],
+      "tags": [
+        "indian_home",
+        "weekend",
+        "batch_friendly"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "rajma-rice-meal",
+      "name": "Rajma + rice",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 40,
+      "oil_tsp": 1,
+      "prep": {
+        "text": "Soak the rajma tonight.",
+        "lead_hours": 10
+      },
+      "ingredients": [
+        {
+          "food": "kidney_beans_raw",
+          "grams": 60,
+          "unit": "katori",
+          "qty": 1,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "rice_white_raw",
+          "grams": 60,
+          "unit": "katori",
+          "qty": 1.2,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "piece",
+          "qty": 0.5,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "piece",
+          "qty": 0.75,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Pressure-cook the soaked rajma until soft."
+        },
+        {
+          "text": "Masala: 1 tsp oil, onion, tomato, ginger-garlic; add rajma and simmer 10 minutes.",
+          "timer_sec": 600
+        },
+        {
+          "text": "Serve with rice."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "gluten"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [
+        "curd_cup"
+      ],
+      "tags": [
+        "indian_home",
+        "weekend"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "chana-roti-meal",
+      "name": "Chana masala + 2 rotis",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 40,
+      "oil_tsp": 1,
+      "prep": {
+        "text": "Soak the chana tonight.",
+        "lead_hours": 10
+      },
+      "ingredients": [
+        {
+          "food": "chickpeas_raw",
+          "grams": 60,
+          "unit": "katori",
+          "qty": 1,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "atta_whole_wheat",
+          "grams": 60,
+          "unit": "roti",
+          "qty": 2,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "piece",
+          "qty": 0.5,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "piece",
+          "qty": 0.75,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Pressure-cook the soaked chana."
+        },
+        {
+          "text": "Masala: 1 tsp oil, onion, tomato, chole masala; add chana, simmer 10 minutes.",
+          "timer_sec": 600
+        },
+        {
+          "text": "Make 2 rotis."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "gluten"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [
+        "curd_cup",
+        "boiled_egg"
+      ],
+      "tags": [
+        "indian_home",
+        "veg_heavy"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "aloo-gobi-roti-meal",
+      "name": "Aloo gobi + 2 rotis",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 25,
+      "oil_tsp": 2,
+      "ingredients": [
+        {
+          "food": "potato",
+          "grams": 100,
+          "unit": "g",
+          "qty": 100,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "cauliflower",
+          "grams": 150,
+          "unit": "g",
+          "qty": 150,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "atta_whole_wheat",
+          "grams": 60,
+          "unit": "roti",
+          "qty": 2,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "tomato",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Heat 2 tsp oil, add jeera, onion, then potato and gobi with haldi and salt."
+        },
+        {
+          "text": "Cover and cook on low for 15 minutes, stirring twice.",
+          "timer_sec": 900
+        },
+        {
+          "text": "Make 2 rotis."
+        }
+      ]
+    },
+    {
+      "cuisine": "mixed",
+      "allergens": [
+        "milk"
+      ],
+      "cost_tier": 2,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "high_protein",
+        "quick"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "chicken-rice-bowl",
+      "name": "Chicken rice bowl with curd",
+      "meal_slots": [
+        "lunch",
+        "post_workout",
+        "dinner"
+      ],
+      "diet_tags": [
+        "non_veg"
+      ],
+      "cook_time_min": 25,
+      "oil_tsp": 1,
+      "ingredients": [
+        {
+          "food": "chicken_breast_raw",
+          "grams": 120,
+          "unit": "g",
+          "qty": 120,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "rice_white_raw",
+          "grams": 50,
+          "unit": "katori",
+          "qty": 1,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "cucumber",
+          "grams": 50,
+          "unit": "g",
+          "qty": 50,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "curd_whole",
+          "grams": 100,
+          "unit": "g",
+          "qty": 100,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Cook the rice."
+        },
+        {
+          "text": "Pan-cook the chicken pieces in 1 tsp oil with salt and pepper (8 min).",
+          "timer_sec": 480
+        },
+        {
+          "text": "Bowl: rice, chicken, cucumber, curd on the side."
+        }
+      ]
+    },
+    {
+      "cuisine": "mixed",
+      "allergens": [
+        "milk",
+        "peanut"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "no_cook"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "curd-banana-pb-snack",
+      "name": "Curd bowl with banana and peanut butter",
+      "meal_slots": [
+        "snack"
+      ],
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 2,
+      "oil_tsp": 0,
+      "ingredients": [
+        {
+          "food": "curd_whole",
+          "grams": 150,
+          "unit": "katori",
+          "qty": 1,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "banana",
+          "grams": 100,
+          "unit": "piece",
+          "qty": 1,
+          "role": "carb",
+          "scalable": false
+        },
+        {
+          "food": "peanut_butter",
+          "grams": 16,
+          "unit": "tbsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Curd in a bowl, banana on top, 1 tbsp peanut butter."
+        }
+      ]
+    },
+    {
+      "cuisine": "western",
+      "allergens": [
+        "milk"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "quick",
+        "high_protein",
+        "no_cook"
+      ],
+      "is_draft": true,
+      "requires": [
+        "whey_isolate"
+      ],
+      "slug": "whey-banana-shake",
+      "name": "Whey banana shake",
+      "meal_slots": [
+        "breakfast",
+        "post_workout",
+        "snack"
+      ],
+      "diet_tags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 3,
+      "oil_tsp": 0,
+      "ingredients": [
+        {
+          "food": "whey_isolate",
+          "grams": 30,
+          "unit": "scoop",
+          "qty": 1,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "milk_whole",
+          "grams": 240,
+          "unit": "cup",
+          "qty": 1,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "banana",
+          "grams": 100,
+          "unit": "piece",
+          "qty": 1,
+          "role": "carb",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Blend 1 scoop whey, 1 glass milk and the banana."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [
+        "curd_cup"
+      ],
+      "tags": [
+        "high_protein",
+        "indian_home",
+        "veg_protein"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "soya-chunks-curry-rice",
+      "name": "Soya chunks curry + rice",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 25,
+      "oil_tsp": 1,
+      "ingredients": [
+        {
+          "food": "soya_chunks",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "rice_white_raw",
+          "grams": 50,
+          "unit": "katori",
+          "qty": 1,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "piece",
+          "qty": 0.5,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "piece",
+          "qty": 0.75,
+          "role": "veg",
+          "scalable": false
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": false
+        }
+      ],
+      "steps": [
+        {
+          "text": "Soak the soya chunks in hot water for 10 minutes; squeeze out the water.",
+          "timer_sec": 600
+        },
+        {
+          "text": "Masala: 1 tsp oil, onion, tomato, ginger-garlic; add the chunks and simmer 8 minutes.",
+          "timer_sec": 480
+        },
+        {
+          "text": "Serve with rice."
+        }
+      ]
+    },
+    {
+      "cuisine": "western",
+      "allergens": [
+        "egg",
+        "gluten"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "quick",
+        "high_protein"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "eggs-toast-breakfast",
+      "name": "3 boiled eggs + 2 toast",
+      "meal_slots": [
+        "breakfast",
+        "snack"
+      ],
+      "diet_tags": [
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 10,
+      "oil_tsp": 0,
+      "ingredients": [
+        {
+          "food": "egg_whole",
+          "grams": 150,
+          "unit": "egg",
+          "qty": 3,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "bread_whole_wheat",
+          "grams": 64,
+          "unit": "slice",
+          "qty": 2,
+          "role": "carb",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Boil the eggs for 9 minutes.",
+          "timer_sec": 540
+        },
+        {
+          "text": "Toast 2 slices."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "dal-tadka-home",
+      "name": "Dal tadka (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 1,
+      "cooked_yield_g": 250,
+      "ingredients": [
+        {
+          "food": "dal_toor_raw",
+          "grams": 60,
+          "unit": "katori",
+          "qty": 1,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home dal; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "chicken-curry-home",
+      "name": "Chicken curry (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "non_veg"
+      ],
+      "cook_time_min": 30,
+      "oil_tsp": 2,
+      "cooked_yield_g": 280,
+      "ingredients": [
+        {
+          "food": "chicken_breast_raw",
+          "grams": 150,
+          "unit": "g",
+          "qty": 150,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home chicken curry; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "rajma-home",
+      "name": "Rajma (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 40,
+      "oil_tsp": 1,
+      "cooked_yield_g": 260,
+      "ingredients": [
+        {
+          "food": "kidney_beans_raw",
+          "grams": 60,
+          "unit": "katori",
+          "qty": 1,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home rajma; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "chana-masala-home",
+      "name": "Chana masala (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 40,
+      "oil_tsp": 1,
+      "cooked_yield_g": 260,
+      "ingredients": [
+        {
+          "food": "chickpeas_raw",
+          "grams": 60,
+          "unit": "katori",
+          "qty": 1,
+          "role": "protein",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 40,
+          "unit": "g",
+          "qty": 40,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 60,
+          "unit": "g",
+          "qty": 60,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 4.5,
+          "unit": "tsp",
+          "qty": 1,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home chana; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "aloo-gobi-home",
+      "name": "Aloo gobi (home style)",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 25,
+      "oil_tsp": 2,
+      "cooked_yield_g": 280,
+      "ingredients": [
+        {
+          "food": "potato",
+          "grams": 100,
+          "unit": "g",
+          "qty": 100,
+          "role": "carb",
+          "scalable": true
+        },
+        {
+          "food": "cauliflower",
+          "grams": 150,
+          "unit": "g",
+          "qty": 150,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "onion",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "tomato",
+          "grams": 30,
+          "unit": "g",
+          "qty": 30,
+          "role": "veg",
+          "scalable": true
+        },
+        {
+          "food": "oil_sunflower",
+          "grams": 9,
+          "unit": "tsp",
+          "qty": 2,
+          "role": "fat",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Standard home aloo gobi; used for Home Food portions."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [
+        "gluten"
+      ],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "roti-plain",
+      "name": "Roti / chapati",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 10,
+      "oil_tsp": 0,
+      "cooked_yield_g": 40,
+      "ingredients": [
+        {
+          "food": "atta_whole_wheat",
+          "grams": 30,
+          "unit": "roti",
+          "qty": 1,
+          "role": "carb",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "One plain roti, no ghee."
+        }
+      ]
+    },
+    {
+      "cuisine": "indian",
+      "allergens": [],
+      "cost_tier": 1,
+      "servings": 1,
+      "scale_rules": {
+        "min_mult": 0.5,
+        "max_mult": 2,
+        "step": 0.25
+      },
+      "protein_addons": [],
+      "tags": [
+        "component"
+      ],
+      "is_draft": true,
+      "requires": [],
+      "slug": "steamed-rice",
+      "name": "Steamed rice",
+      "meal_slots": [
+        "lunch",
+        "dinner"
+      ],
+      "diet_tags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "cook_time_min": 20,
+      "oil_tsp": 0,
+      "cooked_yield_g": 150,
+      "ingredients": [
+        {
+          "food": "rice_white_raw",
+          "grams": 50,
+          "unit": "katori",
+          "qty": 1,
+          "role": "carb",
+          "scalable": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "Plain cooked rice."
+        }
+      ]
+    }
+  ]
+}

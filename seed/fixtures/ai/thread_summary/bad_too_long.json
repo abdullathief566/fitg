@@ -1,0 +1,8 @@
+{
+  "scenario": "too_long",
+  "expect": "reject:too_long",
+  "allowedNumbers": [],
+  "output": {
+    "summary": "Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food. Prefers home food."
+  }
+}

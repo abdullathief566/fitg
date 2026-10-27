@@ -1,0 +1,26 @@
+{
+  "scenario": "invented_target",
+  "expect": "reject:foreign_number",
+  "allowedNumbers": [
+    1850,
+    120,
+    2,
+    18,
+    6,
+    30
+  ],
+  "response": {
+    "stop_reason": "end_turn",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "mock-signature-3"
+      },
+      {
+        "type": "text",
+        "text": "You should be eating 1,500 calories instead."
+      }
+    ]
+  }
+}

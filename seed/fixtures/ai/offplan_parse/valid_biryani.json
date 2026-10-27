@@ -1,0 +1,27 @@
+{
+  "scenario": "photo_biryani",
+  "expect": "valid",
+  "output": {
+    "items": [
+      {
+        "name": "chicken biryani",
+        "nameLocal": null,
+        "unit": "plate",
+        "qty": "1",
+        "cooking": "curry",
+        "oilLevel": "high",
+        "confidence": "medium"
+      },
+      {
+        "name": "raita",
+        "nameLocal": null,
+        "unit": "katori",
+        "qty": "0.5",
+        "cooking": "raw",
+        "oilLevel": "low",
+        "confidence": "medium"
+      }
+    ],
+    "question": null
+  }
+}

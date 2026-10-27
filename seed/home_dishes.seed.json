@@ -1,0 +1,381 @@
+{
+  "_note": "needs_recipe:true dishes are skipped by build-seed.ts until the founder adds a standard home-style recipe (tag \"component\", with cooked_yield_g). grams_per_unit is cooked weight per unit — verify with a scale.",
+  "home_dishes": [
+    {
+      "key": "dal_tadka",
+      "name": "Dal tadka",
+      "aliases": [
+        "dal",
+        "daal",
+        "dal fry",
+        "toor dal"
+      ],
+      "recipe_slug": "dal-tadka-home",
+      "needs_recipe": false,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "dal",
+      "protein_class": "med"
+    },
+    {
+      "key": "chicken_curry",
+      "name": "Chicken curry",
+      "aliases": [
+        "murgh curry",
+        "chicken gravy"
+      ],
+      "recipe_slug": "chicken-curry-home",
+      "needs_recipe": false,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "curry_nonveg",
+      "protein_class": "high"
+    },
+    {
+      "key": "rajma",
+      "name": "Rajma",
+      "aliases": [
+        "rajma masala"
+      ],
+      "recipe_slug": "rajma-home",
+      "needs_recipe": false,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "dal",
+      "protein_class": "med"
+    },
+    {
+      "key": "chana_masala",
+      "name": "Chana masala",
+      "aliases": [
+        "chole",
+        "chickpea curry"
+      ],
+      "recipe_slug": "chana-masala-home",
+      "needs_recipe": false,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "dal",
+      "protein_class": "med"
+    },
+    {
+      "key": "aloo_gobi",
+      "name": "Aloo gobi",
+      "aliases": [
+        "aloo gobhi"
+      ],
+      "recipe_slug": "aloo-gobi-home",
+      "needs_recipe": false,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "sabzi",
+      "protein_class": "low"
+    },
+    {
+      "key": "roti",
+      "name": "Roti",
+      "aliases": [
+        "chapati",
+        "phulka",
+        "fulka"
+      ],
+      "recipe_slug": "roti-plain",
+      "needs_recipe": false,
+      "unit": "roti",
+      "grams_per_unit": 40,
+      "category": "bread",
+      "protein_class": "low"
+    },
+    {
+      "key": "rice",
+      "name": "Rice",
+      "aliases": [
+        "chawal",
+        "plain rice",
+        "steamed rice"
+      ],
+      "recipe_slug": "steamed-rice",
+      "needs_recipe": false,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "rice",
+      "protein_class": "low"
+    },
+    {
+      "key": "sambar",
+      "name": "Sambar",
+      "aliases": [
+        "sambhar"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "dal",
+      "protein_class": "med"
+    },
+    {
+      "key": "rasam",
+      "name": "Rasam",
+      "aliases": [],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "dal",
+      "protein_class": "low"
+    },
+    {
+      "key": "dal_makhani",
+      "name": "Dal makhani",
+      "aliases": [
+        "makhani dal"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "dal",
+      "protein_class": "med"
+    },
+    {
+      "key": "kadhi",
+      "name": "Kadhi",
+      "aliases": [
+        "kadhi pakora"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "dal",
+      "protein_class": "low"
+    },
+    {
+      "key": "palak_paneer",
+      "name": "Palak paneer",
+      "aliases": [
+        "saag paneer"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "sabzi",
+      "protein_class": "high"
+    },
+    {
+      "key": "paneer_butter_masala",
+      "name": "Paneer butter masala",
+      "aliases": [
+        "paneer makhani"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "sabzi",
+      "protein_class": "high"
+    },
+    {
+      "key": "bhindi_sabzi",
+      "name": "Bhindi sabzi",
+      "aliases": [
+        "bhindi masala",
+        "okra"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "sabzi",
+      "protein_class": "low"
+    },
+    {
+      "key": "mixed_veg",
+      "name": "Mixed veg",
+      "aliases": [
+        "mix veg"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "sabzi",
+      "protein_class": "low"
+    },
+    {
+      "key": "egg_curry",
+      "name": "Egg curry",
+      "aliases": [
+        "anda curry"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "curry_nonveg",
+      "protein_class": "high"
+    },
+    {
+      "key": "fish_curry",
+      "name": "Fish curry",
+      "aliases": [
+        "machli curry"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "curry_nonveg",
+      "protein_class": "high"
+    },
+    {
+      "key": "mutton_curry",
+      "name": "Mutton curry",
+      "aliases": [
+        "gosht"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "curry_nonveg",
+      "protein_class": "high"
+    },
+    {
+      "key": "poha",
+      "name": "Poha",
+      "aliases": [],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "plate",
+      "grams_per_unit": 200,
+      "category": "breakfast",
+      "protein_class": "low"
+    },
+    {
+      "key": "upma",
+      "name": "Upma",
+      "aliases": [],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "plate",
+      "grams_per_unit": 200,
+      "category": "breakfast",
+      "protein_class": "low"
+    },
+    {
+      "key": "khichdi",
+      "name": "Khichdi",
+      "aliases": [],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "rice",
+      "protein_class": "med"
+    },
+    {
+      "key": "curd_rice",
+      "name": "Curd rice",
+      "aliases": [
+        "thayir sadam"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "rice",
+      "protein_class": "low"
+    },
+    {
+      "key": "veg_pulao",
+      "name": "Veg pulao",
+      "aliases": [
+        "pulao"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "rice",
+      "protein_class": "low"
+    },
+    {
+      "key": "chicken_biryani",
+      "name": "Chicken biryani",
+      "aliases": [
+        "biryani"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "rice",
+      "protein_class": "med"
+    },
+    {
+      "key": "lemon_rice",
+      "name": "Lemon rice",
+      "aliases": [
+        "chitranna"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "katori",
+      "grams_per_unit": 150,
+      "category": "rice",
+      "protein_class": "low"
+    },
+    {
+      "key": "idli",
+      "name": "Idli",
+      "aliases": [],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "piece",
+      "grams_per_unit": 40,
+      "category": "breakfast",
+      "protein_class": "low"
+    },
+    {
+      "key": "plain_dosa",
+      "name": "Plain dosa",
+      "aliases": [
+        "dosa",
+        "dosai"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "piece",
+      "grams_per_unit": 80,
+      "category": "breakfast",
+      "protein_class": "low"
+    },
+    {
+      "key": "masala_dosa",
+      "name": "Masala dosa",
+      "aliases": [],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "piece",
+      "grams_per_unit": 180,
+      "category": "breakfast",
+      "protein_class": "low"
+    },
+    {
+      "key": "aloo_paratha",
+      "name": "Aloo paratha",
+      "aliases": [
+        "paratha"
+      ],
+      "recipe_slug": null,
+      "needs_recipe": true,
+      "unit": "piece",
+      "grams_per_unit": 120,
+      "category": "bread",
+      "protein_class": "low"
+    }
+  ]
+}

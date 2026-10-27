@@ -1,0 +1,11 @@
+{
+  "scenario": "invented",
+  "expect": "reject:foreign_number",
+  "allowedNumbers": [
+    2,
+    7
+  ],
+  "output": {
+    "summary": "Wants to hit 160 g protein."
+  }
+}

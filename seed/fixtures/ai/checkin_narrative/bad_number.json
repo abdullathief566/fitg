@@ -1,0 +1,16 @@
+{
+  "scenario": "invented_loss",
+  "expect": "reject:foreign_number",
+  "allowedNumbers": [
+    3,
+    5,
+    2.5,
+    78.4,
+    78.9
+  ],
+  "output": {
+    "headline": "Down 1.2 kg!",
+    "body": "All 3 workouts done.",
+    "nextWeekFocus": "Keep going."
+  }
+}

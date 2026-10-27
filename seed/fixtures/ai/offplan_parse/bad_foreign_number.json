@@ -1,0 +1,16 @@
+{
+  "scenario": "number_in_question",
+  "expect": "reject:foreign_number",
+  "allowedNumbers": [],
+  "output": {
+    "items": [],
+    "question": {
+      "text": "Was it 2 plates or 3?",
+      "options": [
+        "One plate",
+        "Two plates",
+        "Something else"
+      ]
+    }
+  }
+}

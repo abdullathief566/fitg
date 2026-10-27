@@ -1,0 +1,14 @@
+node_modules/
+coverage/
+dist/
+*.log
+.DS_Store
+
+# never commit secrets
+.env
+.env.*
+!.env.example
+
+# data pipeline: raw downloads and build output
+data/raw/
+data/out/

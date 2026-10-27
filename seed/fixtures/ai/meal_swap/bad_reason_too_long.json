@@ -1,0 +1,24 @@
+{
+  "scenario": "reason_too_long",
+  "expect": "reject:too_long",
+  "input": {
+    "current": "chicken-curry-rice",
+    "slot": "dinner",
+    "candidates": [
+      "dal-rice-meal",
+      "aloo-gobi-roti-meal",
+      "chicken-rice-bowl",
+      "egg-bhurji-roti",
+      "paneer-bhurji-roti"
+    ]
+  },
+  "allowedNumbers": [],
+  "output": {
+    "picks": [
+      {
+        "slug": "chicken-rice-bowl",
+        "reason": "Same chicken but a lot quicker to make on a busy weeknight after the gym"
+      }
+    ]
+  }
+}

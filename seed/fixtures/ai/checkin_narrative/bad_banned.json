@@ -1,0 +1,16 @@
+{
+  "scenario": "lazy",
+  "expect": "reject:banned_word",
+  "allowedNumbers": [
+    3,
+    5,
+    2.5,
+    78.4,
+    78.9
+  ],
+  "output": {
+    "headline": "A lazy week, but fine.",
+    "body": "Only 3 workouts this week.",
+    "nextWeekFocus": "Show up."
+  }
+}

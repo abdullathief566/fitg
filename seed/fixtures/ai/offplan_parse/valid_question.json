@@ -1,0 +1,16 @@
+{
+  "scenario": "unclear_bowl",
+  "expect": "valid",
+  "output": {
+    "items": [],
+    "question": {
+      "text": "What was in the bowl?",
+      "options": [
+        "Dal",
+        "Sambar",
+        "Rasam",
+        "Something else"
+      ]
+    }
+  }
+}
