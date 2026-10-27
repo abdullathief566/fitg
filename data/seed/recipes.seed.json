@@ -25,7 +25,7 @@
       "is_draft": false,
       "requires": [],
       "slug": "egg-bhurji-roti",
-      "name": "Egg bhurji + 2 rotis",
+      "name": "Egg bhurji with roti",
       "meal_slots": [
         "breakfast",
         "post_workout",
@@ -188,7 +188,7 @@
       "is_draft": false,
       "requires": [],
       "slug": "paneer-bhurji-roti",
-      "name": "Paneer bhurji + 2 rotis",
+      "name": "Paneer bhurji with roti",
       "meal_slots": [
         "breakfast",
         "post_workout",
@@ -564,7 +564,7 @@
       "is_draft": false,
       "requires": [],
       "slug": "chana-roti-meal",
-      "name": "Chana masala + 2 rotis",
+      "name": "Chana masala with roti",
       "meal_slots": [
         "lunch",
         "dinner"
@@ -659,7 +659,7 @@
       "is_draft": false,
       "requires": [],
       "slug": "aloo-gobi-roti-meal",
-      "name": "Aloo gobi + 2 rotis",
+      "name": "Aloo gobi with roti",
       "meal_slots": [
         "lunch",
         "dinner"
@@ -1068,7 +1068,7 @@
       "is_draft": false,
       "requires": [],
       "slug": "eggs-toast-breakfast",
-      "name": "3 boiled eggs + 2 toast",
+      "name": "Boiled eggs and toast",
       "meal_slots": [
         "breakfast",
         "snack"

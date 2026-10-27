@@ -174,7 +174,8 @@ function About({ a, set }: { a: OnboardingAnswers; set: Set_ }) {
     <>
       <Question label={c.name}>
         <TextInput
-          value={a.firstName ?? ''}
+          // Uncontrolled on purpose: a controlled input drops characters on Android when the JS thread lags.
+          defaultValue={a.firstName ?? ''}
           onChangeText={(firstName) => set({ firstName })}
           placeholder={c.namePlaceholder}
           placeholderTextColor={t.c.text.tertiary}
@@ -258,7 +259,7 @@ function Schedule({ a, set }: { a: OnboardingAnswers; set: Set_ }) {
         <Multi options={DAYS} values={a.gymDays} onChange={(gymDays) => set({ gymDays })} />
       </Question>
       <Question label={c.time}>
-        <TimeStepper label={c.time} value={a.gymStart} step={15} onChange={(gymStart) => set({ gymStart })} />
+        <TimeStepper label={c.timeRow} value={a.gymStart} step={15} onChange={(gymStart) => set({ gymStart })} />
       </Question>
       <Question label={c.length}>
         <Choices options={c.lengths} value={a.durationMin} onPick={(durationMin) => set({ durationMin })} />
@@ -306,6 +307,7 @@ function Equipment({ a, set }: { a: OnboardingAnswers; set: Set_ }) {
   const t = useTheme();
   const c = STEP_COPY.equipment;
   const [pinState, setPinState] = useState<'idle' | 'busy' | 'failed'>('idle');
+  const [skipped, setSkipped] = useState(false);
   const pin = async () => {
     setPinState('busy');
     try {
@@ -337,14 +339,25 @@ function Equipment({ a, set }: { a: OnboardingAnswers; set: Set_ }) {
         <Card hairline style={{ gap: t.space[3] }}>
           <AppText variant="displayS">{c.pinTitle}</AppText>
           <AppText variant="body" tone="secondary">
-            {a.gymPin ? c.pinned : pinState === 'failed' ? c.pinFailed : c.pinBody}
+            {a.gymPin ? c.pinned : skipped ? c.pinSkipped : pinState === 'failed' ? c.pinFailed : c.pinBody}
           </AppText>
-          {a.gymPin ? null : (
-            <PrimaryButton label={c.pinAllow} variant="secondary" loading={pinState === 'busy'} onPress={pin} />
+          {a.gymPin || skipped ? null : (
+            <View style={{ flexDirection: 'row', gap: t.space[2] }}>
+              <PrimaryButton
+                label={c.pinSkip}
+                variant="secondary"
+                onPress={() => setSkipped(true)}
+                style={{ flex: 1 }}
+              />
+              <PrimaryButton
+                label={c.pinAllow}
+                variant="secondary"
+                loading={pinState === 'busy'}
+                onPress={pin}
+                style={{ flex: 1 }}
+              />
+            </View>
           )}
-          <AppText variant="caption" tone="tertiary">
-            {c.pinSkip}
-          </AppText>
         </Card>
       )}
     </>

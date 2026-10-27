@@ -200,6 +200,8 @@ describe('plan reveal', () => {
     expect(r.tomorrow.length).toBeGreaterThan(0);
     expect(r.firstPing?.when).toBe('6:15 PM tonight');
     expect(r.firstPing?.type).toBe('pre_gym');
+    // On sign-up day the preview never asks "Did breakfast happen?" (the real ping does, once).
+    expect(r.firstPing?.body).not.toMatch(/happen\?$/);
     expect(r.firstPing?.title).toContain('Full body A');
   });
 });

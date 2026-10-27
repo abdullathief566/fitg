@@ -1,6 +1,6 @@
 // One row of Today's timeline. Every state has a shape, not only a colour (accessibility.md): done = check,
 // now = filled dot, upcoming = ring, skipped = dash, past (assumed eaten) = faint ring. 56 pt rows.
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Check, Minus } from './icons';
 import { maxFontScaleRows } from '@/constants/theme';
 import type { TimelineStatus } from '@/src/domain/today';
@@ -18,7 +18,7 @@ export interface TimelineRowProps {
 
 const SPOKEN: Record<TimelineStatus, string> = {
   done: 'done',
-  now: 'now',
+  now: 'next up',
   upcoming: 'coming up',
   past: 'earlier',
   skipped: 'skipped',
@@ -36,7 +36,9 @@ function Marker({ status }: { status: TimelineStatus }) {
   switch (status) {
     case 'done':
       return (
-        <View style={[box, { backgroundColor: t.c.state.doneTint }]}>
+        <View style={box}>
+          {/* The tint is its own round layer: Android drew a square background when the SVG was the view's only child. */}
+          <View style={[StyleSheet.absoluteFill, { borderRadius: 10, backgroundColor: t.c.state.doneTint }]} />
           <Check size={14} strokeWidth={3} color={t.c.state.done} />
         </View>
       );
@@ -108,7 +110,7 @@ export function TimelineRow({ time, title, detail, status, onPress }: TimelineRo
       </View>
       {status === 'now' ? (
         <AppText variant="micro" tone="accent">
-          Now
+          Next
         </AppText>
       ) : null}
     </View>

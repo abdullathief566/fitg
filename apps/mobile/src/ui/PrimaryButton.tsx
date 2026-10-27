@@ -55,7 +55,7 @@ export function PrimaryButton({
           backgroundColor: bg,
           alignItems: 'center',
           justifyContent: 'center',
-          paddingHorizontal: t.space[5],
+          paddingHorizontal: variant === 'quiet' ? 0 : t.space[5],
           opacity: disabled ? 0.45 : 1,
         },
         variant === 'secondary' ? { borderWidth: 1, borderColor: t.c.hairline } : null,

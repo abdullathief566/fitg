@@ -12,7 +12,7 @@ FitG is a mobile app (iOS + Android) with an AI agent that plans a gym beginner'
 Read only the docs the current phase names, plus this file. Phase 1 can run in cloud Codex; from Phase 2 on you run locally on Abdul's Mac (Xcode, simulators).
 
 ## Stack
-Expo SDK 54 (React Native, TypeScript strict, expo-router, Reanimated 4, Skia), **dev-build project** (not Expo Go) · expo-sqlite (offline-first) · Supabase (Postgres + RLS, Auth, Storage, Edge Functions in Deno/TS, pg_cron) · Anthropic Claude via `packages/ai` (`AI_PROVIDER=mock|anthropic`) · RevenueCat · PostHog · Sentry · Vitest · npm workspaces, Node 22.
+Expo SDK 58 (React Native 0.88, TypeScript strict, expo-router, Reanimated 4), **runs in Expo Go through Phase 5, dev build from Phase 6** (updated 2026-10-28) · expo-sqlite (offline-first) · Supabase (Postgres + RLS, Auth, Storage, Edge Functions in Deno/TS, pg_cron) · Anthropic Claude via `packages/ai` (`AI_PROVIDER=mock|anthropic`) · RevenueCat · PostHog · Sentry · Vitest · npm workspaces, Node 22.
 
 ## Layout
 ```

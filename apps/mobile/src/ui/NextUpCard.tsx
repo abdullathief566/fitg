@@ -2,7 +2,7 @@
 // with role "summary", its buttons exposed as accessibilityActions. Ambient tint by kind (accent / rest / win, ~6%).
 // Motion #7: when the step changes, the old card exits up (200 ms) and the new one enters from below (400 ms spring);
 // reduced motion: a 200 ms cross-fade.
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeInDown, FadeOut, FadeOutUp, useReducedMotion } from 'react-native-reanimated';
 import type { NextStep, NextStepAction } from '@fitg/engine';
 import { motion } from '@/constants/motion';
@@ -35,6 +35,8 @@ function tintFor(kind: NextStep['kind'], c: ReturnType<typeof useTheme>['c']): s
 function eyebrow(step: NextStep, time?: string): string {
   if (step.kind === 'rest') return 'Today';
   if (step.kind === 'tomorrow') return 'Next up';
+  if (step.kind === 'comeback') return 'Week change';
+  if (step.kind === 'checkin') return 'Sunday';
   return time ? `Next up · ${time}` : 'Next up';
 }
 
@@ -52,6 +54,11 @@ export function NextUpCard({ step, timeLabel, actions, onAction, state }: NextUp
   return (
     <Animated.View key={`${step.kind}:${step.refId ?? step.title}`} entering={entering} exiting={exiting}>
       <Card testID="next-up-card" style={{ backgroundColor: t.c.bg.surface, overflow: 'hidden', gap: t.space[3] }}>
+        {/* The ambient tint covers the whole card (about 6%: half of the tint token). */}
+        <View
+          pointerEvents="none"
+          style={[StyleSheet.absoluteFill, { backgroundColor: tintFor(step.kind, t.c), opacity: 0.5 }]}
+        />
         <View
           accessible
           accessibilityRole="summary"
@@ -63,18 +70,6 @@ export function NextUpCard({ step, timeLabel, actions, onAction, state }: NextUp
           }}
           style={{ gap: t.space[2] }}
         >
-          <View
-            pointerEvents="none"
-            style={{
-              position: 'absolute',
-              top: -t.space.screenX,
-              left: -t.space.screenX,
-              right: -t.space.screenX,
-              bottom: -t.space[12],
-              backgroundColor: tintFor(step.kind, t.c),
-              opacity: 0.5,
-            }}
-          />
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: t.space[2] }}>
             <PulseDot state={state === 'now' ? 'idle' : 'off'} />
             <AppText variant="micro" tone="secondary">

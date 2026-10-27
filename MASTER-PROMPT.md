@@ -59,7 +59,7 @@ Every signal becomes an append-only **event**; `deriveUserState` turns events + 
 
 ## 7. Architecture in one page
 
-Expo SDK 54 dev-build project (expo-router, Reanimated 4, Skia, expo-sqlite) · npm-workspaces monorepo: `apps/mobile`, `packages/engine`, `packages/contracts`, `packages/ai` · Supabase (Postgres + RLS, Auth, Storage, Edge Functions in Deno/TS, pg_cron) · device owns actuals (append-only events), server owns plans (devices send commands) · pings are local notifications on a rolling 3-day window with stable ids · Live Activity via `expo-apple-targets` + a local Swift module; Android via notifee; geofence via expo-location · RevenueCat, PostHog, Sentry. Details: `docs/20-engineering/architecture.md`.
+Expo SDK 58 project (expo-router, Reanimated 4, expo-sqlite; Expo Go until Phase 6, then a dev build — updated 2026-10-28) · npm-workspaces monorepo: `apps/mobile`, `packages/engine`, `packages/contracts`, `packages/ai` · Supabase (Postgres + RLS, Auth, Storage, Edge Functions in Deno/TS, pg_cron) · device owns actuals (append-only events), server owns plans (devices send commands) · pings are local notifications on a rolling 3-day window with stable ids · Live Activity via `expo-apple-targets` + a local Swift module; Android via notifee; geofence via expo-location · RevenueCat, PostHog, Sentry. Details: `docs/20-engineering/architecture.md`.
 
 ## 8. Rules you never break
 

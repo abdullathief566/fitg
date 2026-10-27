@@ -85,7 +85,7 @@ export function RollingNumber({
   const t = useTheme();
   const reduced = useReducedMotion();
   const style = t.type[variant];
-  const textStyle = { ...style, color: toneColor(t, tone), textAlign: 'center' as const, includeFontPadding: false };
+  const textStyle = { ...style, color: toneColor(t, tone), includeFontPadding: false };
   const text = Math.max(0, Math.round(value)).toLocaleString('en-US');
 
   useEffect(() => {

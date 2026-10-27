@@ -65,17 +65,18 @@ Fonts via `@expo-google-fonts/outfit` and `@expo-google-fonts/dm-sans`, embedded
 ```ts
 export const fonts = {
   display: { semibold: "Outfit_600SemiBold", bold: "Outfit_700Bold", black: "Outfit_800ExtraBold" },
-  body:    { regular: "DM_Sans_400Regular", medium: "DM_Sans_500Medium", semibold: "DM_Sans_600SemiBold", bold: "DM_Sans_700Bold" },
+  body:    { regular: "DMSans_400Regular", medium: "DMSans_500Medium", semibold: "DMSans_600SemiBold", bold: "DMSans_700Bold" },
 } as const;
 // Every number that can change renders with fontVariant: ['tabular-nums'].
-// If Outfit's tabular figures misalign on Android, numbers fall back to DM Sans 700 at the same size. Decide in week 1, write the decision here.
+// Decided 2026-10-28: every number renders in Outfit. Outfit has a `tnum` feature; the Google Fonts build of DM Sans has
+// none (its digits are proportional), so DM Sans can't be the fallback. `type.numberM` is Outfit 700 (was DM Sans 700).
 ```
 
 | Token | Face | Size/Line | Tracking | Use |
 |---|---|---|---|---|
 | `type.numberHero` | Outfit 800 | 64/68 | −1.5 | Rest timer, current weight in gym mode, reveal calories |
 | `type.numberL` | Outfit 700 | 36/40 | −0.8 | PR numbers, journey day, macro totals |
-| `type.numberM` | DM Sans 700 | 20/24 | 0 | Set rows, portions |
+| `type.numberM` | Outfit 700 | 20/24 | 0 | Set rows, portions (Outfit for tabular digits — see the note above) |
 | `type.displayXL` | Outfit 800 | 44/48 | −1 | Plan reveal headline, celebration titles |
 | `type.displayL` | Outfit 700 | 32/38 | −0.5 | Screen titles, NextUp headline |
 | `type.displayM` | Outfit 700 | 24/30 | −0.3 | Card titles, exercise name |

@@ -105,12 +105,12 @@ export function learnTiming(p: { events: PingEventRow[]; sessions: SessionPlan[]
 
 **Rolling window**: pings for today … today+2 (plan known through today+3) → at most ~12 sounding pings pending, far below iOS's 64-pending limit. `diffSchedule` cancels and schedules by stable id, only for ids it owns — **never** `cancelAllScheduledNotificationsAsync`, **never** repeating DAILY/WEEKLY triggers (one DATE trigger per ping).
 
-**Reschedule triggers**: app foreground; any plan change (local command or `sync-pull`); any ping action; session end; time-zone change; permission change; background task tick (`expo-background-task`, OS-decided ~15 min minimum — verify the API on SDK 54); a silent push from the nightly cron (best effort).
+**Reschedule triggers**: app foreground; any plan change (local command or `sync-pull`); any ping action; session end; time-zone change; permission change; background task tick (`expo-background-task`, OS-decided ~15 min minimum — verify the API on SDK 58); a silent push from the nightly cron (best effort).
 
 ## 4. Notification plumbing (`apps/mobile/src/notifications/`)
 
 - **Identifier prefixes**: `ping:` (owned by `diffSchedule`), `trial:` (paywall module), `checkin:` (check-in), `rest:` (rest-timer end), `ready:` (gym arrival). Each module manages only its own prefix.
-- **Scheduling**: `Notifications.scheduleNotificationAsync({ identifier: ping.id, content: { title, body, data, categoryIdentifier, sound, interruptionLevel }, trigger: { type: SchedulableTriggerInputTypes.DATE, date } })`. Verify the exact prop names for SDK 54 (`interruptionLevel` on iOS needs the Time Sensitive entitlement in the dev build).
+- **Scheduling**: `Notifications.scheduleNotificationAsync({ identifier: ping.id, content: { title, body, data, categoryIdentifier, sound, interruptionLevel }, trigger: { type: SchedulableTriggerInputTypes.DATE, date } })`. Verify the exact prop names for SDK 58 (`interruptionLevel` on iOS needs the Time Sensitive entitlement in the dev build).
 - **Categories** — **at most 3 action buttons each** (Android shows no more than 3). Action ids in brackets:
   - `night_before`: Got it [`ack`] · Change time [`change_time`, opens app]
   - `pre_gym`: Start [`start`, opens gym mode] · Later +30 [`later_30`] · Skip today [`skip`]
@@ -120,7 +120,7 @@ export function learnTiming(p: { events: PingEventRow[]; sessions: SessionPlan[]
   - **ask variants** (`<category>_ask`): the lowest-priority action (Not now / Eating out / Skip today / Change time) is replaced by **"Yes, ate it"** [`ate_prev`]; the body names the slot ("Did lunch happen?"). One ask category per ping type — no per-slot categories.
   - `ready` (gym arrival): Start [`start`, opens gym mode]
 - **Responses**: `addNotificationResponseReceivedListener` + `getLastNotificationResponseAsync()` on cold start. Every action writes a `ping_action` event (+ the domain event, e.g. `meal_status`), updates `ping_events` (acted_at, latency), then reschedules. **Verify** background action handling on iOS with the app killed; if unreliable, make every action open the app, handle it instantly and return to the previous screen.
-- **Android channels**: `pings_high` (IMPORTANCE_HIGH, sound — pre_gym only), `pings` (DEFAULT, sound), `gym` (LOW, silent, ongoing), `system` (DEFAULT, silent). Runtime `POST_NOTIFICATIONS` prompt on Android 13+. **Exact alarms** (Android 12+ `SCHEDULE_EXACT_ALARM` / `USE_EXACT_ALARM`): without them pings can drift ±10 min, which breaks "15 minutes before" — verify how expo-notifications SDK 54 handles it; add the permission and a Settings explainer.
+- **Android channels**: `pings_high` (IMPORTANCE_HIGH, sound — pre_gym only), `pings` (DEFAULT, sound), `gym` (LOW, silent, ongoing), `system` (DEFAULT, silent). Runtime `POST_NOTIFICATIONS` prompt on Android 13+. **Exact alarms** (Android 12+ `SCHEDULE_EXACT_ALARM` / `USE_EXACT_ALARM`): without them pings can drift ±10 min, which breaks "15 minutes before" — verify how expo-notifications SDK 58 handles it; add the permission and a Settings explainer.
 - **Server ids**: the device id `ping:<fireDate>:<type>` is stored server-side as `ping_schedule.id = '<user_id>:ping:<fireDate>:<type>'` (the server adds the prefix in `sync-push`; `date` column = fireDate).
 - **Delivery tracking**: foreground `addNotificationReceivedListener`; on app open, pings whose `fireAt` passed are marked delivered best-effort. Measure delivery rate per device model in `ping_events` (Indian OEMs kill background apps).
 

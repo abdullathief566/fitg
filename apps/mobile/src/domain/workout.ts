@@ -14,6 +14,8 @@ export interface WorkoutExercise {
   reps: string;
   /** Undefined for bodyweight moves. */
   kg?: PlanNumber;
+  /** Dumbbell moves: the weight is per hand ("10 kg each"). */
+  perHand: boolean;
   restSec: PlanNumber;
   cues: string[];
   isMachine: boolean;
@@ -53,6 +55,7 @@ export function workoutView(snapshot: Snapshot, lib: BundleLib, sessionId: strin
         restSec: pn(first.restSec),
         cues: ex ? [...ex.formCues] : [],
         isMachine: ex?.isMachine ?? false,
+        perHand: ex?.loadType === 'dumbbell',
       };
       if (first.targetWeightKg > 0) out.kg = pn(first.targetWeightKg);
       return out;

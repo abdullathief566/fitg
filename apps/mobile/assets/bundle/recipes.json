@@ -1,10 +1,10 @@
 {
-  "bundle_version": "6101d364",
+  "bundle_version": "0a0587a1",
   "recipes": [
     {
       "id": "36745a3b-e918-5d34-84ef-c24f6952f7cb",
       "slug": "egg-bhurji-roti",
-      "name": "Egg bhurji + 2 rotis",
+      "name": "Egg bhurji with roti",
       "cuisine": "indian",
       "mealSlots": [
         "breakfast",
@@ -181,7 +181,7 @@
     {
       "id": "e85f1b14-38ba-5727-b34f-d34d456f90ef",
       "slug": "paneer-bhurji-roti",
-      "name": "Paneer bhurji + 2 rotis",
+      "name": "Paneer bhurji with roti",
       "cuisine": "indian",
       "mealSlots": [
         "breakfast",
@@ -587,7 +587,7 @@
     {
       "id": "6370fd8f-0d25-56ef-90f0-a708b0ed65b8",
       "slug": "chana-roti-meal",
-      "name": "Chana masala + 2 rotis",
+      "name": "Chana masala with roti",
       "cuisine": "indian",
       "mealSlots": [
         "lunch",
@@ -688,7 +688,7 @@
     {
       "id": "eefd53b0-8e7f-53e6-a2e5-be0f1c6ba83c",
       "slug": "aloo-gobi-roti-meal",
-      "name": "Aloo gobi + 2 rotis",
+      "name": "Aloo gobi with roti",
       "cuisine": "indian",
       "mealSlots": [
         "lunch",
@@ -1134,7 +1134,7 @@
     {
       "id": "b4f8a802-5104-5c03-8df1-ad6908f61a8b",
       "slug": "eggs-toast-breakfast",
-      "name": "3 boiled eggs + 2 toast",
+      "name": "Boiled eggs and toast",
       "cuisine": "western",
       "mealSlots": [
         "breakfast",

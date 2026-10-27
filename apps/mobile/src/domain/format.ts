@@ -43,10 +43,11 @@ export function whenLabel(at: Instant, now: Instant, tz: string): string {
   return `${weekdayShort(day)} ${time}`;
 }
 
-/** "Morning" / "Afternoon" / "Evening" by local hour. */
-export function partOfDay(now: Instant, tz: string): 'Morning' | 'Afternoon' | 'Evening' {
+/** "Morning" / "Afternoon" / "Evening" by local hour; plain "Hi" in the small hours. */
+export function partOfDay(now: Instant, tz: string): 'Morning' | 'Afternoon' | 'Evening' | 'Hi' {
   const h = Number(localTimeOf(now, tz).slice(0, 2));
-  if (h >= 4 && h < 12) return 'Morning';
+  if (h < 4) return 'Hi';
+  if (h < 12) return 'Morning';
   if (h >= 12 && h < 17) return 'Afternoon';
   return 'Evening';
 }

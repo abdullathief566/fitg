@@ -77,7 +77,10 @@ export function revealView(snapshot: Snapshot, lib: BundleLib, now: Instant): Re
     tomorrow: items.map((x) => ({ time: timeLabel(x.at, tz), title: x.title })),
   };
   if (profile.firstName) view.firstName = profile.firstName;
-  if (first)
-    view.firstPing = { type: first.type, when: whenLabel(first.fireAt, now, tz), title: first.title, body: first.body };
+  if (first) {
+    // The preview drops a trailing "Did breakfast happen?": on sign-up day it reads as if we expect you to forget.
+    const body = first.body.replace(/\s*(Quick one: )?Did [a-z -]+ happen\?$/i, '');
+    view.firstPing = { type: first.type, when: whenLabel(first.fireAt, now, tz), title: first.title, body };
+  }
   return view;
 }

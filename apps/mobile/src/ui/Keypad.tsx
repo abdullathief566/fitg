@@ -22,21 +22,23 @@ const ROWS = [
 
 export function Keypad({ onKey, onBackspace, decimal = true }: KeypadProps) {
   const t = useTheme();
+  // Every cell is the same plain flex view, so the bottom row lines up with the rows above even with an empty cell.
   const key = (label: string, onPress: () => void, content?: ReactNode) => (
-    <Tap
-      key={label}
-      accessibilityLabel={label}
-      feedback="selection"
-      onPress={onPress}
-      minSize={64}
-      style={{ flex: 1, height: 64, alignItems: 'center', justifyContent: 'center', borderRadius: t.radius.button }}
-    >
-      {content ?? (
-        <AppText variant="displayM" allowFontScaling={false} style={{ fontVariant: ['tabular-nums'] }}>
-          {label}
-        </AppText>
-      )}
-    </Tap>
+    <View key={label} style={{ flex: 1 }}>
+      <Tap
+        accessibilityLabel={label}
+        feedback="selection"
+        onPress={onPress}
+        minSize={64}
+        style={{ height: 64, alignItems: 'center', justifyContent: 'center', borderRadius: t.radius.button }}
+      >
+        {content ?? (
+          <AppText variant="displayM" allowFontScaling={false} style={{ fontVariant: ['tabular-nums'] }}>
+            {label}
+          </AppText>
+        )}
+      </Tap>
+    </View>
   );
   return (
     <View style={{ gap: t.space[1] }}>

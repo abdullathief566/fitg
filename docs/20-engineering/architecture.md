@@ -4,7 +4,7 @@
 
 | Decision | Choice | Why |
 |---|---|---|
-| App | **Expo SDK 54** (React Native 0.81, TypeScript strict), expo-router 6, Reanimated 4, Skia. **Dev-build project from Phase 2** (`npx expo run:ios|android` locally; EAS once the Apple account exists). | Live Activity, Android ongoing notification, geofence, custom fonts and Skia all need native code; designing around Expo Go caused crashes in the founder's last app (Sumi). |
+| App | **Expo SDK 58** (React Native 0.88, React 19.3, TypeScript strict — the app compiles with TypeScript 6.0, the packages with 5.9), expo-router 58, Reanimated 4.7. **Runs in Expo Go through Phase 5; dev build from Phase 6** (updated 2026-10-28, was SDK 54 / dev build from Phase 2). | The App Store's Expo Go opens only the newest SDK (58), and the founder has no Xcode or Apple Developer account yet, so Expo Go is how he runs the app on his phone. Phases 2–5 use only modules Expo Go ships (fonts load with `useFonts`); `app.json` already carries the config plugins a dev build needs. Live Activity, notifee and geofencing (Phase 6) need the dev build. |
 | Backend | **Supabase**: Postgres + RLS, Auth, Storage, **Edge Functions (Deno/TS)**, `pg_cron` + `pg_net`. No FastAPI, no Vercel. | One language end to end; one shared engine package runs on device and server; free cron; service-role key never leaves Supabase. Fallback if Deno can't bundle the shared package: the `build:shared` copy step in §1, or as a last resort a Hono server in the same monorepo. |
 | Shared logic | `packages/engine` — **pure TypeScript, zero runtime dependencies**, explicit `.ts` import specifiers, no `Date.now()` inside (time is a parameter). | Same code computes targets/sets/portions/pings offline on the phone and validates AI output on the server. |
 | Contracts | `packages/contracts` — Zod schemas for DB rows, API requests/responses, AI outputs, `PlanCommand`. | One source of truth for shapes on both sides. |
@@ -16,7 +16,7 @@
 | Geofence | `expo-location` geofencing + `expo-task-manager`, 150 m, optional. | Phase 6. |
 | Payments / analytics / crashes | RevenueCat (`react-native-purchases`) · PostHog (`posthog-react-native`) · Sentry (`@sentry/react-native`). | |
 
-**Verify-at-build-time list** (APIs that move; check the current docs before coding, never guess): expo-notifications (interruption level prop, Android exact alarms), expo-location geofencing on SDK 54, `expo-apple-targets`, `@notifee/react-native`, `expo-background-task`, Supabase CLI bundling of files outside `supabase/functions/`, `react-native-purchases`, the Anthropic TypeScript SDK (`@anthropic-ai/sdk`) helpers named in `ai-orchestration.md`.
+**Verify-at-build-time list** (APIs that move; check the current docs before coding, never guess): expo-notifications (interruption level prop, Android exact alarms), expo-location geofencing on SDK 58, `expo-apple-targets`, `@notifee/react-native`, `expo-background-task`, Supabase CLI bundling of files outside `supabase/functions/`, `react-native-purchases`, the Anthropic TypeScript SDK (`@anthropic-ai/sdk`) helpers named in `ai-orchestration.md`.
 
 ## 1. Repo layout
 
@@ -25,7 +25,7 @@ fitg/                                    # npm workspaces monorepo, Node 22, Typ
   AGENTS.md                              # standing rules for Codex (from the build pack)
   package.json                           # workspaces ["apps/*","packages/*"]; scripts: test, typecheck, lint, data:build
   docs/                                  # this build pack's docs/ — the source of truth
-  apps/mobile/                           # Expo 54
+  apps/mobile/                           # Expo SDK 58
     app/                                 # expo-router routes (list in docs/10-design/screens.md)
     src/
       db/            # expo-sqlite migrations + repositories

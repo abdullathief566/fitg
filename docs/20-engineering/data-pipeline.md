@@ -36,16 +36,17 @@ Every file has a wrapper object `{ "_note": "...", "<list>": [...] }`.
 6. Validate: every recipe has ≥ 1 slot and diet tag; `oil_tsp` matches; component recipes used by home dishes have `cooked_yield_g`; add-ons and `requires` reference existing foods; template `preferred` ids exist for every variant; no duplicate keys.
 7. Emit idempotent SQL (`insert … on conflict do update`) and the bundle JSON with a `bundle_version`:
    - production: `supabase/seed/01_foods.sql … 06_templates.sql` and `apps/mobile/assets/bundle/*.json`;
-   - `--sample`: the same files under `data/out/sample/` (gitignored) — sample builds never write into `apps/` or `supabase/`.
+   - `--sample`: the same files under `data/out/sample/` (gitignored) — sample builds never write into `apps/` or `supabase/`. (`npm run app:bundle:sample` deliberately copies a sample bundle into the app for development when `--prod` can't pass; the app then shows a "sample food values" line on Today and the reveal.)
 8. **Mode rules**:
-   - `--sample` takes every food's values from `foods.sample.json` (it covers all 25 foods, including the curated ones whose real values are still null), keeps draft recipes (with a warning), and skips only home dishes with `needs_recipe: true`.
+   - `--sample` takes every food's values from `foods.sample.json` (it covers every food key: 40 as of 2026-10-28), keeps draft recipes (with a warning), and skips only home dishes with `needs_recipe: true`.
    - `--prod` (production) refuses synthetic values, null curated values, `is_draft` recipes and `needs_recipe` dishes — it fails loudly instead.
 9. Tests (`data/test/`): sample build succeeds; unknown key fails; `--prod` refusals; computed nutrition equals the bundle (±1 kcal); template expansion; importer matching against tiny fixture CSV/JSON files (fake rows for parser tests only). **Engine tests never depend on build output** — they load the seed + sample values in-process.
 
 ## 4. The founder's data tasks
-- Run `import-usda.ts` after downloading the USDA CSVs and confirm each match.
-- Fill the curated values (paneer, whey, roasted chana, soya chunks) from labels.
-- Approve the 13 starter recipes and add 50–90 more he and his friends actually eat (format: the starter file).
-- Add standard home-style recipes for the `needs_recipe` dishes he cares about most (biryani, sambar, dosa, poha…).
+**Status 2026-10-28:** the first four were done on the founder's behalf (`git log` c0de525, 625a0cb): 34 foods pinned to SR Legacy rows in `usda_pins.json`, 6 curated foods with label values cited in each food's `reference` (Amul paneer, MuscleBlaze whey isolate, Jabsons roasted chana, Nutrela soya chunks, Fortune poha, Amul fresh cream), all 20 starter recipes approved, and a home-style recipe for each of the 22 `needs_recipe` dishes (29 home dishes, 42 recipes). `npm run data:build -- --prod` passes and writes the app's bundle. Still worth the founder's eye: the label values against the packs he actually buys, and the yield/"medium" assumptions listed in the Phase 2 report.
+- Run `import-usda.ts` after downloading the USDA CSVs and confirm each match. *(done)*
+- Fill the curated values (paneer, whey, roasted chana, soya chunks) from labels. *(done)*
+- Approve the 13 starter recipes and add 50–90 more he and his friends actually eat (format: the starter file). *(the starters are approved; more recipes still welcome)*
+- Add standard home-style recipes for the `needs_recipe` dishes he cares about most (biryani, sambar, dosa, poha…). *(done for all 22)*
 - Review the 3 form cues per exercise.
 - Weekly from Phase 5: review `food_resolution_misses` and add aliases.

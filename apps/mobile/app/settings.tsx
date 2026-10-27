@@ -143,6 +143,7 @@ export default function Settings() {
           <ChipRow>
             <Chip label="−1 h" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs - HOUR)} />
             <Chip label="+1 h" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs + HOUR)} />
+            <Chip label="+6 h" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs + 6 * HOUR)} />
             <Chip label="+1 day" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs + 24 * HOUR)} />
             <Chip label={C.resetClock} selected={app.devOffsetMs === 0} onPress={() => void app.setDevOffset(0)} />
           </ChipRow>

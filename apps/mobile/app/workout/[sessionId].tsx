@@ -70,7 +70,7 @@ export default function WorkoutDetail() {
                 <AppText variant="displayS">{e.name}</AppText>
                 <AppText variant="numberM">
                   {C.sets(e.sets, e.reps)}
-                  {e.kg !== undefined ? ` at ${e.kg} kg` : ''}
+                  {e.kg !== undefined ? ` at ${e.kg} kg${e.perHand ? ' each' : ''}` : ''}
                 </AppText>
                 <AppText variant="caption" tone="secondary">
                   {C.rest(e.restSec)}

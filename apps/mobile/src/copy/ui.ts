@@ -61,6 +61,7 @@ export const STEP_COPY = {
     subtitle: 'Pick 2 to 4 days. Rest days are part of the plan.',
     days: 'Days',
     time: 'Start time',
+    timeRow: 'Every gym day',
     length: 'How long?',
     lengths: [
       { value: 45, label: '45 min' },
@@ -99,6 +100,7 @@ export const STEP_COPY = {
     pinAllow: "I'm at my gym, pin it",
     pinSkip: "Skip, I'll tap Start",
     pinned: 'Gym pinned.',
+    pinSkipped: 'No pin. The Start button does the same job.',
     pinFailed: "Couldn't get your location. You can pin it later in Settings.",
   },
   food: {
@@ -291,7 +293,7 @@ export const SETTINGS_COPY = {
     { value: 'light', label: 'Light' },
     { value: 'dark', label: 'Dark' },
   ] as const,
-  gymDark: 'Gym always dark',
+  gymDark: 'Gym mode stays dark, whatever you pick here.',
   haptics: 'Haptics',
   on: 'On',
   off: 'Off',
