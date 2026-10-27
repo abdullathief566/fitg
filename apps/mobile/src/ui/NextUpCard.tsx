@@ -22,6 +22,8 @@ export interface NextUpCardProps {
   onAction: (action: NextStepAction) => void;
   /** Card state: `now` breathes the dot; `upcoming` is still. */
   state: 'upcoming' | 'now' | 'done';
+  /** An action is running: buttons are disabled. */
+  busy?: boolean;
 }
 
 const S = motion.signature;
@@ -40,7 +42,7 @@ function eyebrow(step: NextStep, time?: string): string {
   return time ? `Next up · ${time}` : 'Next up';
 }
 
-export function NextUpCard({ step, timeLabel, actions, onAction, state }: NextUpCardProps) {
+export function NextUpCard({ step, timeLabel, actions, onAction, state, busy = false }: NextUpCardProps) {
   const t = useTheme();
   const reduced = useReducedMotion();
   const entering = reduced
@@ -92,6 +94,7 @@ export function NextUpCard({ step, timeLabel, actions, onAction, state }: NextUp
                 label={a.label}
                 variant={a.variant}
                 onPress={() => onAction(a)}
+                disabled={busy}
                 style={a.variant === 'primary' ? { flex: 2 } : { flex: 1 }}
                 testID={`next-up-action-${a.id}`}
               />

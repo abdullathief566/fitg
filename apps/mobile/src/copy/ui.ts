@@ -245,6 +245,8 @@ export const REVEAL_COPY = {
   cta: 'Show me the pings',
   skipHint: 'Tap anywhere to skip',
   error: "I'll refine this tonight.",
+  failed: "Couldn't build your week just now. Your answers are saved.",
+  retry: 'Try again',
   disclaimer: 'Not medical advice. Check with your doctor if you have a health condition.',
 } as const;
 
@@ -300,6 +302,7 @@ export const SETTINGS_COPY = {
   habitOnly: 'Habit-only mode is on: FitG plans with portions and never shows calorie numbers.',
   support: 'Talking to someone helps. In India, call Tele-MANAS on 14416 (free, 24×7).',
   privacy: 'Privacy',
+  yourData: 'Your data',
   developer: 'Developer',
   timeTravel: 'Time travel',
   timeTravelHint: 'Moves the app clock to test a whole day. Your real clock is untouched.',
@@ -312,5 +315,6 @@ export const SETTINGS_COPY = {
 export const ERRORS = {
   offline: "Offline. Your plan's on your phone, pings still fire.",
   generic: 'Something went wrong on our side. Your plan is safe; try again.',
+  boot: "FitG couldn't open your plan on this phone.",
   stale: (day: string) => `Your ${day} change didn't apply — the week was replanned.`,
 } as const;

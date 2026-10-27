@@ -1,5 +1,6 @@
-// X1 Settings (Phase 2 basics): profile and targets, the plan, appearance, haptics, privacy links, and a developer
-// section (time travel to test a whole day; start over). Subscription and permissions-fix rows arrive with Phase 7.
+// X1 Settings (Phase 2 basics): profile and targets, the plan, appearance, haptics, privacy links, start over, and a
+// developer section (time travel to test a whole day; hidden when EXPO_PUBLIC_DEV_TOOLS=0). Subscription and
+// permissions-fix rows arrive with Phase 7.
 import { Alert, Linking, View } from 'react-native';
 import { router } from 'expo-router';
 import Constants from 'expo-constants';
@@ -9,7 +10,7 @@ import { URLS } from '@/constants/brand';
 import { SETTINGS_COPY as C, STEP_COPY } from '@/src/copy/ui';
 import { dayLabel, timeLabel } from '@/src/domain/format';
 import { templateIdFor } from '@/src/domain/planner';
-import { useApp } from '@/src/state/AppState';
+import { DEV_TOOLS, useApp } from '@/src/state/AppState';
 import { AppText } from '@/src/ui/AppText';
 import { Card } from '@/src/ui/Card';
 import { Chip } from '@/src/ui/Chip';
@@ -42,7 +43,7 @@ export default function Settings() {
   const targets = snapshot?.targets;
   const goal = STEP_COPY.goal.options.find((o) => o.value === profile?.goal)?.label;
   const schedule = profile ? normalizeSchedule(profile.gymSchedule) : [];
-  const appNow = app.now();
+  const appNow = app.clock;
   const tz = profile?.tz ?? app.tz;
 
   const confirmStartOver = () =>
@@ -52,7 +53,10 @@ export default function Settings() {
         text: C.startOver,
         style: 'destructive',
         onPress: () => {
-          void app.startOver().then(() => router.replace('/welcome'));
+          void app.startOver().then(() => {
+            if (router.canDismiss()) router.dismissAll();
+            router.replace('/welcome');
+          });
         },
       },
     ]);
@@ -132,26 +136,35 @@ export default function Settings() {
           </View>
         </Section>
 
-        <Section title={C.developer}>
-          <AppText variant="displayS">{C.timeTravel}</AppText>
-          <AppText variant="caption" tone="secondary">
-            {C.timeTravelHint}
-          </AppText>
-          <AppText variant="numberM" testID="app-clock">
-            {dayLabel(localDateOf(appNow, tz))} · {timeLabel(appNow, tz)}
-          </AppText>
-          <ChipRow>
-            <Chip label="−1 h" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs - HOUR)} />
-            <Chip label="+1 h" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs + HOUR)} />
-            <Chip label="+6 h" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs + 6 * HOUR)} />
-            <Chip label="+1 day" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs + 24 * HOUR)} />
-            <Chip label={C.resetClock} selected={app.devOffsetMs === 0} onPress={() => void app.setDevOffset(0)} />
-          </ChipRow>
+        <Section title={C.yourData}>
           <PrimaryButton label={C.startOver} variant="secondary" onPress={confirmStartOver} />
           <AppText variant="caption" tone="tertiary">
             {C.version(Constants.expoConfig?.version ?? '0.1.0', `${lib.bundleVersion} (${lib.mode})`)}
           </AppText>
         </Section>
+
+        {DEV_TOOLS ? (
+          <Section title={C.developer}>
+            <AppText variant="displayS">{C.timeTravel}</AppText>
+            <AppText variant="caption" tone="secondary">
+              {C.timeTravelHint}
+            </AppText>
+            <AppText variant="numberM" testID="app-clock">
+              {dayLabel(localDateOf(appNow, tz))} · {timeLabel(appNow, tz)}
+            </AppText>
+            <ChipRow>
+              <Chip label="−1 h" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs - HOUR)} />
+              <Chip label="+1 h" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs + HOUR)} />
+              <Chip label="+6 h" selected={false} onPress={() => void app.setDevOffset(app.devOffsetMs + 6 * HOUR)} />
+              <Chip
+                label="+1 day"
+                selected={false}
+                onPress={() => void app.setDevOffset(app.devOffsetMs + 24 * HOUR)}
+              />
+              <Chip label={C.resetClock} selected={app.devOffsetMs === 0} onPress={() => void app.setDevOffset(0)} />
+            </ChipRow>
+          </Section>
+        ) : null}
       </View>
     </Screen>
   );

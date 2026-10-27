@@ -29,19 +29,22 @@ type Phase = 'thinking' | 'reveal' | 'done';
 export default function Reveal() {
   const t = useTheme();
   const reduced = useReducedMotion();
-  const { finishOnboarding, snapshot, lib, now, enterApp } = useApp();
+  const { finishOnboarding, lib, now, enterApp } = useApp();
   const [view, setView] = useState<RevealView>();
   const [failed, setFailed] = useState(false);
   const [stepsShown, setStepsShown] = useState(reduced ? C.steps.length : 0);
   const [phase, setPhase] = useState<Phase>(reduced ? 'done' : 'thinking');
-  const [settled, setSettled] = useState(reduced);
+  const [settled, setSettled] = useState(false);
+  const [attempt, setAttempt] = useState(0);
 
-  // Build the plan (or reuse it if this screen was reopened).
+  // Build the plan. finishOnboarding reuses the plan when the answers haven't changed since it was built, rebuilds
+  // it when they have (Back from here and edit), and runs once at a time (a double tap can't build twice).
   useEffect(() => {
     let alive = true;
+    setFailed(false);
     (async () => {
       try {
-        const snap = snapshot ?? (await finishOnboarding());
+        const snap = await finishOnboarding();
         if (alive) setView(revealView(snap, lib, now()));
       } catch {
         if (alive) setFailed(true);
@@ -50,8 +53,7 @@ export default function Reveal() {
     return () => {
       alive = false;
     };
-    // Runs once on purpose: finishing onboarding twice would rebuild the plan.
-  }, []);
+  }, [attempt, finishOnboarding, lib, now]);
 
   // The 1.2 s "thinking": three live steps, 300 ms apart, then a 300 ms settle.
   useEffect(() => {
@@ -136,9 +138,12 @@ export default function Reveal() {
               </Animated.View>
             ))}
             {failed ? (
-              <AppText variant="body" tone="secondary">
-                {C.error}
-              </AppText>
+              <View style={{ gap: t.space[3] }}>
+                <AppText variant="body" tone="secondary">
+                  {C.failed}
+                </AppText>
+                <PrimaryButton label={C.retry} variant="secondary" onPress={() => setAttempt((n) => n + 1)} />
+              </View>
             ) : null}
           </View>
         ) : view ? (

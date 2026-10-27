@@ -1,11 +1,15 @@
 // The four tabs: Today · Week · Progress · Coach (screens.md). Settings opens from the avatar on Today.
 import type { ColorValue } from 'react-native';
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import { CalendarCheck2, CalendarDays, MessageCircle, TrendingUp } from '@/src/ui/icons';
+import { useApp } from '@/src/state/AppState';
 import { useTheme } from '@/src/ui/theme';
 
 export default function TabsLayout() {
   const t = useTheme();
+  const { status } = useApp();
+  // The tabs only make sense with a plan (e.g. Back after "Start over" must not land on an empty Today).
+  if (status !== 'ready') return <Redirect href="/welcome" />;
   const icon = (Icon: typeof CalendarCheck2) =>
     function TabIcon({ color }: { color: ColorValue }) {
       return (

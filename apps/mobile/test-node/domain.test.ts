@@ -125,6 +125,18 @@ describe('local backend', () => {
     expect(pending).toEqual([{ state: 'pending' }]);
   });
 
+  it('a saved week that no longer reads is planned again from today instead of locking the app', async () => {
+    const d = await deps();
+    await completeOnboarding(d, T1_ANSWERS, { now: at(MON, '07:00'), tz: TZ });
+    const WED = '2026-11-04';
+    await d.sql.run('UPDATE meal_items SET row = ? WHERE sort_key = ?', ['{}', WED]);
+    const snap = await loadSnapshot(d, at(WED, '09:00'));
+    const week = snap!.weeks[0]!;
+    expect(week.days[0]!.date).toBe(WED);
+    expect(week.sessions.map((s) => `${s.date}:${s.movedFromDate ?? '-'}`)).toEqual(['2026-11-04:-', '2026-11-06:-']);
+    expect(await loadSnapshot(d, at(WED, '09:05'))).toEqual(snap);
+  });
+
   it('Ate it marks the meal and the protein bar counts it', async () => {
     const d = await deps();
     const made = await completeOnboarding(d, T1_ANSWERS, { now: at(MON, '07:00'), tz: TZ });

@@ -1,6 +1,6 @@
 // T1 Today (screens.md wireframe): date + journey chip, the coach line, exactly ONE NextUpCard, today's timeline, the
 // protein bar (protein dots in habit-only mode). Card actions run engine commands on the phone.
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { router } from 'expo-router';
 import type { NextStep, NextStepAction, PlanCommandBody } from '@fitg/engine';
@@ -62,6 +62,8 @@ export interface TodayContentProps {
   onOpenSettings: () => void;
   onOpenWorkout: (sessionId: string) => void;
   notice?: string;
+  /** An action is running: the card's buttons are disabled until it finishes (no double taps). */
+  busy?: boolean;
 }
 
 /** Today's content as a pure function of its props (rendered by tests at every hour of a day). */
@@ -74,6 +76,7 @@ export function TodayContent({
   onOpenSettings,
   onOpenWorkout,
   notice,
+  busy = false,
 }: TodayContentProps) {
   const t = useTheme();
   const step = view.next;
@@ -117,6 +120,7 @@ export function TodayContent({
         {...(step.time ? { timeLabel: timeLabel(step.time, tz) } : {})}
         actions={supportedActions(step)}
         onAction={onAction}
+        busy={busy}
         state={step.kind === 'rest' || step.kind === 'tomorrow' ? 'upcoming' : 'now'}
       />
       {notice ? (
@@ -148,16 +152,19 @@ export function TodayContent({
 }
 
 export default function TodayScreen() {
-  const { snapshot, lib, now, tick, local, updateLocal, runPlanCommand } = useApp();
+  const { snapshot, lib, clock, local, updateLocal, runPlanCommand } = useApp();
   const [notice, setNotice] = useState<string>();
-  // `tick` re-renders this every 30 s and on foreground.
+  const [busy, setBusy] = useState(false);
+  const running = useRef(false);
+  // `clock` is a value that changes every 30 s and on foreground, so the view follows the time of day.
   const view = useMemo(
-    () => (snapshot ? todayView(snapshot, lib, now(), local) : undefined),
-    [snapshot, lib, now, local, tick],
+    () => (snapshot ? todayView(snapshot, lib, clock, local) : undefined),
+    [snapshot, lib, clock, local],
   );
   if (!snapshot || !view) return <Screen>{null}</Screen>;
 
   const onAction = async (action: NextStepAction) => {
+    if (running.current) return; // a second tap while the first is still saving
     const step = view.next;
     setNotice(undefined);
     switch (action.id) {
@@ -170,7 +177,8 @@ export default function TodayScreen() {
         router.push('/week');
         return;
       case 'got_it':
-        if (step.refId) updateLocal({ seenComebackIds: [...local.seenComebackIds, step.refId] });
+        // One card can cover several moved sessions: its refId lists them all.
+        if (step.refId) updateLocal({ seenComebackIds: [...local.seenComebackIds, ...step.refId.split(',')] });
         return;
       case 'prep_done':
         if (step.refId) updateLocal({ doneTaskKeys: [...local.doneTaskKeys, step.refId] });
@@ -179,9 +187,18 @@ export default function TodayScreen() {
     const cmd = commandFor(step, action);
     if (!cmd) return;
     if (action.id === 'ate') haptics.ate();
-    const reject = await runPlanCommand(cmd);
-    if (reject) setNotice(reject === 'stale' ? ERRORS.stale('Today') : ERRORS.generic);
-    else if (cmd.kind === 'SetMealStatus') track('meal_status', { status: cmd.status, source: 'one_tap' });
+    running.current = true;
+    setBusy(true);
+    try {
+      const reject = await runPlanCommand(cmd);
+      if (reject) setNotice(reject === 'stale' ? ERRORS.stale('Today') : ERRORS.generic);
+      else if (cmd.kind === 'SetMealStatus') track('meal_status', { status: cmd.status, source: 'one_tap' });
+    } catch {
+      setNotice(ERRORS.generic);
+    } finally {
+      running.current = false;
+      setBusy(false);
+    }
   };
 
   return (
@@ -194,6 +211,7 @@ export default function TodayScreen() {
         onAction={(a) => void onAction(a)}
         onOpenSettings={() => router.push('/settings')}
         onOpenWorkout={(id) => router.push(`/workout/${id}`)}
+        busy={busy}
         {...(notice ? { notice } : {})}
       />
     </Screen>

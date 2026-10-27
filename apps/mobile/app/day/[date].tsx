@@ -17,16 +17,16 @@ import { useTheme } from '@/src/ui/theme';
 export default function DayDetail() {
   const t = useTheme();
   const { date } = useLocalSearchParams<{ date: string }>();
-  const { snapshot, lib, now, local, tick } = useApp();
+  const { snapshot, lib, clock, local } = useApp();
   const items = useMemo(() => {
     if (!snapshot || !date) return [];
     // The day's timeline as Today would show it: today at the real time, a past day as of its last minute (open items
     // read "earlier"), a future day as of its first minute (everything coming up).
     const tz = snapshot.profile.tz;
-    const today = localDateOf(now(), tz);
-    const at = date === today ? now() : toInstant(date, date < today ? '23:59' : '00:01', tz);
+    const today = localDateOf(clock, tz);
+    const at = date === today ? clock : toInstant(date, date < today ? '23:59' : '00:01', tz);
     return todayView(snapshot, lib, at, local).timeline;
-  }, [snapshot, lib, date, now, local, tick]);
+  }, [snapshot, lib, date, clock, local]);
   return (
     <Screen scroll>
       <View style={{ gap: t.space[4], paddingTop: t.space[2] }}>

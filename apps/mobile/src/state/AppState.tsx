@@ -5,7 +5,7 @@ import { AppState as RNAppState } from 'react-native';
 import { getCalendars } from 'expo-localization';
 import { randomUUID } from 'expo-crypto';
 import type { BundleLib } from '@fitg/contracts';
-import { localDateOf, type Instant, type PlanCommandBody, type RejectReason } from '@fitg/engine';
+import { localDateOf, msOf, type Instant, type PlanCommandBody, type RejectReason } from '@fitg/engine';
 import { setHapticsEnabled } from '@/lib/haptics';
 import { openDatabase } from '../db/expo-sql';
 import { DEVICE_TABLES } from '../db/migrations';
@@ -28,6 +28,12 @@ const PREFS = {
   lastOpenDay: 'last_open_day',
 } as const;
 
+/** How often time-based screens refresh while open. */
+const CLOCK_MS = 30_000;
+
+/** Time travel in Settings. On unless EXPO_PUBLIC_DEV_TOOLS=0 (store builds); off also ignores a saved offset. */
+export const DEV_TOOLS = process.env.EXPO_PUBLIC_DEV_TOOLS !== '0';
+
 export interface AppContextValue {
   status: Status;
   error?: string;
@@ -35,15 +41,19 @@ export interface AppContextValue {
   snapshot?: Snapshot;
   answers: OnboardingAnswers;
   updateAnswers: (patch: Partial<OnboardingAnswers>) => void;
+  /** Builds the plan from the current answers (or returns the plan already built from exactly these answers). */
   finishOnboarding: () => Promise<Snapshot>;
   enterApp: () => void;
   runPlanCommand: (body: PlanCommandBody) => Promise<RejectReason | undefined>;
   local: LocalContext;
   updateLocal: (patch: Partial<LocalContext>) => void;
-  /** The app clock: real time plus the developer time-travel offset. */
+  /**
+   * The app clock as a value: real time plus the developer time-travel offset, refreshed every 30 s, on foreground
+   * and after every change. Screens build their views from it, so a view can't silently keep an old time.
+   */
+  clock: Instant;
+  /** The current instant (for timestamps the moment something happens). */
   now: () => Instant;
-  /** Bumps every 30 s and on foreground, so time-based screens re-render. */
-  tick: number;
   tz: string;
   devOffsetMs: number;
   setDevOffset: (ms: number) => Promise<void>;
@@ -66,34 +76,62 @@ const EMPTY_LOCAL: LocalContext = {
   doneTaskKeys: [],
 };
 
+/** Runs `task` once at a time: a call while one is running gets the running promise. */
+function useSingleFlight<T>(task: () => Promise<T>): () => Promise<T> {
+  const running = useRef<Promise<T> | null>(null);
+  const latest = useRef(task);
+  useEffect(() => {
+    latest.current = task;
+  });
+  return useCallback(() => {
+    running.current ??= latest.current().finally(() => {
+      running.current = null;
+    });
+    return running.current;
+  }, []);
+}
+
 export function AppProvider({ children }: { children: ReactNode }) {
   const lib = useMemo(() => getLib(), []);
   const tz = useMemo(() => deviceTimeZone(), []);
   const sqlRef = useRef<Sql | null>(null);
   const [status, setStatus] = useState<Status>('booting');
   const [error, setError] = useState<string>();
-  const [snapshot, setSnapshot] = useState<Snapshot>();
+  const [snapshot, setSnapshotState] = useState<Snapshot>();
+  const snapshotRef = useRef<Snapshot | undefined>(undefined);
   const [answers, setAnswers] = useState<OnboardingAnswers>(DEFAULT_ANSWERS);
+  const answersRef = useRef<OnboardingAnswers>(DEFAULT_ANSWERS);
+  /** The answers the current snapshot was built from (onboarding only). */
+  const builtFrom = useRef<string | null>(null);
   const [local, setLocal] = useState<LocalContext>(EMPTY_LOCAL);
   const [devOffsetMs, setDevOffsetMs] = useState(0);
   const [appearance, setAppearanceState] = useState<Appearance>('system');
   const [hapticsOn, setHapticsOnState] = useState(true);
-  const [tick, setTick] = useState(0);
   const offsetRef = useRef(0);
   const dayRef = useRef<string | undefined>(undefined);
+  const commands = useRef<Promise<unknown>>(Promise.resolve());
 
   const now = useCallback((): Instant => new Date(Date.now() + offsetRef.current).toISOString(), []);
+  const [clock, setClock] = useState<Instant>(() => now());
+  const refreshClock = useCallback(() => setClock(now()), [now]);
+
+  const setSnapshot = useCallback((snap: Snapshot | undefined) => {
+    snapshotRef.current = snap;
+    setSnapshotState(snap);
+  }, []);
+
   const deps = useCallback((): BackendDeps => {
     if (!sqlRef.current) throw new Error('Database not open yet');
     return { sql: sqlRef.current, lib, newId: randomUUID };
   }, [lib]);
 
-  const reload = useCallback(async () => {
+  const reload = useSingleFlight(async () => {
     const snap = await loadSnapshot(deps(), now());
     setSnapshot(snap);
     if (snap) dayRef.current = localDateOf(now(), snap.profile.tz);
+    refreshClock();
     return snap;
-  }, [deps, now]);
+  });
 
   // Boot: open the database, restore settings, the draft and the plan.
   useEffect(() => {
@@ -115,10 +153,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
           setHapticsOnState(savedHaptics);
           setHapticsEnabled(savedHaptics);
         }
-        offsetRef.current = savedOffset ?? 0;
-        setDevOffsetMs(savedOffset ?? 0);
+        offsetRef.current = DEV_TOOLS ? (savedOffset ?? 0) : 0;
+        setDevOffsetMs(offsetRef.current);
         if (savedLocal) setLocal({ ...EMPTY_LOCAL, ...savedLocal });
-        if (draft) setAnswers({ ...DEFAULT_ANSWERS, ...draft });
+        if (draft) {
+          answersRef.current = { ...DEFAULT_ANSWERS, ...draft };
+          setAnswers(answersRef.current);
+        }
         const snap = await reload();
         if (!alive) return;
         setStatus(snap ? 'ready' : 'onboarding');
@@ -136,15 +177,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return () => {
       alive = false;
     };
-  }, [reload, now, tz]);
+    // Boot runs once.
+  }, []);
 
-  // Clock: re-render every 30 s and on foreground; a new local day replans and catches up (missed sessions).
+  // Clock: refresh every 30 s and on foreground; a new local day replans and catches up (missed sessions).
   useEffect(() => {
     const bump = () => {
-      setTick((n) => n + 1);
-      if (snapshot && dayRef.current !== localDateOf(now(), snapshot.profile.tz)) void reload();
+      refreshClock();
+      const snap = snapshotRef.current;
+      if (snap && dayRef.current !== localDateOf(now(), snap.profile.tz)) void reload();
     };
-    const timer = setInterval(bump, 30_000);
+    const timer = setInterval(bump, CLOCK_MS);
     const sub = RNAppState.addEventListener('change', (s) => {
       if (s === 'active') bump();
     });
@@ -152,39 +195,55 @@ export function AppProvider({ children }: { children: ReactNode }) {
       clearInterval(timer);
       sub.remove();
     };
-  }, [snapshot, now, reload]);
+  }, [now, reload, refreshClock]);
 
   const draftTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const updateAnswers = useCallback((patch: Partial<OnboardingAnswers>) => {
-    setAnswers((cur) => {
-      const next = { ...cur, ...patch };
-      if (draftTimer.current) clearTimeout(draftTimer.current);
-      draftTimer.current = setTimeout(() => {
-        if (sqlRef.current) void kvSet(sqlRef.current, KV.draft, next);
-      }, 300);
-      return next;
-    });
+    const next = { ...answersRef.current, ...patch };
+    answersRef.current = next;
+    setAnswers(next);
+    if (draftTimer.current) clearTimeout(draftTimer.current);
+    draftTimer.current = setTimeout(() => {
+      if (sqlRef.current) void kvSet(sqlRef.current, KV.draft, next);
+    }, 300);
   }, []);
 
-  const finishOnboarding = useCallback(async () => {
-    const snap = await completeOnboarding(deps(), answers, { now: now(), tz });
-    if (sqlRef.current) await kvDelete(sqlRef.current, KV.draft);
+  const finishOnboarding = useSingleFlight(async () => {
+    const answersNow = answersRef.current;
+    const key = JSON.stringify(answersNow);
+    const existing = snapshotRef.current;
+    // Back from the reveal without changing anything: keep the plan. Any changed answer rebuilds it (same user id,
+    // rows replaced by id and date range).
+    if (existing && builtFrom.current === key) return existing;
+    const snap = await completeOnboarding(deps(), answersNow, { now: now(), tz });
+    builtFrom.current = key;
     dayRef.current = localDateOf(now(), snap.profile.tz);
     setSnapshot(snap);
+    refreshClock();
     track('onboarding_completed');
     return snap;
-  }, [deps, answers, now, tz]);
+  });
 
-  const enterApp = useCallback(() => setStatus('ready'), []);
+  const enterApp = useCallback(() => {
+    if (sqlRef.current) void kvDelete(sqlRef.current, KV.draft);
+    setStatus('ready');
+  }, []);
 
   const runPlanCommand = useCallback(
-    async (body: PlanCommandBody) => {
-      if (!snapshot) return 'not_found' as const;
-      const r = await runCommand(deps(), snapshot, body, now());
-      setSnapshot(r.snapshot);
-      return r.reject;
+    (body: PlanCommandBody): Promise<RejectReason | undefined> => {
+      // One command at a time, each applied to the plan the previous one produced.
+      const run = commands.current.then(async () => {
+        const snap = snapshotRef.current;
+        if (!snap) return 'not_found' as const;
+        const r = await runCommand(deps(), snap, body, now());
+        setSnapshot(r.snapshot);
+        refreshClock();
+        return r.reject;
+      });
+      commands.current = run.catch(() => undefined);
+      return run;
     },
-    [deps, snapshot, now],
+    [deps, now, setSnapshot, refreshClock],
   );
 
   const updateLocal = useCallback((patch: Partial<LocalContext>) => {
@@ -197,11 +256,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const setDevOffset = useCallback(
     async (ms: number) => {
-      offsetRef.current = ms;
-      setDevOffsetMs(ms);
-      if (sqlRef.current) await kvSet(sqlRef.current, PREFS.devOffset, ms);
+      // Never before the moment the plan starts: the app has no plan or targets for earlier dates.
+      const sql = sqlRef.current;
+      const onboardedAt = sql ? await kvGet<string>(sql, KV.onboardedAt) : undefined;
+      const floor = onboardedAt ? msOf(onboardedAt) - Date.now() : -Infinity;
+      const offset = Math.max(ms, floor);
+      offsetRef.current = offset;
+      setDevOffsetMs(offset);
+      if (sql) await kvSet(sql, PREFS.devOffset, offset);
       await reload();
-      setTick((n) => n + 1);
     },
     [reload],
   );
@@ -227,10 +290,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
     offsetRef.current = 0;
     setDevOffsetMs(0);
     setSnapshot(undefined);
+    builtFrom.current = null;
+    answersRef.current = DEFAULT_ANSWERS;
     setAnswers(DEFAULT_ANSWERS);
     setLocal(EMPTY_LOCAL);
+    setError(undefined);
+    refreshClock();
     setStatus('onboarding');
-  }, [appearance, hapticsOn]);
+  }, [appearance, hapticsOn, setSnapshot, refreshClock]);
 
   const value: AppContextValue = {
     status,
@@ -244,8 +311,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     runPlanCommand,
     local,
     updateLocal,
+    clock,
     now,
-    tick,
     tz,
     devOffsetMs,
     setDevOffset,

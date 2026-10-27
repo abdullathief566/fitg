@@ -13,8 +13,8 @@ import { useTheme } from '@/src/ui/theme';
 
 export default function Week() {
   const t = useTheme();
-  const { snapshot, lib, now, tick } = useApp();
-  const sections = useMemo(() => (snapshot ? weekView(snapshot, lib, now()) : []), [snapshot, lib, now, tick]);
+  const { snapshot, lib, clock } = useApp();
+  const sections = useMemo(() => (snapshot ? weekView(snapshot, lib, clock) : []), [snapshot, lib, clock]);
   return (
     <Screen scroll testID="week">
       <View style={{ gap: t.space[6], paddingTop: t.space[4] }}>

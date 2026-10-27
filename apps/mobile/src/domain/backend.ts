@@ -103,13 +103,21 @@ export async function loadSnapshot(deps: BackendDeps, now: Instant): Promise<Sna
   const inputs: PlanInputs = { profile, targets, pantry, lib };
 
   const start = weekStartOf(today);
-  let current = await loadWeek(sql, userId, start, lib, templateId);
-  if (!current) {
-    const previous = await loadWeek(sql, userId, addDays(start, -7), lib, templateId);
+  // null = saved but no longer readable (e.g. a newer bundle retired one of its recipes). It is planned again rather
+  // than locking the user out of the app; this week from today on, like a signup week, so days already lived through
+  // never come back as "missed" workouts.
+  const readWeek = (weekStart: string): Promise<WeekPlan | undefined | null> =>
+    loadWeek(sql, userId, weekStart, lib, templateId).catch(() => null);
+  let current = await readWeek(start);
+  if (current === null) {
+    current = firstWeek(inputs, now);
+    await saveWeek(sql, userId, current, lib, now);
+  } else if (!current) {
+    const previous = await readWeek(addDays(start, -7));
     current = previous ? weekAfter(inputs, previous) : weekFrom(inputs, start);
     await saveWeek(sql, userId, current, lib, now);
   }
-  let next = await loadWeek(sql, userId, addDays(start, 7), lib, templateId);
+  let next = await readWeek(addDays(start, 7));
   if (!next) {
     next = weekAfter(inputs, current);
     await saveWeek(sql, userId, next, lib, now);

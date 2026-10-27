@@ -1,5 +1,5 @@
 // Stepper rows: "Wake up  − 7:00 AM +". Selection haptic per tick; holding a button repeats.
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { View } from 'react-native';
 import { Minus, Plus } from './icons';
 import { to12h, type LocalTime } from '@fitg/engine';
@@ -11,17 +11,23 @@ import { useTheme } from './theme';
 
 function useRepeat(fire: () => void) {
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  // The timer reads the latest handler: each tick must step from the newest value, not the one at press time.
+  const latest = useRef(fire);
+  useEffect(() => {
+    latest.current = fire;
+  });
   const stop = () => {
     if (timer.current) clearInterval(timer.current);
     timer.current = null;
   };
+  useEffect(() => stop, []);
   return {
-    onPress: fire,
+    onPress: () => latest.current(),
     onLongPress: () => {
       stop();
       timer.current = setInterval(() => {
         haptics.selection();
-        fire();
+        latest.current();
       }, 120);
     },
     onPressOut: stop,

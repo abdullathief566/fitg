@@ -12,9 +12,9 @@ import { useTheme } from '@/src/ui/theme';
 
 export default function Progress() {
   const t = useTheme();
-  const { snapshot, now } = useApp();
+  const { snapshot, clock } = useApp();
   const profile = snapshot?.profile;
-  const day = profile?.journeyStartedAt ? daysBetween(profile.journeyStartedAt, localDateOf(now(), profile.tz)) + 1 : 1;
+  const day = profile?.journeyStartedAt ? daysBetween(profile.journeyStartedAt, localDateOf(clock, profile.tz)) + 1 : 1;
   return (
     <Screen scroll testID="progress">
       <View style={{ gap: t.space[5], paddingTop: t.space[4] }}>
