@@ -1,0 +1,841 @@
+{
+  "bundle_version": "6101d364",
+  "exercises": [
+    {
+      "id": "barbell_back_squat",
+      "name": "Barbell back squat",
+      "primaryMuscle": "quads",
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": "squat",
+      "equipment": [
+        "barbell",
+        "rack"
+      ],
+      "loadType": "barbell",
+      "isMachine": false,
+      "injuryTags": [
+        "knee",
+        "back"
+      ],
+      "formCues": [
+        "Feet shoulder-width, toes slightly out",
+        "Sit down between your heels, chest up",
+        "Push the floor away; knees track over toes"
+      ],
+      "startLoadRatio": 0.5,
+      "incrementKg": 5,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 3
+    },
+    {
+      "id": "leg_press_machine",
+      "name": "Leg press",
+      "primaryMuscle": "quads",
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": "squat",
+      "equipment": [
+        "leg_press"
+      ],
+      "loadType": "machine",
+      "isMachine": true,
+      "injuryTags": [
+        "knee"
+      ],
+      "formCues": [
+        "Back flat against the pad",
+        "Lower until knees are at about 90°",
+        "Press through your whole foot; don’t lock the knees"
+      ],
+      "startLoadRatio": 0.6,
+      "incrementKg": 5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 3
+    },
+    {
+      "id": "goblet_squat_db",
+      "name": "Goblet squat",
+      "primaryMuscle": "quads",
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": "squat",
+      "equipment": [
+        "dumbbell"
+      ],
+      "loadType": "dumbbell",
+      "isMachine": false,
+      "injuryTags": [
+        "knee"
+      ],
+      "formCues": [
+        "Hold one dumbbell at your chest",
+        "Sit down and back, elbows inside knees",
+        "Stand tall, squeeze glutes at the top"
+      ],
+      "startLoadRatio": 0.15,
+      "incrementKg": 2.5,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 3
+    },
+    {
+      "id": "bodyweight_squat",
+      "name": "Bodyweight squat",
+      "primaryMuscle": "quads",
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": "squat",
+      "equipment": [],
+      "loadType": "bodyweight",
+      "isMachine": false,
+      "injuryTags": [
+        "knee"
+      ],
+      "formCues": [
+        "Arms forward for balance",
+        "Sit back to a comfortable depth",
+        "Drive up through your heels"
+      ],
+      "startLoadRatio": 0,
+      "incrementKg": 0,
+      "repMin": 12,
+      "repMax": 20,
+      "importance": 2
+    },
+    {
+      "id": "romanian_deadlift_barbell",
+      "name": "Romanian deadlift (barbell)",
+      "primaryMuscle": "hamstrings",
+      "secondaryMuscles": [
+        "glutes",
+        "lower_back"
+      ],
+      "movementPattern": "hinge",
+      "equipment": [
+        "barbell"
+      ],
+      "loadType": "barbell",
+      "isMachine": false,
+      "injuryTags": [
+        "back"
+      ],
+      "formCues": [
+        "Soft knees, bar close to your legs",
+        "Push hips back until you feel the hamstrings",
+        "Stand up by squeezing glutes, back flat"
+      ],
+      "startLoadRatio": 0.5,
+      "incrementKg": 5,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 3
+    },
+    {
+      "id": "romanian_deadlift_db",
+      "name": "Romanian deadlift (dumbbells)",
+      "primaryMuscle": "hamstrings",
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": "hinge",
+      "equipment": [
+        "dumbbell"
+      ],
+      "loadType": "dumbbell",
+      "isMachine": false,
+      "injuryTags": [
+        "back"
+      ],
+      "formCues": [
+        "Dumbbells in front of your thighs",
+        "Hips back, flat back, slow down",
+        "Squeeze glutes to stand up"
+      ],
+      "startLoadRatio": 0.12,
+      "incrementKg": 2.5,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 3
+    },
+    {
+      "id": "glute_bridge",
+      "name": "Glute bridge",
+      "primaryMuscle": "glutes",
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "movementPattern": "hinge",
+      "equipment": [],
+      "loadType": "bodyweight",
+      "isMachine": false,
+      "injuryTags": [],
+      "formCues": [
+        "Feet flat, knees bent",
+        "Drive hips up, squeeze glutes",
+        "Lower slowly"
+      ],
+      "startLoadRatio": 0,
+      "incrementKg": 0,
+      "repMin": 12,
+      "repMax": 20,
+      "importance": 2
+    },
+    {
+      "id": "bench_press_barbell",
+      "name": "Bench press (barbell)",
+      "primaryMuscle": "chest",
+      "secondaryMuscles": [
+        "triceps",
+        "front_delts"
+      ],
+      "movementPattern": "h_push",
+      "equipment": [
+        "barbell",
+        "bench",
+        "rack"
+      ],
+      "loadType": "barbell",
+      "isMachine": false,
+      "injuryTags": [
+        "shoulder"
+      ],
+      "formCues": [
+        "Eyes under the bar, feet planted",
+        "Lower to mid-chest, elbows about 45°",
+        "Press up and slightly back"
+      ],
+      "startLoadRatio": 0.4,
+      "incrementKg": 2.5,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 3
+    },
+    {
+      "id": "chest_press_machine",
+      "name": "Chest press (machine)",
+      "primaryMuscle": "chest",
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "movementPattern": "h_push",
+      "equipment": [
+        "chest_press"
+      ],
+      "loadType": "machine",
+      "isMachine": true,
+      "injuryTags": [
+        "shoulder"
+      ],
+      "formCues": [
+        "Handles at mid-chest height",
+        "Press out without locking elbows",
+        "Control the way back"
+      ],
+      "startLoadRatio": 0.25,
+      "incrementKg": 5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 3
+    },
+    {
+      "id": "floor_press_db",
+      "name": "Floor press (dumbbells)",
+      "primaryMuscle": "chest",
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "movementPattern": "h_push",
+      "equipment": [
+        "dumbbell"
+      ],
+      "loadType": "dumbbell",
+      "isMachine": false,
+      "injuryTags": [],
+      "formCues": [
+        "Lie on the floor, knees bent",
+        "Lower until elbows touch the floor",
+        "Press up, wrists stacked"
+      ],
+      "startLoadRatio": 0.1,
+      "incrementKg": 2.5,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 3
+    },
+    {
+      "id": "push_up",
+      "name": "Push-up",
+      "primaryMuscle": "chest",
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "movementPattern": "h_push",
+      "equipment": [],
+      "loadType": "bodyweight",
+      "isMachine": false,
+      "injuryTags": [
+        "shoulder"
+      ],
+      "formCues": [
+        "Hands under shoulders, body straight",
+        "Lower chest toward the floor",
+        "Push away; knees down is fine"
+      ],
+      "startLoadRatio": 0,
+      "incrementKg": 0,
+      "repMin": 6,
+      "repMax": 15,
+      "importance": 2
+    },
+    {
+      "id": "shoulder_press_db",
+      "name": "Shoulder press (dumbbells)",
+      "primaryMuscle": "shoulders",
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "movementPattern": "v_push",
+      "equipment": [
+        "dumbbell"
+      ],
+      "loadType": "dumbbell",
+      "isMachine": false,
+      "injuryTags": [
+        "shoulder"
+      ],
+      "formCues": [
+        "Sit or stand tall, dumbbells at ear height",
+        "Press up, don’t arch your back",
+        "Lower slowly"
+      ],
+      "startLoadRatio": 0.07,
+      "incrementKg": 2.5,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 3
+    },
+    {
+      "id": "shoulder_press_machine",
+      "name": "Shoulder press (machine)",
+      "primaryMuscle": "shoulders",
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "movementPattern": "v_push",
+      "equipment": [
+        "shoulder_press"
+      ],
+      "loadType": "machine",
+      "isMachine": true,
+      "injuryTags": [
+        "shoulder"
+      ],
+      "formCues": [
+        "Seat so handles are at shoulder height",
+        "Press up smoothly",
+        "Control the way down"
+      ],
+      "startLoadRatio": 0.15,
+      "incrementKg": 5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 3
+    },
+    {
+      "id": "lat_pulldown",
+      "name": "Lat pulldown",
+      "primaryMuscle": "lats",
+      "secondaryMuscles": [
+        "biceps"
+      ],
+      "movementPattern": "v_pull",
+      "equipment": [
+        "cable",
+        "lat_pulldown"
+      ],
+      "loadType": "cable",
+      "isMachine": true,
+      "injuryTags": [],
+      "formCues": [
+        "Grip a bit wider than shoulders",
+        "Pull the bar to your upper chest",
+        "Let it rise slowly, arms long"
+      ],
+      "startLoadRatio": 0.35,
+      "incrementKg": 5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 3
+    },
+    {
+      "id": "assisted_pullup_machine",
+      "name": "Assisted pull-up",
+      "primaryMuscle": "lats",
+      "secondaryMuscles": [
+        "biceps"
+      ],
+      "movementPattern": "v_pull",
+      "equipment": [
+        "assisted_pullup"
+      ],
+      "loadType": "machine",
+      "isMachine": true,
+      "injuryTags": [
+        "shoulder"
+      ],
+      "formCues": [
+        "Knees on the pad, hands shoulder-width",
+        "Pull chin over the bar",
+        "Lower all the way"
+      ],
+      "startLoadRatio": 0.4,
+      "incrementKg": 5,
+      "repMin": 6,
+      "repMax": 12,
+      "importance": 2
+    },
+    {
+      "id": "db_pullover",
+      "name": "Dumbbell pullover",
+      "primaryMuscle": "lats",
+      "secondaryMuscles": [
+        "chest"
+      ],
+      "movementPattern": "v_pull",
+      "equipment": [
+        "dumbbell"
+      ],
+      "loadType": "dumbbell",
+      "isMachine": false,
+      "injuryTags": [
+        "shoulder"
+      ],
+      "formCues": [
+        "Lie on the floor, one dumbbell over your chest",
+        "Lower it behind your head, slight elbow bend",
+        "Pull it back over your chest"
+      ],
+      "startLoadRatio": 0.1,
+      "incrementKg": 2.5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 2
+    },
+    {
+      "id": "seated_cable_row",
+      "name": "Seated cable row",
+      "primaryMuscle": "upper_back",
+      "secondaryMuscles": [
+        "biceps",
+        "lats"
+      ],
+      "movementPattern": "h_pull",
+      "equipment": [
+        "cable"
+      ],
+      "loadType": "cable",
+      "isMachine": true,
+      "injuryTags": [],
+      "formCues": [
+        "Sit tall, slight knee bend",
+        "Pull the handle to your belly",
+        "Squeeze shoulder blades, then reach forward slowly"
+      ],
+      "startLoadRatio": 0.35,
+      "incrementKg": 5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 3
+    },
+    {
+      "id": "chest_supported_row_machine",
+      "name": "Row (machine)",
+      "primaryMuscle": "upper_back",
+      "secondaryMuscles": [
+        "biceps"
+      ],
+      "movementPattern": "h_pull",
+      "equipment": [
+        "row_machine"
+      ],
+      "loadType": "machine",
+      "isMachine": true,
+      "injuryTags": [],
+      "formCues": [
+        "Chest on the pad",
+        "Pull elbows back past your body",
+        "Control the return"
+      ],
+      "startLoadRatio": 0.3,
+      "incrementKg": 5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 3
+    },
+    {
+      "id": "one_arm_row_db",
+      "name": "One-arm dumbbell row",
+      "primaryMuscle": "upper_back",
+      "secondaryMuscles": [
+        "biceps",
+        "lats"
+      ],
+      "movementPattern": "h_pull",
+      "equipment": [
+        "dumbbell"
+      ],
+      "loadType": "dumbbell",
+      "isMachine": false,
+      "injuryTags": [
+        "back"
+      ],
+      "formCues": [
+        "One hand on a chair or knee, back flat",
+        "Pull the dumbbell to your hip",
+        "Lower slowly, full stretch"
+      ],
+      "startLoadRatio": 0.12,
+      "incrementKg": 2.5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 3
+    },
+    {
+      "id": "walking_lunge_db",
+      "name": "Walking lunge (dumbbells)",
+      "primaryMuscle": "quads",
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": "lunge",
+      "equipment": [
+        "dumbbell"
+      ],
+      "loadType": "dumbbell",
+      "isMachine": false,
+      "injuryTags": [
+        "knee"
+      ],
+      "formCues": [
+        "Long step, torso tall",
+        "Back knee drops toward the floor",
+        "Push through the front heel"
+      ],
+      "startLoadRatio": 0.07,
+      "incrementKg": 2.5,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 2
+    },
+    {
+      "id": "split_squat_db",
+      "name": "Split squat (dumbbells)",
+      "primaryMuscle": "quads",
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": "lunge",
+      "equipment": [
+        "dumbbell"
+      ],
+      "loadType": "dumbbell",
+      "isMachine": false,
+      "injuryTags": [
+        "knee"
+      ],
+      "formCues": [
+        "Staggered stance, feet hip-width",
+        "Drop straight down",
+        "Drive up through the front foot"
+      ],
+      "startLoadRatio": 0.07,
+      "incrementKg": 2.5,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 2
+    },
+    {
+      "id": "reverse_lunge_bw",
+      "name": "Reverse lunge",
+      "primaryMuscle": "quads",
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": "lunge",
+      "equipment": [],
+      "loadType": "bodyweight",
+      "isMachine": false,
+      "injuryTags": [
+        "knee"
+      ],
+      "formCues": [
+        "Step back, torso tall",
+        "Lower the back knee gently",
+        "Return to standing"
+      ],
+      "startLoadRatio": 0,
+      "incrementKg": 0,
+      "repMin": 8,
+      "repMax": 15,
+      "importance": 2
+    },
+    {
+      "id": "dead_bug",
+      "name": "Dead bug",
+      "primaryMuscle": "core",
+      "secondaryMuscles": [],
+      "movementPattern": "core",
+      "equipment": [],
+      "loadType": "bodyweight",
+      "isMachine": false,
+      "injuryTags": [],
+      "formCues": [
+        "Lower back pressed to the floor",
+        "Extend opposite arm and leg slowly",
+        "Breathe out as you extend"
+      ],
+      "startLoadRatio": 0,
+      "incrementKg": 0,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 1
+    },
+    {
+      "id": "cable_crunch",
+      "name": "Cable crunch",
+      "primaryMuscle": "core",
+      "secondaryMuscles": [],
+      "movementPattern": "core",
+      "equipment": [
+        "cable"
+      ],
+      "loadType": "cable",
+      "isMachine": true,
+      "injuryTags": [
+        "back"
+      ],
+      "formCues": [
+        "Kneel, rope by your head",
+        "Curl your ribs toward your hips",
+        "Control back up"
+      ],
+      "startLoadRatio": 0.15,
+      "incrementKg": 5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 1
+    },
+    {
+      "id": "bird_dog",
+      "name": "Bird dog",
+      "primaryMuscle": "core",
+      "secondaryMuscles": [],
+      "movementPattern": "core",
+      "equipment": [],
+      "loadType": "bodyweight",
+      "isMachine": false,
+      "injuryTags": [],
+      "formCues": [
+        "Hands under shoulders, knees under hips",
+        "Reach opposite arm and leg long",
+        "Keep hips level"
+      ],
+      "startLoadRatio": 0,
+      "incrementKg": 0,
+      "repMin": 8,
+      "repMax": 12,
+      "importance": 1
+    },
+    {
+      "id": "db_curl",
+      "name": "Dumbbell curl",
+      "primaryMuscle": "biceps",
+      "secondaryMuscles": [],
+      "movementPattern": "isolation",
+      "equipment": [
+        "dumbbell"
+      ],
+      "loadType": "dumbbell",
+      "isMachine": false,
+      "injuryTags": [],
+      "formCues": [
+        "Elbows by your sides",
+        "Curl up, turn pinkies up",
+        "Lower slowly"
+      ],
+      "startLoadRatio": 0.06,
+      "incrementKg": 2.5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 1
+    },
+    {
+      "id": "cable_curl",
+      "name": "Cable curl",
+      "primaryMuscle": "biceps",
+      "secondaryMuscles": [],
+      "movementPattern": "isolation",
+      "equipment": [
+        "cable"
+      ],
+      "loadType": "cable",
+      "isMachine": true,
+      "injuryTags": [],
+      "formCues": [
+        "Elbows pinned",
+        "Curl to shoulder height",
+        "Slow on the way down"
+      ],
+      "startLoadRatio": 0.1,
+      "incrementKg": 2.5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 1
+    },
+    {
+      "id": "triceps_pushdown_cable",
+      "name": "Triceps pushdown",
+      "primaryMuscle": "triceps",
+      "secondaryMuscles": [],
+      "movementPattern": "isolation",
+      "equipment": [
+        "cable"
+      ],
+      "loadType": "cable",
+      "isMachine": true,
+      "injuryTags": [],
+      "formCues": [
+        "Elbows tucked",
+        "Push down until arms are straight",
+        "Let it rise to about 90°"
+      ],
+      "startLoadRatio": 0.15,
+      "incrementKg": 2.5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 1
+    },
+    {
+      "id": "overhead_triceps_ext_db",
+      "name": "Overhead triceps extension (dumbbell)",
+      "primaryMuscle": "triceps",
+      "secondaryMuscles": [],
+      "movementPattern": "isolation",
+      "equipment": [
+        "dumbbell"
+      ],
+      "loadType": "dumbbell",
+      "isMachine": false,
+      "injuryTags": [
+        "shoulder"
+      ],
+      "formCues": [
+        "Hold one dumbbell overhead",
+        "Lower behind your head, elbows in",
+        "Straighten your arms"
+      ],
+      "startLoadRatio": 0.08,
+      "incrementKg": 2.5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 1
+    },
+    {
+      "id": "leg_curl_machine",
+      "name": "Leg curl (machine)",
+      "primaryMuscle": "hamstrings",
+      "secondaryMuscles": [],
+      "movementPattern": "isolation",
+      "equipment": [
+        "leg_curl"
+      ],
+      "loadType": "machine",
+      "isMachine": true,
+      "injuryTags": [],
+      "formCues": [
+        "Pad just above your heels",
+        "Curl down fully",
+        "Control the return"
+      ],
+      "startLoadRatio": 0.2,
+      "incrementKg": 5,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 2
+    },
+    {
+      "id": "single_leg_glute_bridge",
+      "name": "Single-leg glute bridge",
+      "primaryMuscle": "hamstrings",
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "movementPattern": "isolation",
+      "equipment": [],
+      "loadType": "bodyweight",
+      "isMachine": false,
+      "injuryTags": [],
+      "formCues": [
+        "One foot planted, other leg up",
+        "Drive hips up",
+        "Lower slowly, switch sides"
+      ],
+      "startLoadRatio": 0,
+      "incrementKg": 0,
+      "repMin": 10,
+      "repMax": 15,
+      "importance": 2
+    },
+    {
+      "id": "standing_calf_raise",
+      "name": "Standing calf raise",
+      "primaryMuscle": "calves",
+      "secondaryMuscles": [],
+      "movementPattern": "isolation",
+      "equipment": [],
+      "loadType": "bodyweight",
+      "isMachine": false,
+      "injuryTags": [],
+      "formCues": [
+        "Balls of feet on a step",
+        "Rise up high, pause",
+        "Lower all the way"
+      ],
+      "startLoadRatio": 0,
+      "incrementKg": 0,
+      "repMin": 12,
+      "repMax": 20,
+      "importance": 1
+    },
+    {
+      "id": "seated_calf_raise_machine",
+      "name": "Seated calf raise (machine)",
+      "primaryMuscle": "calves",
+      "secondaryMuscles": [],
+      "movementPattern": "isolation",
+      "equipment": [
+        "calf_raise"
+      ],
+      "loadType": "machine",
+      "isMachine": true,
+      "injuryTags": [],
+      "formCues": [
+        "Pad on your thighs",
+        "Rise high, pause",
+        "Full stretch at the bottom"
+      ],
+      "startLoadRatio": 0.3,
+      "incrementKg": 5,
+      "repMin": 12,
+      "repMax": 15,
+      "importance": 1
+    }
+  ]
+}

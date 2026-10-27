@@ -1,0 +1,20 @@
+{
+  "bundle_version": "6101d364",
+  "mode": "prod",
+  "counts": {
+    "foods": 40,
+    "recipes": 42,
+    "home_dishes": 29,
+    "protein_addons": 7,
+    "exercises": 33,
+    "templates": 6
+  },
+  "files": [
+    "foods.json",
+    "recipes.json",
+    "home_dishes.json",
+    "protein_addons.json",
+    "exercises.json",
+    "templates.json"
+  ]
+}

@@ -1,0 +1,23 @@
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native folders are generated (Continuous Native Generation)
+/ios
+/android
+.kotlin/
+
+# Signing material
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+
+# Metro
+.metro-health-check*
+
+*.tsbuildinfo

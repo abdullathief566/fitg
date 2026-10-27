@@ -8,4 +8,5 @@ export * from './db.ts';
 export * from './api.ts';
 export * from './seed.ts';
 export * from './mappers.ts';
+export * from './bundle.ts';
 export * from './ai.ts'; // AI output schemas — written by the lead

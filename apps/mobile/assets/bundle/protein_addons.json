@@ -1,0 +1,104 @@
+{
+  "bundle_version": "6101d364",
+  "protein_addons": [
+    {
+      "id": "7caa8e5d-6fc2-522c-a53f-bb13d417b460",
+      "key": "boiled_egg",
+      "name": "Boiled egg",
+      "foodKey": "egg_whole",
+      "unit": "egg",
+      "gramsPerUnit": 50,
+      "dietTags": [
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantryFoodKey": "egg_whole"
+    },
+    {
+      "id": "ceb37465-b317-5487-876e-23b5ffacab54",
+      "key": "curd_cup",
+      "name": "Curd (1 katori)",
+      "foodKey": "curd_whole",
+      "unit": "katori",
+      "gramsPerUnit": 150,
+      "dietTags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantryFoodKey": "curd_whole"
+    },
+    {
+      "id": "4bbadc37-4d16-54a9-8ee6-e26e040c8cd3",
+      "key": "milk_glass",
+      "name": "Glass of milk",
+      "foodKey": "milk_whole",
+      "unit": "cup",
+      "gramsPerUnit": 240,
+      "dietTags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantryFoodKey": "milk_whole"
+    },
+    {
+      "id": "89cc6c85-58b6-5959-b713-fcad7cce7d67",
+      "key": "whey_scoop",
+      "name": "Whey (1 scoop)",
+      "foodKey": "whey_isolate",
+      "unit": "scoop",
+      "gramsPerUnit": 30,
+      "dietTags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantryFoodKey": "whey_isolate"
+    },
+    {
+      "id": "bd4838ff-eea3-58be-a936-133aeb855068",
+      "key": "paneer_50g",
+      "name": "Paneer (50 g)",
+      "foodKey": "paneer",
+      "unit": "g",
+      "gramsPerUnit": 50,
+      "dietTags": [
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantryFoodKey": "paneer"
+    },
+    {
+      "id": "1f6ccd95-7d50-5637-9ad8-7110d45a349d",
+      "key": "soya_chunks_30g",
+      "name": "Soya chunks (30 g dry, cooked in)",
+      "foodKey": "soya_chunks",
+      "unit": "g",
+      "gramsPerUnit": 30,
+      "dietTags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantryFoodKey": "soya_chunks"
+    },
+    {
+      "id": "692a5585-c225-5a3d-ba86-7e1bbe061a0d",
+      "key": "roasted_chana_30g",
+      "name": "Roasted chana (30 g)",
+      "foodKey": "roasted_chana",
+      "unit": "g",
+      "gramsPerUnit": 30,
+      "dietTags": [
+        "vegan",
+        "veg",
+        "eggetarian",
+        "non_veg"
+      ],
+      "pantryFoodKey": "roasted_chana"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "expo": {
+    "name": "FitG",
+    "slug": "fitg",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "fitg",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#FBF7F0",
+    "ios": {
+      "bundleIdentifier": "app.fitg",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "app.fitg",
+      "adaptiveIcon": {
+        "backgroundColor": "#F4683A",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 96,
+          "backgroundColor": "#FBF7F0",
+          "dark": { "image": "./assets/images/splash-icon.png", "backgroundColor": "#15110E" }
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "../../node_modules/@expo-google-fonts/outfit/600SemiBold/Outfit_600SemiBold.ttf",
+            "../../node_modules/@expo-google-fonts/outfit/700Bold/Outfit_700Bold.ttf",
+            "../../node_modules/@expo-google-fonts/outfit/800ExtraBold/Outfit_800ExtraBold.ttf",
+            "../../node_modules/@expo-google-fonts/dm-sans/400Regular/DMSans_400Regular.ttf",
+            "../../node_modules/@expo-google-fonts/dm-sans/500Medium/DMSans_500Medium.ttf",
+            "../../node_modules/@expo-google-fonts/dm-sans/600SemiBold/DMSans_600SemiBold.ttf",
+            "../../node_modules/@expo-google-fonts/dm-sans/700Bold/DMSans_700Bold.ttf"
+          ]
+        }
+      ],
+      "expo-sqlite",
+      "expo-localization",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "FitG uses your location once, to pin your gym. You can skip this and tap Start instead."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

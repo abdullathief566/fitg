@@ -59,10 +59,10 @@ describe('real seed files', () => {
     expect(findSeedProblems(parseSeedFiles(seedInput()))).toEqual([]);
   });
 
-  it('counts match the build pack (25 foods, 20 recipes, 29 home dishes, 7 add-ons, 33 exercises, 2 splits)', () => {
+  it('counts match the seed (40 foods, 42 recipes, 29 home dishes, 7 add-ons, 33 exercises, 2 splits)', () => {
     const s = parseSeedFiles(seedInput());
-    expect(s.foodsMap.foods).toHaveLength(25);
-    expect(s.recipes.recipes).toHaveLength(20);
+    expect(s.foodsMap.foods).toHaveLength(40);
+    expect(s.recipes.recipes).toHaveLength(42);
     expect(s.homeDishes.home_dishes).toHaveLength(29);
     expect(s.addons.protein_addons).toHaveLength(7);
     expect(s.exercises.exercises).toHaveLength(33);

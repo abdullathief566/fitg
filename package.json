@@ -11,7 +11,7 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "vitest run",
+    "test": "vitest run && npm run test -w @fitg/mobile",
     "test:watch": "vitest",
     "typecheck": "npm run typecheck --workspaces --if-present && tsc -p data/tsconfig.json",
     "lint": "eslint .",
@@ -19,7 +19,10 @@
     "format:check": "prettier --check .",
     "data:build": "tsx data/scripts/build-seed.ts",
     "data:import-usda": "tsx data/scripts/import-usda.ts",
-    "data:import-exercises": "tsx data/scripts/import-exercises.ts"
+    "data:import-exercises": "tsx data/scripts/import-exercises.ts",
+    "app:bundle:sample": "tsx data/scripts/build-seed.ts --sample --out data/out/app-sample && rm -rf apps/mobile/assets/bundle && cp -R data/out/app-sample/bundle apps/mobile/assets/bundle",
+    "mobile": "npm run start -w @fitg/mobile",
+    "test:packages": "vitest run"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -31,5 +34,9 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.72.1",
     "vitest": "^5.0.5"
+  },
+  "overrides": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   }
 }

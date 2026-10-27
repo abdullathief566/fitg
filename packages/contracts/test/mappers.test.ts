@@ -38,9 +38,9 @@ describe('loadReferenceLib (seed + sample values, in-process)', () => {
   const lib = loadReferenceLib(seedInput());
 
   it('loads every reference list', () => {
-    expect(lib.foods.size).toBe(25);
-    expect(lib.recipes.size).toBe(20);
-    expect(lib.homeDishes.size).toBe(7); // the 22 needs_recipe dishes are skipped
+    expect(lib.foods.size).toBe(40);
+    expect(lib.recipes.size).toBe(42);
+    expect(lib.homeDishes.size).toBe(29); // every dish has a recipe now
     expect(lib.addons).toHaveLength(7);
     expect(lib.exercises.byId.size).toBe(33);
     expect(lib.foods.get('rice_white_raw')?.units.map((u) => u.unit)).toEqual(['katori', 'g']);
@@ -90,7 +90,7 @@ describe('loadReferenceLib (seed + sample values, in-process)', () => {
   it('accepts resolved values instead of the sample file', () => {
     const values = sampleFoodValues(seedInput().sample);
     const { sample: _s, ...files } = seedInput();
-    expect(loadReferenceLib({ ...files, values }).foods.size).toBe(25);
+    expect(loadReferenceLib({ ...files, values }).foods.size).toBe(40);
   });
 
   it('fails loudly on an unknown key, listing it', () => {
@@ -112,8 +112,8 @@ describe('loadReferenceLib (seed + sample values, in-process)', () => {
   });
 
   it('toHomeDish refuses a dish that still needs a recipe', () => {
-    const dishes = parseSeedFiles(seedInput()).homeDishes.home_dishes;
-    expect(() => toHomeDish(dishes.find((d) => d.needs_recipe)!)).toThrow(/needs_recipe/);
+    const dish = parseSeedFiles(seedInput()).homeDishes.home_dishes[0]!;
+    expect(() => toHomeDish({ ...dish, recipe_slug: null, needs_recipe: true })).toThrow(/needs_recipe/);
   });
 });
 

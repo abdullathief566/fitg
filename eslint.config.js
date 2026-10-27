@@ -16,7 +16,7 @@ export default defineConfig([
   js.configs.recommended,
   tseslint.configs.recommended,
   {
-    files: ['**/*.ts'],
+    files: ['**/*.{ts,tsx}'],
     rules: {
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       '@typescript-eslint/consistent-type-imports': 'error',
@@ -53,5 +53,43 @@ export default defineConfig([
         },
       ],
     },
+  },
+  {
+    // The app (design acceptance checks as rules, docs/code_review.md §3).
+    files: ['apps/mobile/app/**/*.{ts,tsx}', 'apps/mobile/src/**/*.{ts,tsx}'],
+    rules: {
+      // #1: hex lives only in constants/theme.ts.
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'Literal[value=/#[0-9A-Fa-f]{6}\\b/]',
+          message: 'Colours come from constants/theme.ts via useTheme(); no hex here.',
+        },
+      ],
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            // #10: haptics only through lib/haptics.ts (it honours the Settings kill switch).
+            { name: 'expo-haptics', message: 'Use @/lib/haptics.' },
+            // #3: every tappable goes through <Tap>, which enforces the 48 pt minimum.
+            {
+              name: 'react-native',
+              importNames: ['Pressable', 'TouchableOpacity', 'TouchableHighlight'],
+              message: 'Use <Tap> from src/ui/Pressable.',
+            },
+            // motion.md §3 rule 1: worklets only.
+            { name: 'react-native', importNames: ['Animated'], message: 'Use react-native-reanimated.' },
+            // The package index pulls ~3,800 icons into the bundle.
+            { name: 'lucide-react-native', message: 'Import icons from src/ui/icons.ts.' },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    // The two places allowed to use a raw Pressable: the Tap primitive itself and a full-screen sheet backdrop.
+    files: ['apps/mobile/src/ui/Pressable.tsx', 'apps/mobile/src/ui/NumberSheet.tsx'],
+    rules: { 'no-restricted-imports': 'off' },
   },
 ]);
