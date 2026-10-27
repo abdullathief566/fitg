@@ -1,0 +1,8 @@
+[
+  { "name": "Barbell Squat", "id": "Barbell_Squat", "images": ["Barbell_Squat/0.jpg", "Barbell_Squat/1.jpg"], "note": "FAKE TEST ROW" },
+  { "name": "Leg Press", "id": "Leg_Press", "images": ["Leg_Press/0.jpg"], "note": "FAKE TEST ROW" },
+  { "name": "Pushups", "id": "Pushups", "images": [], "note": "FAKE TEST ROW" },
+  { "name": "Dumbbell Bench Press", "id": "Dumbbell_Bench_Press", "note": "FAKE TEST ROW" },
+  { "name": "Seated Cable Rows", "id": "Seated_Cable_Rows", "note": "FAKE TEST ROW" },
+  { "id": "No_Name_Entry", "note": "FAKE TEST ROW without a name (must be skipped)" }
+]

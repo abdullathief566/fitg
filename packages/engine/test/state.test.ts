@@ -60,18 +60,16 @@ describe('deriveUserState — events → state', () => {
   });
   const started = ev('session_started', '18:35', { sessionId: session.id, source: 'ping_action' });
   const sets = week.plan.sets.filter((s) => s.sessionId === session.id);
-  const done3 = sets
-    .slice(0, 3)
-    .map((s, i) =>
-      ev('set_done', `18:4${i}`, {
-        sessionId: session.id,
-        exerciseOrder: s.exerciseOrder,
-        setIndex: s.setIndex,
-        weightKg: s.targetWeightKg,
-        reps: 8,
-        via: 'app',
-      }),
-    );
+  const done3 = sets.slice(0, 3).map((s, i) =>
+    ev('set_done', `18:4${i}`, {
+      sessionId: session.id,
+      exerciseOrder: s.exerciseOrder,
+      setIndex: s.setIndex,
+      weightKg: s.targetWeightKg,
+      reps: 8,
+      via: 'app',
+    }),
+  );
 
   it('S1 via events: pre-gym time passes → reminded; start → in_progress; exit (5-min debounce) with 3 sets → partial', () => {
     expect(stateAt(week, at(MON, '18:20'), [], schedule).workout.status).toBe('reminded');

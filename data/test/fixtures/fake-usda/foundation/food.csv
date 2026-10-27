@@ -1,0 +1,4 @@
+"fdc_id","data_type","description","food_category_id","publication_date","note"
+"800001","foundation_food","Eggs, Grade A, Large, egg whole","1","2020-10-30","FAKE TEST ROW - not USDA data"
+"800002","sub_sample_food","Eggs, Grade A, Large, egg whole","1","2020-10-30","FAKE TEST ROW - not USDA data"
+"800003","foundation_food","Rice, white, long grain, unenriched, raw","20","2020-10-30","FAKE TEST ROW - not USDA data"

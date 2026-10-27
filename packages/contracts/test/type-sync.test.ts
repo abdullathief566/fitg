@@ -1,0 +1,168 @@
+// Compile-time sync between the contracts' Zod schemas and the engine's types: if either side changes, `tsc` fails.
+// (`npx tsc -p packages/contracts/tsconfig.json` type-checks this file; the runtime test only proves it loads.)
+import { describe, expect, it } from 'vitest';
+import type { z } from 'zod';
+import type {
+  AddonPick,
+  BodyGoalPatch,
+  ChangedRows,
+  CoachCommand,
+  CoachPrefsPatch,
+  EventPayloads,
+  ExerciseRow,
+  FoodRow,
+  FoodUnit,
+  GroceryItem,
+  GymSlot,
+  HomeDish,
+  LearnedTiming,
+  MealTimes,
+  NextStep,
+  NextStepAction,
+  NotificationPrefs,
+  Nutrition,
+  Permissions,
+  PingEventRow,
+  PlanCommand,
+  PlanDay,
+  PlannedMeal,
+  PlannedSet,
+  Portion,
+  PrepTask,
+  Problem,
+  Profile,
+  ProfilePrefsPatch,
+  ProteinAddon,
+  RebalanceDiff,
+  RecipeIngredient,
+  RecipeRow,
+  ResolvedFood,
+  SafetyFlags,
+  ScheduledPing,
+  SessionPlan,
+  Targets,
+  TemplateSession,
+  TemplateSlot,
+  TemplateSplitSeed,
+  TypedEvent,
+  WeekPlan,
+  WorkoutTemplate,
+} from '@fitg/engine/types';
+import type { WeeklyAdjustResult } from '@fitg/engine';
+import type {
+  AddonPickSchema,
+  BodyGoalPatchSchema,
+  ChangedRowsSchema,
+  CoachCommandSchema,
+  CoachPrefsPatchSchema,
+  EventPayloadSchemas,
+  EventRowSchema,
+  ExerciseRowSchema,
+  FoodRowSchema,
+  FoodUnitSchema,
+  GroceryItemSchema,
+  GymSlotSchema,
+  HomeDishSchema,
+  LearnedTimingSchema,
+  MealTimesSchema,
+  NextStepActionSchema,
+  NextStepSchema,
+  NotificationPrefsSchema,
+  NutritionSchema,
+  PermissionsSchema,
+  PingEventRowSchema,
+  PlanCommandSchema,
+  PlanDaySchema,
+  PlannedMealSchema,
+  PlannedSetSchema,
+  PortionSchema,
+  PrepTaskSchema,
+  ProblemSchema,
+  ProfilePrefsPatchSchema,
+  ProfileSchema,
+  ProteinAddonSchema,
+  RebalanceDiffSchema,
+  RecipeIngredientSchema,
+  RecipeRowSchema,
+  ResolvedFoodSchema,
+  SafetyFlagsSchema,
+  ScheduledPingSchema,
+  SessionPlanSchema,
+  StoredPlanCommandSchema,
+  TargetsSchema,
+  TemplateSessionSchema,
+  TemplateSlotSchema,
+  TemplateSplitSeedSchema,
+  WeekPlanSchema,
+  WeeklyAdjustResultSchema,
+  WorkoutTemplateSchema,
+} from '../src/mod.ts';
+
+/** Exact type identity (stricter than mutual assignability: optional vs required and extra keys both fail). */
+export type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
+export type Expect<T extends true> = T;
+/** Flattens intersections (and distributes over unions) so `A & (B | C)` compares with `(A & B) | (A & C)` objects. */
+type Simplify<T> = T extends unknown ? { [K in keyof T]: T[K] } : never;
+type Out<S extends z.ZodType> = z.output<S>;
+
+export type TypeSync = [
+  // nutrition
+  Expect<Equal<Out<typeof NutritionSchema>, Nutrition>>,
+  Expect<Equal<Out<typeof PortionSchema>, Portion>>,
+  Expect<Equal<Out<typeof AddonPickSchema>, AddonPick>>,
+  // reference rows
+  Expect<Equal<Out<typeof FoodRowSchema>, FoodRow>>,
+  Expect<Equal<Out<typeof FoodUnitSchema>, FoodUnit>>,
+  Expect<Equal<Out<typeof RecipeIngredientSchema>, RecipeIngredient>>,
+  Expect<Equal<Out<typeof RecipeRowSchema>, RecipeRow>>,
+  Expect<Equal<Out<typeof HomeDishSchema>, HomeDish>>,
+  Expect<Equal<Out<typeof ProteinAddonSchema>, ProteinAddon>>,
+  Expect<Equal<Out<typeof ExerciseRowSchema>, ExerciseRow>>,
+  Expect<Equal<Out<typeof TemplateSlotSchema>, TemplateSlot>>,
+  Expect<Equal<Out<typeof TemplateSessionSchema>, TemplateSession>>,
+  Expect<Equal<Out<typeof WorkoutTemplateSchema>, WorkoutTemplate>>,
+  Expect<Equal<Out<typeof TemplateSplitSeedSchema>, TemplateSplitSeed>>,
+  // profile and targets
+  Expect<Equal<Out<typeof GymSlotSchema>, GymSlot>>,
+  Expect<Equal<Out<typeof MealTimesSchema>, MealTimes>>,
+  Expect<Equal<Out<typeof NotificationPrefsSchema>, NotificationPrefs>>,
+  Expect<Equal<Out<typeof LearnedTimingSchema>, LearnedTiming>>,
+  Expect<Equal<Out<typeof SafetyFlagsSchema>, SafetyFlags>>,
+  Expect<Equal<Out<typeof ProfileSchema>, Profile>>,
+  Expect<Equal<Out<typeof TargetsSchema>, Targets>>,
+  Expect<Equal<Out<typeof WeeklyAdjustResultSchema>, WeeklyAdjustResult>>,
+  // plans
+  Expect<Equal<Out<typeof PrepTaskSchema>, PrepTask>>,
+  Expect<Equal<Out<typeof ProblemSchema>, Problem>>,
+  Expect<Equal<Out<typeof PlannedMealSchema>, PlannedMeal>>,
+  Expect<Equal<Out<typeof PlanDaySchema>, PlanDay>>,
+  Expect<Equal<Out<typeof SessionPlanSchema>, SessionPlan>>,
+  Expect<Equal<Out<typeof PlannedSetSchema>, PlannedSet>>,
+  Expect<Equal<Out<typeof WeekPlanSchema>, WeekPlan>>,
+  Expect<Equal<Out<typeof ResolvedFoodSchema>, ResolvedFood>>,
+  Expect<Equal<Out<typeof GroceryItemSchema>, GroceryItem>>,
+  Expect<Equal<Out<typeof RebalanceDiffSchema>, RebalanceDiff>>,
+  Expect<Equal<Out<typeof ChangedRowsSchema>, ChangedRows>>,
+  // pings and state
+  Expect<Equal<Out<typeof ScheduledPingSchema>, ScheduledPing>>,
+  Expect<Equal<Out<typeof PingEventRowSchema>, PingEventRow>>,
+  Expect<Equal<Out<typeof PermissionsSchema>, Permissions>>,
+  Expect<Equal<Out<typeof NextStepActionSchema>, NextStepAction>>,
+  Expect<Equal<Out<typeof NextStepSchema>, NextStep>>,
+  // commands
+  Expect<Equal<Out<typeof PlanCommandSchema>, Simplify<PlanCommand>>>,
+  Expect<Equal<Out<typeof StoredPlanCommandSchema>, Simplify<PlanCommand>>>,
+  Expect<Equal<Out<typeof ProfilePrefsPatchSchema>, ProfilePrefsPatch>>,
+  Expect<Equal<Out<typeof BodyGoalPatchSchema>, BodyGoalPatch>>,
+  Expect<Equal<Out<typeof CoachPrefsPatchSchema>, CoachPrefsPatch>>,
+  Expect<Equal<Out<typeof CoachCommandSchema>, CoachCommand>>,
+  // events
+  Expect<Equal<{ [K in keyof typeof EventPayloadSchemas]: Out<(typeof EventPayloadSchemas)[K]> }, EventPayloads>>,
+  Expect<Equal<Out<typeof EventRowSchema>, TypedEvent>>,
+];
+
+describe('type sync', () => {
+  it('compiles (the assertions above are checked by tsc)', () => {
+    expect(true).toBe(true);
+  });
+});

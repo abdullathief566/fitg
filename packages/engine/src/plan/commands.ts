@@ -115,12 +115,14 @@ function refitFutureDay(state: PlanState, plan: WeekPlan, date: LocalDate, ch: C
   }
 }
 
-/** Rebalances TODAY's remaining meals after a status change or a swap. */
+/**
+ * Rebalances TODAY's remaining meals after a status change or a swap. Runs even when nothing remains: a big off-plan
+ * dinner still has to carry its overflow into tomorrow (engines.md §3.5 step 3).
+ */
 function rebalanceToday(state: PlanState, plan: WeekPlan, date: LocalDate, now: Instant, ch: Changes): void {
   const shape = shapesFor([date], plan.sessions, state.profile, state.profile.tz)[date]!;
   const dayMeals = plan.meals.filter((m) => m.date === date);
   const remaining = remainingMeals(dayMeals, now);
-  if (remaining.length === 0) return;
   const consumed = consumedSoFar(dayMeals, state.logs ?? new Map(), now);
   const day = plan.days.find((d) => d.date === date);
   const r = rebalanceDay({
@@ -155,8 +157,26 @@ function afterMealChange(state: PlanState, plan: WeekPlan, date: LocalDate, ctx:
   else if (date > today) refitFutureDay(state, plan, date, ch);
 }
 
-/** Re-plans the meals of future dates whose gym-day status (or the profile) changed. */
+/** Keeps each day's isGymDay flag in step with the sessions actually on it (today included). */
+function syncGymDayFlags(plan: WeekPlan, dates: Iterable<LocalDate>, ch: Changes): void {
+  for (const date of new Set(dates)) {
+    const day = plan.days.find((d) => d.date === date);
+    if (!day) continue;
+    const isGym = plan.sessions.some((s) => s.date === date && s.status !== 'skipped' && s.status !== 'moved');
+    if (day.isGymDay !== isGym) {
+      day.isGymDay = isGym;
+      ch.days.set(day.id, day);
+    }
+  }
+}
+
+/**
+ * Re-plans the meals of future dates whose gym-day status (or the profile) changed. Rows with actuals (eaten, half,
+ * replaced, skipped, unknown) are never replaced (offline-sync.md §5.4); the re-planned slots cover what's left of
+ * those days, by the same rule as the daily rebalance.
+ */
 function replanMealDates(state: PlanState, plan: WeekPlan, dates: LocalDate[], ctx: CommandContext, ch: Changes): void {
+  syncGymDayFlags(plan, dates, ch);
   const today = localDateOf(ctx.now, ctx.tz);
   const future = [...new Set(dates)].filter((d) => d > today).sort();
   if (future.length === 0) return;
@@ -187,13 +207,30 @@ function replanMealDates(state: PlanState, plan: WeekPlan, dates: LocalDate[], c
     version: plan.version,
   });
   for (const pd of planned.days) {
-    const old = plan.meals.filter((m) => m.date === pd.day.date && m.status === 'planned');
-    const keepIds = new Set(pd.meals.map((m) => m.id));
-    for (const o of old) if (!keepIds.has(o.id)) ch.removedMeals.add(o.id);
-    plan.meals = plan.meals.filter((m) => !(m.date === pd.day.date && m.status === 'planned'));
-    plan.meals.push(...pd.meals);
-    for (const m of pd.meals) ch.meals.set(m.id, m);
-    const day = plan.days.find((d) => d.date === pd.day.date);
+    const date = pd.day.date;
+    const actuals = plan.meals.filter((m) => m.date === date && m.status !== 'planned');
+    const actualSlots = new Set(actuals.map((m) => m.slot));
+    let fresh = pd.meals.filter((m) => !actualSlots.has(m.slot)).map((m) => ({ ...m, version: plan.version }));
+    if (actuals.length > 0 && fresh.length > 0) {
+      const r = rebalanceDay({
+        day: { day: pd.day, shape: pd.shape, meals: [...actuals, ...fresh], totals: pd.totals },
+        consumed: consumedSoFar(actuals, state.logs ?? new Map(), ctx.now),
+        remaining: fresh,
+        targets: { kcal: state.targets.kcal, proteinG: state.targets.proteinG },
+        addons: eligibleAddons(state.lib.addons, state.profile.diet, state.pantry),
+        foods: state.lib.foods,
+        now: ctx.now,
+        lib: state.lib.recipes,
+      });
+      fresh = r.remaining;
+    }
+    const old = plan.meals.filter((m) => m.date === date && m.status === 'planned');
+    const freshIds = new Set(fresh.map((m) => m.id));
+    for (const o of old) if (!freshIds.has(o.id)) ch.removedMeals.add(o.id);
+    plan.meals = plan.meals.filter((m) => !(m.date === date && m.status === 'planned'));
+    plan.meals.push(...fresh);
+    for (const m of fresh) ch.meals.set(m.id, m);
+    const day = plan.days.find((d) => d.date === date);
     if (day) {
       day.isGymDay = pd.day.isGymDay;
       day.ok = pd.day.ok;
@@ -210,6 +247,26 @@ function replanMealDates(state: PlanState, plan: WeekPlan, dates: LocalDate[], c
       ch.days.set(day.id, day);
     }
   }
+}
+
+/**
+ * A replan (reshuffle, moved gym day, new prefs) bumps the plan version, and every row it rewrote carries the new
+ * version (offline-sync.md §5.4) — so a command queued against the old rows comes back `stale`.
+ */
+function bumpPlanVersion(plan: WeekPlan, ch: Changes): void {
+  plan.version += 1;
+  for (const s of ch.sessions.values()) s.version = plan.version;
+  for (const m of ch.meals.values()) m.version = plan.version;
+}
+
+/**
+ * "Midnight with no start → skipped → reshuffle" (signals-and-pings.md §2) happens through commands: at the first app
+ * open of a new day (and on the server's nightly run) a SkipSession is sent for each of these.
+ */
+export function missedSessions(plan: WeekPlan, today: LocalDate): SessionPlan[] {
+  return plan.sessions
+    .filter((s) => s.date < today && PLANNABLE_SESSION.has(s.status))
+    .sort((a, b) => (a.date < b.date ? -1 : 1));
 }
 
 function lastCompleted(plan: WeekPlan, before: LocalDate): SessionPlan | undefined {
@@ -325,12 +382,13 @@ export function applyCommand(state: PlanState, cmd: PlanCommand, ctx: CommandCon
       if (dishes.length === 0 || dishes.some((d) => !d)) return reject('invalid_value');
       const shape = shapesFor([meal.date], plan.sessions, state.profile, state.profile.tz)[meal.date]!;
       const slot = shape.slots.find((s) => s.slot === meal.slot);
+      const share = slot?.kcalShare ?? 0.3;
+      // Home Food gets "portions + a protein add-on" (PRD §6.5): a slot without its own minimum aims for its share
+      // of the day's protein at the same 95% bar the day uses.
+      const proteinMinG = slot?.proteinMinG ?? 0.95 * share * state.targets.proteinG;
       const r = portionHomeMeal({
         dishes: dishes as NonNullable<(typeof dishes)[number]>[],
-        slotTarget: {
-          kcal: state.targets.kcal * (slot?.kcalShare ?? 0.3),
-          ...(slot?.proteinMinG !== undefined ? { proteinMinG: slot.proteinMinG } : {}),
-        },
+        slotTarget: { kcal: state.targets.kcal * share, proteinMinG },
         addons: eligibleAddons(state.lib.addons, state.profile.diet, state.pantry),
         pantry: state.pantry,
         lib: state.lib.recipes,
@@ -425,6 +483,7 @@ export function applyCommand(state: PlanState, cmd: PlanCommand, ctx: CommandCon
       session.status = 'planned';
       ch.sessions.set(session.id, session);
       replanMealDates(state, plan, [from, cmd.toDate], ctx, ch);
+      bumpPlanVersion(plan, ch);
       return done();
     }
 
@@ -461,28 +520,36 @@ export function applyCommand(state: PlanState, cmd: PlanCommand, ctx: CommandCon
       }
       // Skip (or "later" past bedtime → moved): the week reshuffles; sessions never stack.
       session.status = cmd.kind === 'SkipSession' ? 'skipped' : 'moved';
-      const before = new Map(plan.sessions.map((s) => [s.id, s.date]));
+      const before = new Map(plan.sessions.map((s) => [s.id, { date: s.date, status: s.status }]));
+      // The rest-day gap counts from the last session done — or from today's session if it's still on (a session
+      // skipped in advance mustn't pull the next one into tomorrow, back to back with today's).
       const last = lastCompleted(plan, today);
+      const todayOn = plan.sessions.some(
+        (s) => s.id !== session.id && s.date === today && !['skipped', 'moved', 'abandoned'].includes(s.status),
+      );
+      const anchor = todayOn ? today : last?.date;
       const r = reshuffle({
         week: plan.sessions,
         missedSessionId: session.id,
         today,
         availableDays: state.profile.availableDays,
         gymSchedule: state.profile.gymSchedule,
-        ...(last ? { lastCompletedDay: last.date } : {}),
+        ...(anchor ? { lastCompletedDay: anchor } : {}),
         tz: ctx.tz,
       });
       plan.sessions = r.week;
       const affected: LocalDate[] = [];
       for (const s of r.week) {
         const was = before.get(s.id);
-        if (was !== s.date || s.id === session.id) {
+        // A dropped session keeps its date but becomes skipped: it must be reported too.
+        if (!was || was.date !== s.date || was.status !== s.status || s.id === session.id) {
           ch.sessions.set(s.id, s);
-          if (was) affected.push(was);
+          if (was) affected.push(was.date);
           affected.push(s.date);
         }
       }
       replanMealDates(state, plan, affected, ctx, ch);
+      bumpPlanVersion(plan, ch);
       const result = done();
       if (r.note) result.note = r.note;
       return result;
@@ -535,6 +602,7 @@ export function applyCommand(state: PlanState, cmd: PlanCommand, ctx: CommandCon
         patch.budgetTier !== undefined;
       if (mealsChanged) for (let i = 0; i < 7; i++) affected.add(addDays(plan.weekStart, i));
       replanMealDates(next, plan, [...affected], ctx, ch);
+      if (ch.sessions.size > 0 || ch.meals.size > 0 || ch.removedMeals.size > 0) bumpPlanVersion(plan, ch);
       return { state: { ...next, plan }, changed: ch.rows() };
     }
   }

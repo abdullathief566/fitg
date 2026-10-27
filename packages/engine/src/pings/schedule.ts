@@ -254,9 +254,19 @@ function mealFor(meals: readonly PlannedMeal[], date: LocalDate, slot: Slot): Pl
 export function buildPingSchedule(p: BuildPingScheduleInput): ScheduledPing[] {
   const today = localDateOf(p.now, p.tz);
   const days = new Map<LocalDate, PlanDay>(p.plan.days.map((d) => [d.date, d]));
+  // Today's truth is the UserState (events replayed over the plan): a session started or finished, or a meal tapped,
+  // changes today's pings even before any plan row is rewritten.
+  const live = p.state.day.date === today;
+  const liveStatus = (s: SessionPlan): SessionPlan['status'] =>
+    live && p.state.day.sessionId === s.id ? p.state.workout.status : s.status;
+  const liveMeals = new Map(live ? p.state.meals.map((m) => [m.itemId, m.status]) : []);
   const sessionsByDate = new Map<LocalDate, SessionPlan>();
-  for (const s of p.plan.sessions) if (s.status !== 'skipped') sessionsByDate.set(s.date, s);
-  const meals = p.plan.meals;
+  for (const s of p.plan.sessions)
+    if (s.status !== 'skipped') sessionsByDate.set(s.date, { ...s, status: liveStatus(s) });
+  const meals = p.plan.meals.map((m) => {
+    const st = liveMeals.get(m.id);
+    return st && st !== m.status ? { ...m, status: st } : m;
+  });
   const eatingMode = p.eatingMode ?? 'cook';
   const proteinMin = postWorkoutProteinMin(p.weightKg);
   const sleepMin = minutesOf(p.sleep);
@@ -399,12 +409,10 @@ export function buildPingSchedule(p: BuildPingScheduleInput): ScheduledPing[] {
     if (msOf(c.about) > msOf(moved)) afterQuiet.push({ ...c, fireAt: moved, fireDate: localDateOf(moved, p.tz) });
   }
 
-  // 5. Never in the past.
-  const future = afterQuiet.filter((c) => msOf(c.fireAt) > msOf(p.now));
-
-  // 3. Gap merge, then 1–2. cap by priority, per local fire day.
+  // 3. Gap merge per local fire day — over ALL candidates, past ones included, so a ping that already fired still
+  // absorbs a lower-priority one < 20 min after it (rescheduling at 20:31 must not resurrect a merged 20:40 ping).
   const byDay = new Map<LocalDate, Candidate[]>();
-  for (const c of future) byDay.set(c.fireDate, [...(byDay.get(c.fireDate) ?? []), c]);
+  for (const c of afterQuiet) byDay.set(c.fireDate, [...(byDay.get(c.fireDate) ?? []), c]);
   const kept: Candidate[] = [];
   for (const [date, list] of byDay) {
     const sorted = [...list].sort((a, b) => PING_PRIORITY[a.type] - PING_PRIORITY[b.type]);
@@ -420,9 +428,11 @@ export function buildPingSchedule(p: BuildPingScheduleInput): ScheduledPing[] {
       }
       dayKept.push(c);
     }
+    // 5. Never in the past. 1–2. Cap by priority: today, what already sounded (UserState) counts.
+    const upcoming = dayKept.filter((c) => msOf(c.fireAt) > msOf(p.now));
     const allowed =
       date === today ? Math.max(0, MAX_SOUNDING_PER_DAY - p.state.pings.soundsToday) : MAX_SOUNDING_PER_DAY;
-    kept.push(...dayKept.slice(0, allowed));
+    kept.push(...upcoming.slice(0, allowed));
   }
   kept.sort((a, b) => msOf(a.fireAt) - msOf(b.fireAt));
 

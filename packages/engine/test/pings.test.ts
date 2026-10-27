@@ -7,11 +7,13 @@ import {
   localTimeOf,
   NOTIFICATION_CATEGORIES,
   PING_TYPES,
+  prepTasks,
   type CopyTemplate,
   type PingEventRow,
   type ScheduledPing,
   type SessionPlan,
 } from '../src/mod.ts';
+import { loadLib } from './helpers/lib.ts';
 import { at, buildWeek, scheduleAt } from './helpers/plan.ts';
 import { TZ } from './helpers/t1.ts';
 
@@ -138,6 +140,22 @@ describe('P3 — learnTiming', () => {
     expect(localTimeOf(pre[0]!.fireAt, TZ)).toBe('18:40');
     const lateTexts = pre.filter((p) => p.body.includes('7:40 PM') || p.body.includes('6:40 PM'));
     expect(lateTexts.length).toBeLessThanOrEqual(1);
+  });
+});
+
+describe('prep tasks ride on the night-before ping', () => {
+  it('rajma for Sunday dinner → "Soak the rajma tonight." in Saturday\'s night-before ping', () => {
+    const SAT = '2026-11-07';
+    const SUN = '2026-11-08';
+    const week = buildWeek();
+    week.plan.meals = week.plan.meals.map((m) =>
+      m.date === SUN && m.slot === 'dinner' ? { ...m, recipeSlug: 'rajma-rice-meal' } : m,
+    );
+    const tasks = prepTasks(week.plan.meals, loadLib().recipes, week.profile.notificationPrefs, TZ);
+    week.plan.days = week.plan.days.map((d) => ({ ...d, prepTasks: tasks.filter((t) => t.forDate === d.date) }));
+    const nb = scheduleAt(week, at(SAT, '08:00')).find((p) => p.type === 'night_before' && p.data.fireDate === SAT)!;
+    expect(nb.data.aboutDate).toBe(SUN);
+    expect(nb.body).toContain('Soak the rajma tonight.');
   });
 });
 

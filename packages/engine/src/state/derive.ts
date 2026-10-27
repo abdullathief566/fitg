@@ -141,12 +141,22 @@ function replaySession(
 
   if (!isTerminal(session.status)) {
     const { timeline } = sessionTimeline(session, events, schedule, now, tz);
+    // When 'ready' began (geofence arrival): ready also times out after 3 h (signals-and-pings.md §2).
+    let readyAt: Instant | undefined;
+    const timeoutAt = (): number | null => {
+      const since = status === 'in_progress' ? startedAt : status === 'ready' ? readyAt : undefined;
+      return since ? msOf(since) + SESSION_TIMEOUT_MIN * 60_000 : null;
+    };
+    const applyTimeout = (atMs: number): void => {
+      const due = timeoutAt();
+      if (due === null || due > atMs) return;
+      const wasActive = status === 'in_progress';
+      status = transition(status, { type: 'timeout_3h' }, ctxOf(doneKeys.size, new Date(due).toISOString()));
+      if (wasActive && startedAt) endedAt = addMinutes(startedAt, SESSION_TIMEOUT_MIN);
+    };
     // Replay; timeouts are checked between events.
     for (const t of timeline) {
-      if (status === 'in_progress' && startedAt && msOf(startedAt) + SESSION_TIMEOUT_MIN * 60_000 <= t.at) {
-        status = transition(status, { type: 'timeout_3h' }, ctxOf(doneKeys.size));
-        endedAt = addMinutes(startedAt, SESSION_TIMEOUT_MIN);
-      }
+      applyTimeout(t.at);
       const atIso = new Date(t.at).toISOString();
       const before = status;
       if (t.event.type === 'set_done' && t.setKey) doneKeys.add(t.setKey);
@@ -162,12 +172,10 @@ function replaySession(
         startedAt = atIso;
         if (t.event.type === 'start') startSource = t.event.source;
       }
+      if (before !== 'ready' && status === 'ready') readyAt = atIso;
       if (before === 'in_progress' && status !== 'in_progress') endedAt = atIso;
     }
-    if (status === 'in_progress' && startedAt && msOf(startedAt) + SESSION_TIMEOUT_MIN * 60_000 <= nowMs) {
-      status = transition(status, { type: 'timeout_3h' }, ctxOf(doneKeys.size));
-      endedAt = addMinutes(startedAt, SESSION_TIMEOUT_MIN);
-    }
+    applyTimeout(nowMs);
   }
 
   function ctxOf(done: number, at: Instant = now) {
@@ -303,7 +311,8 @@ export function deriveUserState(p: {
   }
   if (unanswered) pings.unansweredMealItemId = unanswered.id;
 
-  const dayInfo: UserState['day'] = { date: today, isGymDay: day?.isGymDay ?? !!session };
+  // A day with a session on it is a gym day, whatever the stored flag says (a session can be moved onto today).
+  const dayInfo: UserState['day'] = { date: today, isGymDay: !!session || (day?.isGymDay ?? false) };
   if (session) dayInfo.sessionId = session.id;
 
   const state: UserState = {

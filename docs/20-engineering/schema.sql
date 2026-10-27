@@ -358,7 +358,7 @@ create table food_logs (
   raw_input        text,
   photo_path       text,                         -- storage path meal-photos/<user_id>/<uuid>.jpg
   parsed           jsonb,                        -- AI output (names/units/qty/oil level only)
-  items            jsonb not null default '[]',  -- [{food_id, grams, nutrition}] computed by code
+  items            jsonb not null default '[]',  -- [{kind: food|recipe|home_dish|generic, key, name, grams, unit, qty, label, nutrition}] computed by code
   nutrition        jsonb,                        -- totals computed by code
   confidence       numeric(3,2),
   status           text not null default 'parsed' check (status in ('pending','parsed','confirmed')),  -- pending = logged offline, not parsed yet
@@ -380,7 +380,7 @@ create table meal_items (
   recipe_id          uuid references recipes(id),
   home_dish_ids      uuid[],                      -- Home Food mode picks (family-cooked)
   multiplier         numeric(4,2) not null default 1,
-  portions           jsonb not null default '[]', -- [{food_id, grams, unit, qty, label}]
+  portions           jsonb not null default '[]', -- [{food_id | home_dish_id | recipe_id (exactly one), grams, unit, qty, label}]
   addons             jsonb not null default '[]', -- [{addon_key, qty}]
   nutrition          jsonb not null,              -- {kcal, protein_g, carbs_g, fat_g} computed by code
   status             meal_status_t not null default 'planned',

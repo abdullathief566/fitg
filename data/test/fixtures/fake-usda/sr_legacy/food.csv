@@ -1,0 +1,8 @@
+"fdc_id","data_type","description","food_category_id","publication_date","note"
+"900001","sr_legacy_food","Egg, whole, raw, fresh","1","2019-04-01","FAKE TEST ROW - not USDA data"
+"900002","sr_legacy_food","Egg, whole, cooked, hard-boiled","1","2019-04-01","FAKE TEST ROW - not USDA data"
+"900003","sr_legacy_food","Egg, white, raw, fresh","1","2019-04-01","FAKE TEST ROW - not USDA data"
+"900004","sr_legacy_food","Rice, white, long-grain, regular, raw, enriched","20","2019-04-01","FAKE TEST ROW - not USDA data"
+"900005","sr_legacy_food","Rice, brown, long-grain, raw","20","2019-04-01","FAKE TEST ROW - not USDA data"
+"900006","sr_legacy_food","Oil, sunflower, linoleic (less than 60%)","4","2019-04-01","FAKE TEST ROW - not USDA data"
+"900007","sr_legacy_food","Cheese, ""fake"" brand, with a comma","1","2019-04-01","FAKE TEST ROW - not USDA data"

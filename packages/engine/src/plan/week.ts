@@ -9,6 +9,7 @@ import type {
   PlanDay,
   PlannedMeal,
   PlannedSet,
+  PrepTask,
   Problem,
   SessionPlan,
   WeekPlan,
@@ -94,6 +95,11 @@ export interface PlanWeekResult {
   problems: Problem[];
   notes: string[];
   usedAi: boolean;
+  /**
+   * Prep tasks announced BEFORE this week (e.g. soak rajma on Sunday for Monday's dinner). The caller attaches them to
+   * the previous week's day with that date, or they would never be announced.
+   */
+  earlierPrepTasks: PrepTask[];
 }
 
 export function planWeek(p: PlanWeekInput): PlanWeekResult {
@@ -183,9 +189,11 @@ export function planWeek(p: PlanWeekInput): PlanWeekResult {
 
   const meals: PlannedMeal[] = planned.days.flatMap((d) => d.meals);
   const days: PlanDay[] = planned.days.map((d) => d.day);
+  const earlierPrepTasks: PrepTask[] = [];
   for (const task of prepTasks(meals, p.lib.recipes, p.profile.notificationPrefs, tz)) {
     const day = days.find((d) => d.date === task.forDate);
     if (day) day.prepTasks.push(task);
+    else earlierPrepTasks.push(task);
   }
 
   const plan: WeekPlan = {
@@ -199,5 +207,5 @@ export function planWeek(p: PlanWeekInput): PlanWeekResult {
     meals,
   };
   if (p.note) plan.note = p.note;
-  return { plan, problems, notes, usedAi };
+  return { plan, problems, notes, usedAi, earlierPrepTasks };
 }

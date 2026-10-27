@@ -33,14 +33,17 @@ export function reshuffle(p: {
   const missed = p.week.find((s) => s.id === p.missedSessionId);
   if (!missed) return { week: p.week, note: '' };
 
-  const later = p.week
-    .filter((s) => s.id !== missed.id && s.status === 'planned' && s.date > p.today)
-    .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
-  const remaining = [missed, ...later];
+  const byDate = (a: SessionPlan, b: SessionPlan): number => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
+  const later = p.week.filter((s) => s.id !== missed.id && s.status === 'planned' && s.date > p.today).sort(byDate);
+  // A session skipped IN ADVANCE (dated after today) keeps its place in the A/B order, and its own day is off the
+  // table — otherwise "skip Friday" on a Monday would pull Friday's session ahead of Wednesday's.
+  const skippedAhead = missed.date > p.today;
+  const remaining = skippedAhead ? [...later, missed].sort(byDate) : [missed, ...later];
 
   const sunday = addDays(weekStartOf(p.today), 6);
   const candidates: LocalDate[] = [];
   for (let d = addDays(p.today, 1); d <= sunday; d = addDays(d, 1)) {
+    if (skippedAhead && d === missed.date) continue;
     if (p.availableDays.includes(weekdayOf(d))) candidates.push(d);
   }
 

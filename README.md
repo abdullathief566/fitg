@@ -1,4 +1,29 @@
-# FitG build pack
+# FitG
+
+**Status (2026-10-28):** Phase 1 is built — the engine, contracts, mock AI and seed pipeline, proven by 381 tests.
+Report: `docs/30-build/phase-1-report.md`. Next: Phase 2 (paste the Phase 2 prompt from `PHASE-PROMPTS.md` into
+Codex, running locally on the Mac).
+
+## Develop
+```
+npm install
+npm test                          # every package (CI runs with AI_PROVIDER=mock)
+npm run typecheck
+npm run lint
+npm run data:build -- --sample    # seed SQL + phone bundle into data/out/sample/
+```
+
+| Package | What |
+|---|---|
+| `packages/engine` | Pure TypeScript: targets, workouts, meals, pings, state, commands, validators. Every number comes from here. |
+| `packages/contracts` | Zod schemas: database rows, API bodies, commands, events, AI outputs, seed files; row ↔ engine mappers. |
+| `packages/ai` | Provider (mock now, Claude in Phase 5), prompts, context builder, the AI output checks, prices. |
+| `data/` | Seed files, `build-seed.ts`, `import-usda.ts`, `import-exercises.ts`. |
+| `fixtures/ai/` | Mock AI outputs, valid and deliberately bad. |
+
+---
+
+# The build pack
 
 Everything Codex needs to build FitG, written 2026-10-27.
 

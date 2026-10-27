@@ -206,10 +206,19 @@ export function nextStep(s: UserState, plan: WeekPlan, now: Instant, ctx: NextSt
     .sort((x, y) => msOf(x.plannedAt) - msOf(y.plannedAt))[0];
   if (due) return mealCard(due, ctx);
 
-  // 6.
+  // 6. A prep task is the next step when it's due before the next meal — or once today's meals are done
+  // ("Soak the rajma tonight" shows up in the evening, not instead of lunch).
   const done = new Set(ctx.doneTaskKeys ?? []);
   const day = plan.days.find((d) => d.date === today);
-  const task = (day?.prepTasks ?? []).find((t) => !done.has(`${t.forDate}:${t.recipeSlug}`) && msOf(t.at) > nowMs);
+  const nextMeal = todayMeals
+    .filter((m) => open(m) && m.plannedAt && msOf(m.plannedAt) > nowMs)
+    .sort((x, y) => msOf(x.plannedAt) - msOf(y.plannedAt))[0];
+  const task = (day?.prepTasks ?? []).find(
+    (t) =>
+      !done.has(`${t.forDate}:${t.recipeSlug}`) &&
+      msOf(t.at) > nowMs &&
+      (!nextMeal || msOf(t.at) < msOf(nextMeal.plannedAt)),
+  );
   if (task) {
     return {
       kind: 'prep',

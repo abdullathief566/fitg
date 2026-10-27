@@ -160,11 +160,15 @@ export function toInstant(date: LocalDate, time: LocalTime, tz: string): Instant
   const { y, m, d } = parseLocalDate(date);
   const min = minutesOf(time);
   const guess = Date.UTC(y, m - 1, d, Math.floor(min / 60), min % 60);
-  const off1 = tzOffsetMs(guess, tz);
-  let ts = guess - off1;
-  const off2 = tzOffsetMs(ts, tz);
-  if (off2 !== off1) ts = guess - off2;
-  return instantOf(ts);
+  // The zone's offsets around that day (two values only when a clock change is near).
+  const offsets = [...new Set([tzOffsetMs(guess - DAY_MS, tz), tzOffsetMs(guess, tz), tzOffsetMs(guess + DAY_MS, tz)])];
+  const candidates = offsets.map((o) => guess - o).sort((a, b) => a - b);
+  const exact = candidates.filter((ts) => {
+    const p = zonedParts(ts, tz);
+    return p.year === y && p.month === m && p.day === d && p.hour * 60 + p.minute === min;
+  });
+  // Overlap (clocks go back): the first occurrence. Gap (clocks go forward): the later candidate, i.e. pushed forward.
+  return instantOf(exact[0] ?? candidates[candidates.length - 1]!);
 }
 
 /** Local date + minutes since that date's midnight (may exceed 1440 or be negative). */

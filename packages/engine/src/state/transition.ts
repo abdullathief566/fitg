@@ -21,7 +21,13 @@ export interface TransitionContext {
  * Would a session starting at `start` begin at or after bedtime on its day? Bedtimes after midnight count as the
  * next day (`wake` decides; without it, a bedtime before 05:00 is taken to be after midnight).
  */
-export function isAtOrPastBedtime(start: Instant, day: LocalDate, sleep: LocalTime, tz: string, wake?: LocalTime): boolean {
+export function isAtOrPastBedtime(
+  start: Instant,
+  day: LocalDate,
+  sleep: LocalTime,
+  tz: string,
+  wake?: LocalTime,
+): boolean {
   const s = minutesOf(sleep);
   const afterMidnight = wake !== undefined ? s < minutesOf(wake) : s < 300;
   const sleepAbs = afterMidnight ? s + 1440 : s;
