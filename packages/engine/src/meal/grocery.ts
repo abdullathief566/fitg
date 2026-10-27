@@ -3,6 +3,7 @@ import type { LocalDate } from '../types/enums.ts';
 import type { NotificationPrefs } from '../types/profile.ts';
 import type { GroceryItem, PlannedMeal, PrepTask } from '../types/plan.ts';
 import type { FoodIndex, ProteinAddon, RecipeIndex } from '../types/reference.ts';
+import { ingredientAmount } from '../nutrition/nutrition.ts';
 import { ceilTo } from '../util/round.ts';
 import { addDays, addMinutes, localDateOf, minutesBetween, toInstant } from '../util/time.ts';
 
@@ -27,7 +28,7 @@ export function groceryList(
   for (const m of meals) {
     if (m.status === 'skipped') continue;
     const recipe = m.kind === 'recipe' && m.recipeSlug ? lib.get(m.recipeSlug) : undefined;
-    if (recipe) for (const ing of recipe.ingredients) add(ing.foodKey, ing.grams * (ing.scalable ? m.multiplier : 1));
+    if (recipe) for (const ing of recipe.ingredients) add(ing.foodKey, ingredientAmount(ing, m.multiplier).grams);
     for (const pick of m.addons) {
       const a = addons.find((x) => x.key === pick.addonKey);
       if (a) add(a.foodKey, a.gramsPerUnit * pick.qty);

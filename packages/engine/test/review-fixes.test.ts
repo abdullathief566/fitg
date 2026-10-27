@@ -9,6 +9,7 @@ import {
   prepTasks,
   shapesFor,
   toInstant,
+  transition,
   weekDates,
   type EventRow,
   type PlanCommand,
@@ -128,13 +129,44 @@ describe('#5 a merge holds after the ping it was merged into has fired', () => {
 });
 
 describe('#6 "ready" times out after 3 hours', () => {
-  it('arrived at the gym 18:20, never tapped Start → abandoned by 21:25; Today moves on', () => {
+  // Q3 (2026-10-27): falling out of 'ready' without a Start returns the session to reminded, not abandoned, so it can
+  // still be started that day, and midnight turns it into a skip that reshuffles the week.
+  it('arrived at the gym 18:20, never tapped Start → back to reminded by 21:25; Today moves on', () => {
     const week = buildWeek();
+    const morning = scheduleAt(week, at(MON, '08:00')); // has the 18:15 pre-gym ping
     const events = [ev('geofence_enter', at(MON, '18:20'), { placeId: 'gym', kind: 'gym' })];
-    expect(stateAt(week, at(MON, '18:30'), events).workout.status).toBe('ready');
-    const later = stateAt(week, at(MON, '21:25'), events);
-    expect(later.workout.status).toBe('abandoned');
+    expect(stateAt(week, at(MON, '18:30'), events, morning).workout.status).toBe('ready');
+    const later = stateAt(week, at(MON, '21:25'), events, morning);
+    expect(later.workout.status).toBe('reminded');
     expect(later.nextStep.kind).not.toBe('workout');
+  });
+
+  it('drove past the gym (enter 18:20, exit 18:22) → reminded after the 5-min debounce, and Start still works', () => {
+    const week = buildWeek();
+    const passBy = [
+      ev('geofence_enter', at(MON, '18:20'), { placeId: 'gym', kind: 'gym' }),
+      ev('geofence_exit', at(MON, '18:22'), { placeId: 'gym', kind: 'gym' }),
+    ];
+    const morning = scheduleAt(week, at(MON, '08:00'));
+    expect(stateAt(week, at(MON, '18:25'), passBy, morning).workout.status).toBe('ready');
+    expect(stateAt(week, at(MON, '18:28'), passBy, morning).workout.status).toBe('reminded');
+    const session = week.plan.sessions.find((x) => x.date === MON)!;
+    const started = [...passBy, ev('session_started', at(MON, '18:40'), { sessionId: session.id, source: 'manual' })];
+    expect(stateAt(week, at(MON, '18:45'), started, morning).workout.status).toBe('in_progress');
+  });
+
+  it('a drive-by before the pre-gym ping goes back to planned', () => {
+    const ctx = {
+      setsDone: 0,
+      setsPlanned: 15,
+      now: at(MON, '17:00'),
+      plannedStart: at(MON, '18:30'),
+      sleep: '23:00',
+      tz: TZ,
+    };
+    expect(transition('ready', { type: 'geofence_exit_confirmed' }, ctx)).toBe('planned');
+    expect(transition('ready', { type: 'timeout_3h' }, { ...ctx, reminded: true })).toBe('reminded');
+    expect(transition('in_progress', { type: 'timeout_3h' }, ctx)).toBe('abandoned');
   });
 });
 

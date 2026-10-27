@@ -150,7 +150,7 @@ export function toHousehold(units: FoodUnit[], food: FoodRow, grams: number): { 
 export function recipeNutrition(recipe: RecipeRow, foods: FoodIndex, multiplier: number): Nutrition;
 // scalable ingredients × multiplier; non-scalable fixed; oil is an ingredient (1 tsp = 4.5 g)
 ```
-Reference units (seeded in `food_units`): katori = 150 g cooked (raw-food units store **raw** grams: rice 50 g, dal 60 g); roti = 30 g atta; tsp oil/ghee = 4.5 g; tbsp = 13.5 g; cup = 240 ml; egg = 50 g; scoop = 30 g. Labels follow `types.md` §3 (rounded qty, cooked grams for foods with a yield factor); nutrition uses exact grams.
+Reference units (seeded in `food_units`): katori = 150 g cooked (raw-food units store **raw** grams: rice 50 g, dal 60 g); roti = 30 g atta; tsp oil/ghee = 4.5 g; tbsp = 13.5 g; cup = 240 ml; egg = 50 g; scoop = 30 g. Labels follow `types.md` §3 (rounded qty, cooked grams for foods with a yield factor); nutrition uses exact grams. **Rotis and eggs scale in whole units** (decided 2026-10-27): a scalable `roti` or `egg` ingredient takes `max(1, round(qty × multiplier))` pieces and its grams follow (`ingredientAmount` in `nutrition.ts`), so the label and the math always count the same rotis.
 
 ### 3.2 Day shape
 ```ts

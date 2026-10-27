@@ -49,7 +49,7 @@ export function nextStep(s: UserState, plan: WeekPlan, now: Instant): NextStep;
 
 ```ts
 export function transition(s: SessionStatus, e: SessionEvent, ctx: { setsDone: number; setsPlanned: number; now: Instant;
-  startedAt?: Instant; plannedStart: Instant; sleep: LocalTime; tz: string }): SessionStatus;
+  startedAt?: Instant; plannedStart: Instant; sleep: LocalTime; tz: string; reminded?: boolean }): SessionStatus;
 ```
 
 | From | Event (`SessionEvent`) | To |
@@ -59,7 +59,8 @@ export function transition(s: SessionStatus, e: SessionEvent, ctx: { setsDone: n
 | planned / reminded / ready | `start` (ping action, app button, lock screen) | in_progress |
 | in_progress | all sets done, or `finish` with 100% | finished |
 | in_progress | `finish` with < 100%, or `geofence_exit_confirmed` (after the 5-min debounce) with ≥ 1 set, or `timeout_3h` with ≥ 1 set | partial |
-| in_progress / ready | `timeout_3h` or `geofence_exit_confirmed` with 0 sets | abandoned |
+| in_progress | `timeout_3h` or `geofence_exit_confirmed` with 0 sets | abandoned |
+| ready | `timeout_3h` or `geofence_exit_confirmed` (arrived, never tapped Start: drove past, or the gym is next door) | back to reminded if the pre-gym time has passed (`ctx.reminded`), else planned; the "Ready?" notification is withdrawn. The session can still be started that day; midnight turns it into a skip that reshuffles (decided 2026-10-27) |
 | planned / reminded / ready | `skip`, or `midnight` with no start | skipped → `reshuffle` (engines.md §2.3) |
 | planned / reminded | `later` when `laterCount ≥ 2` and the new time would pass `sleep` | moved → `reshuffle` |
 
@@ -149,6 +150,7 @@ interface GymActivityState { sessionId: string; sessionName: string; exerciseNam
 - Handler runs headless: open SQLite → `deriveUserState` →
   - **enter gym** with a session planned within −2 h…+3 h and status not in {in_progress, finished, partial}: write `geofence_enter`; show the **"Ready?" notification** — id `ready:<sessionId>`, category `ready`, **silent** (`interruption: 'passive'`, no sound), so it doesn't count toward the 4-a-day cap and isn't time-sensitive. It sits on the lock screen with a Start button: "Ready? Full body A. First up: leg press 3×10 at 40 kg."
   - **exit gym** while `in_progress`: debounce 5 min (ignore if re-entered); then `geofence_exit_confirmed` → partial/finished + immediate post-gym ping.
+  - **exit gym** while `ready` (never tapped Start): same debounce; then back to reminded/planned (§2) and cancel `ready:<sessionId>`. No ping.
   - **enter home** within 3 h after a finished session with no post-workout meal status: update state only (the post-gym ping already fired).
 - Permissions: `NSLocationAlwaysAndWhenInUseUsageDescription`, `UIBackgroundModes: [location]`; Android `ACCESS_BACKGROUND_LOCATION` (Google Play background-location declaration and a prominent-disclosure screen before the system prompt — budget time for review). **Without permission nothing changes except the Start button** (product law #6).
 

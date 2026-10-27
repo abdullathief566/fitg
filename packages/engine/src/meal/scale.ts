@@ -5,6 +5,7 @@ import type { AddonPick, Nutrition, Portion } from '../types/nutrition.ts';
 import type { DayShape, PlannedMeal } from '../types/plan.ts';
 import type { FoodIndex, ProteinAddon, RecipeRow } from '../types/reference.ts';
 import {
+  ingredientAmount,
   addNutrition,
   foodOf,
   nutritionForGrams,
@@ -170,9 +171,7 @@ function evaluate(items: readonly FitItem[], target: { kcal: number; proteinG: n
 /** Portions for a recipe at a multiplier: exact grams, rounded household quantity on the label. Oil is always listed. */
 export function recipePortions(recipe: RecipeRow, foods: FoodIndex, multiplier: number): Portion[] {
   return recipe.ingredients.map((ing) => {
-    const k = ing.scalable ? multiplier : 1;
-    const grams = ing.grams * k;
-    const qty = ing.qty * k;
+    const { grams, qty } = ingredientAmount(ing, multiplier);
     return {
       foodKey: ing.foodKey,
       grams,

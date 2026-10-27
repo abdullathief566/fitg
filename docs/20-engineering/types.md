@@ -59,7 +59,7 @@ export interface Nutrition { kcal: number; proteinG: number; carbsG: number; fat
 export interface Portion { foodKey: string; grams: number; unit: Unit; qty: number; label: string }   // grams exact; qty rounded for the label
 export interface AddonPick { addonKey: string; qty: number }
 ```
-Labels: quantity snapped to 0.5 (min 0.5; rotis and eggs whole), rendered "1½ katori"; for foods with `yieldFactor ≠ 1` the label shows **cooked** grams (`raw × yieldFactor`), e.g. "1 katori rice (150 g)". Nutrition always uses the exact raw grams.
+Labels: quantity snapped to 0.5 (min 0.5; rotis and eggs whole), rendered "1½ katori"; for foods with `yieldFactor ≠ 1` the label shows **cooked** grams (`raw × yieldFactor`), e.g. "1 katori rice (150 g)". Nutrition always uses the exact raw grams, except rotis and eggs, which scale in whole units in the math too (`engines.md` §3.1), so "2 rotis" always means 2 rotis.
 
 ## 4. Profile and targets
 ```ts
@@ -196,4 +196,4 @@ export type RejectReason = 'not_found'|'stale'|'not_planned'|'invalid_status'|'i
 export function applyCommand(state: PlanState, cmd: PlanCommand, ctx: { now: Instant; tz: string }):
   { state: PlanState; changed: ChangedRows; reject?: RejectReason };
 ```
-Rejection rules: `basePlanVersion` ≠ the active plan's version **and** the target row was replaced by the newer version → `stale`. Plan edits (`SwapMeal`, `SetHomeMeal`, `SwapExercise`, `MoveSession`, `SetSessionTime`, `SkipSession`, `LaterSession`) need the target `planned` → else `not_planned`. `SetMealStatus` / `SetEatOutPick` need `planned|unknown` (a meal can be confirmed later the same day). `SetSessionFeedback` needs `finished|partial`. Missing target → `not_found`. Out-of-range values → `invalid_value`.
+Rejection rules: `basePlanVersion` ≠ the active plan's version **and** the target row was replaced by the newer version → `stale`. Plan edits (`SwapMeal`, `SetHomeMeal`, `SwapExercise`, `MoveSession`, `SetSessionTime`, `SkipSession`, `LaterSession`) need the target `planned` → else `not_planned`. `SetMealStatus` / `SetEatOutPick` need `planned|unknown` (a meal can be confirmed later the same day). `SetSessionFeedback` needs `finished|partial`. Missing target → `not_found`. Out-of-range values → `invalid_value`. A `SwapMeal` that leaves the day short of its targets is **applied, then the day is re-scaled and flagged** (`ok: false` with its problems), never refused (decided 2026-10-27); the swap sheet shows the flag as one line.

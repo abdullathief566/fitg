@@ -38,9 +38,9 @@
 12. "Oil" means fats measured by the teaspoon (oil, ghee), not peanut butter.
 13. The Anthropic SDK (1.3.0) is installed for its types only. The real provider is a stub until Phase 5. Haiku cache prices are estimates to re-check then.
 
-**Questions:**
-1. Rotis and eggs: labels round to whole rotis and eggs, but the math uses the exact amount, as the spec says. At ×0.75 the label says "2 rotis" while the math counts 1.5. May I make rotis and eggs always scale in whole numbers? I recommend yes.
-2. A meal swap that misses the protein target is applied and the day is flagged, not refused. Keep it that way, or should swaps only offer meals that keep the day on target?
-3. Driving past the gym: by the spec, arriving ("Ready?") and leaving without tapping Start marks the session abandoned, so it can't be started that day. I'd send it back to "planned" instead. OK to change?
+**Questions — answered 2026-10-28** (Abdul asked me to decide):
+1. Rotis and eggs now scale in whole numbers in the math too (`ingredientAmount`), so the label and the numbers always agree.
+2. A meal swap that misses the protein target stays **applied and flagged**, not refused. The swap sheet (Phase 4) shows the flag as one line.
+3. Arriving at the gym and leaving without tapping Start sends the session back to reminded (or planned), not abandoned. It can still be started that day; midnight makes it a skip that reshuffles the week.
 
 **Next:** Phase 2 — the app shell, design system, onboarding, plan reveal and Today/Week, running fully on the phone with this engine. Run Codex locally on your Mac for it.

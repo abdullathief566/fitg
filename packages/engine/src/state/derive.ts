@@ -137,6 +137,7 @@ function replaySession(
   let endedAt = session.endedAt;
   let startSource = session.startSource;
   let laterCount = 0;
+  let reminded = false;
   const nowMs = msOf(now);
 
   if (!isTerminal(session.status)) {
@@ -160,6 +161,7 @@ function replaySession(
       const atIso = new Date(t.at).toISOString();
       const before = status;
       if (t.event.type === 'set_done' && t.setKey) doneKeys.add(t.setKey);
+      if (t.event.type === 'pre_gym_time_passed') reminded = true;
       if (t.event.type === 'later') {
         laterCount++;
         status = transition(status, { type: 'later', laterCount }, ctxOf(doneKeys.size, atIso));
@@ -186,6 +188,7 @@ function replaySession(
       plannedStart: session.plannedStart,
       sleep,
       tz,
+      reminded,
       ...(startedAt ? { startedAt } : {}),
     };
   }

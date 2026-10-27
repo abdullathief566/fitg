@@ -1,5 +1,6 @@
 // Nutrition math (engines.md §3.1). Nutrition always uses exact raw grams; labels round.
-import type { FoodIndex, FoodRow, FoodUnit, RecipeRow } from '../types/reference.ts';
+import type { Unit } from '../types/enums.ts';
+import type { FoodIndex, FoodRow, FoodUnit, RecipeIngredient, RecipeRow } from '../types/reference.ts';
 import type { Nutrition } from '../types/nutrition.ts';
 import { roundDp } from '../util/round.ts';
 
@@ -61,11 +62,26 @@ export function foodOf(foods: FoodIndex, key: string): FoodRow {
  * Nutrition of one serving at `multiplier`: scalable ingredients × multiplier; non-scalable stay fixed.
  * Oil is an ingredient like any other (1 tsp = 4.5 g).
  */
+/** Units that only come whole: you eat 2 rotis or 3 eggs, never 1.5. */
+export const WHOLE_UNITS: ReadonlySet<Unit> = new Set<Unit>(['roti', 'egg']);
+
+/**
+ * How much of an ingredient a serving uses at a multiplier. Scalable ingredients scale; rotis and eggs are rounded to
+ * whole ones (half up, at least 1) and their grams follow the rounded count — so the label and the math always agree.
+ */
+export function ingredientAmount(ing: RecipeIngredient, multiplier: number): { grams: number; qty: number } {
+  if (!ing.scalable) return { grams: ing.grams, qty: ing.qty };
+  if (WHOLE_UNITS.has(ing.unit) && ing.qty > 0) {
+    const qty = Math.max(1, Math.round(ing.qty * multiplier));
+    return { grams: (ing.grams / ing.qty) * qty, qty };
+  }
+  return { grams: ing.grams * multiplier, qty: ing.qty * multiplier };
+}
+
 export function recipeNutrition(recipe: RecipeRow, foods: FoodIndex, multiplier: number): Nutrition {
   let n: Nutrition = { ...ZERO_NUTRITION };
   for (const ing of recipe.ingredients) {
-    const grams = ing.grams * (ing.scalable ? multiplier : 1);
-    n = addNutrition(n, nutritionForGrams(foodOf(foods, ing.foodKey), grams));
+    n = addNutrition(n, nutritionForGrams(foodOf(foods, ing.foodKey), ingredientAmount(ing, multiplier).grams));
   }
   return n;
 }
@@ -101,7 +117,7 @@ export function isOilFood(foods: FoodIndex, key: string): boolean {
 export function recipeOilTsp(recipe: RecipeRow, foods: FoodIndex, multiplier = 1): number {
   let grams = 0;
   for (const ing of recipe.ingredients) {
-    if (isOilFood(foods, ing.foodKey)) grams += ing.grams * (ing.scalable ? multiplier : 1);
+    if (isOilFood(foods, ing.foodKey)) grams += ingredientAmount(ing, multiplier).grams;
   }
   return grams / 4.5;
 }

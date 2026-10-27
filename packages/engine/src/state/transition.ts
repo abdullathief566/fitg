@@ -15,6 +15,8 @@ export interface TransitionContext {
   plannedStart: Instant;
   sleep: LocalTime;
   tz: string;
+  /** The pre-gym ping's time has passed (a session that falls out of 'ready' goes back to 'reminded', not 'planned'). */
+  reminded?: boolean;
 }
 
 /**
@@ -58,7 +60,8 @@ export function transition(s: SessionStatus, e: SessionEvent, ctx: TransitionCon
     case 'geofence_exit_confirmed':
     case 'timeout_3h':
       if (s === 'in_progress') return ctx.setsDone >= 1 ? 'partial' : 'abandoned';
-      if (s === 'ready') return 'abandoned';
+      // Arrived but never tapped Start (drove past, or the gym is next door): the workout isn't written off.
+      if (s === 'ready') return ctx.reminded ? 'reminded' : 'planned';
       return s;
     case 'skip':
     case 'midnight':
