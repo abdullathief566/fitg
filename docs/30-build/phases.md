@@ -2,6 +2,8 @@
 
 Eight phases in dependency order, about 6–8 weeks of AI-assisted building, then a 20–30 person beta. **One phase at a time.** Each phase ends with every command under "Verify" passing and a report to the founder (format in `AGENTS.md`). Paste-able prompts for each phase: `PHASE-PROMPTS.md`.
 
+**Inserted on 28 Oct 2026: Phase 2b**, the dark redesign and a visible agent, runs between Phase 2 and Phase 3. Spec and prompt: `phase-2b-redesign-and-agent.md`.
+
 **Where Codex runs:** Phase 1 can run anywhere (cloud Codex is fine — no network, simulators or other folders needed). **From Phase 2 on, run Codex locally on Abdul's Mac (Codex CLI in the repo folder)**: the app needs Xcode, the iOS Simulator and an Android emulator, and later real phones.
 
 | # | Phase | Runs where | Rough time |

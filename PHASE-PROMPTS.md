@@ -2,6 +2,8 @@
 
 How to use: start with `MASTER-PROMPT.md` (it contains Phase 1). After Codex reports Phase 1 done and you've checked it, paste the Phase 2 prompt below, and so on. One phase per Codex task. Each prompt follows OpenAI's recommended shape: **Goal · Context · Constraints · Done when**.
 
+**Phase 2b** (inserted on 28 Oct 2026, after Phase 2): its prompt is at the end of `docs/30-build/phase-2b-redesign-and-agent.md`.
+
 ---
 
 ## Phase 2 — App shell, design system, onboarding, reveal, Today/Week

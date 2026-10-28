@@ -2,7 +2,10 @@
 
 **Status (2026-10-28):** Phase 2 is built — the app runs on a phone (Expo Go) fully offline: onboarding, the plan
 reveal, Today, Week, workout detail and Settings, on real food data. Reports: `docs/30-build/phase-1-report.md`,
-`docs/30-build/phase-2-report.md`. Next: Phase 3 (Supabase: database, sign-in, sync).
+`docs/30-build/phase-2-report.md`. Next: Phase 2b, the dark redesign and a visible agent (`docs/30-build/phase-2b-redesign-and-agent.md`), then Phase 3
+(Supabase: database, sign-in, sync).
+
+**Continuing the build? Start with [HANDOVER.md](HANDOVER.md).**
 
 ## Try the app on your phone
 1. Install **Expo Go** from the App Store or Google Play (it must be version 58).

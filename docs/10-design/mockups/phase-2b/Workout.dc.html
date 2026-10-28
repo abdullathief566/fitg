@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workout</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Big+Shoulders+Display:wght@700;800&amp;display=swap">
+<style>
+body{margin:0;background:#000000}
+a{color:#F3F3F0}a:hover{color:#FFFFFF}
+button{font-family:'Atkinson Hyperlegible',system-ui,sans-serif;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 390px; height: 1060px; box-sizing: border-box; background: #000000; color: #F3F3F0; font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; position: relative; overflow: hidden; display: flex; flex-direction: column">
+
+<header style="display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; column-gap: 8px; padding: 52px 20px 0 12px">
+<button aria-label="End workout" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: transparent; color: #F3F3F0; display: flex; align-items: center; justify-content: center">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</button>
+<div style="display: flex; flex-direction: column">
+<p style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Full body B</p>
+<p style="margin: 0; font-size: 14px; line-height: 19px; color: #A9AAA5">Move 2 of 6</p>
+</div>
+<p aria-label="12 minutes 40 seconds in" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 28px">12:40</p>
+</header>
+
+<div aria-hidden="true" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; margin: 14px 20px 0 20px">
+<div style="height: 5px; border-radius: 3px; background: #3FD68A"></div>
+<div style="height: 5px; border-radius: 3px; background: #FF5B4F"></div>
+<div style="height: 5px; border-radius: 3px; background: #2B2C30"></div>
+<div style="height: 5px; border-radius: 3px; background: #2B2C30"></div>
+<div style="height: 5px; border-radius: 3px; background: #2B2C30"></div>
+<div style="height: 5px; border-radius: 3px; background: #2B2C30"></div>
+</div>
+
+<div style="margin: 16px 16px 0 16px; border-radius: 22px; background: #111214; display: flex; flex-direction: column">
+<svg width="358" height="196" viewBox="0 0 358 196" role="img" aria-label="Muscles worked: shoulders mainly, triceps too">
+<g transform="translate(49 10)">
+<circle cx="50" cy="18" r="12" fill="#2B2C30"></circle>
+<rect x="45" y="29" width="10" height="9" fill="#2B2C30"></rect>
+<path d="M28 44 Q28 38 34 38 H66 Q72 38 72 44 L67 102 H33 Z" fill="#2B2C30"></path>
+<rect x="12" y="50" width="13" height="44" rx="6" fill="#2B2C30"></rect>
+<rect x="75" y="50" width="13" height="44" rx="6" fill="#2B2C30"></rect>
+<rect x="11" y="97" width="12" height="38" rx="6" fill="#2B2C30"></rect>
+<rect x="77" y="97" width="12" height="38" rx="6" fill="#2B2C30"></rect>
+<rect x="34" y="106" width="15" height="70" rx="7" fill="#2B2C30"></rect>
+<rect x="51" y="106" width="15" height="70" rx="7" fill="#2B2C30"></rect>
+<ellipse cx="24" cy="48" rx="10" ry="11" fill="#FF5B4F"></ellipse>
+<ellipse cx="76" cy="48" rx="10" ry="11" fill="#FF5B4F"></ellipse>
+<path d="M36 46 H64 V58 Q50 63 36 58 Z" fill="#FF5B4F" fill-opacity="0.45"></path>
+</g>
+<g transform="translate(209 10)">
+<circle cx="50" cy="18" r="12" fill="#2B2C30"></circle>
+<rect x="45" y="29" width="10" height="9" fill="#2B2C30"></rect>
+<path d="M28 44 Q28 38 34 38 H66 Q72 38 72 44 L67 102 H33 Z" fill="#2B2C30"></path>
+<rect x="12" y="50" width="13" height="44" rx="6" fill="#FF5B4F" fill-opacity="0.55"></rect>
+<rect x="75" y="50" width="13" height="44" rx="6" fill="#FF5B4F" fill-opacity="0.55"></rect>
+<rect x="11" y="97" width="12" height="38" rx="6" fill="#2B2C30"></rect>
+<rect x="77" y="97" width="12" height="38" rx="6" fill="#2B2C30"></rect>
+<rect x="34" y="106" width="15" height="70" rx="7" fill="#2B2C30"></rect>
+<rect x="51" y="106" width="15" height="70" rx="7" fill="#2B2C30"></rect>
+<ellipse cx="24" cy="48" rx="10" ry="11" fill="#FF5B4F"></ellipse>
+<ellipse cx="76" cy="48" rx="10" ry="11" fill="#FF5B4F"></ellipse>
+</g>
+<text x="99" y="194" text-anchor="middle" font-family="Atkinson Hyperlegible, sans-serif" font-size="12" fill="#8A8B86">Front</text>
+<text x="259" y="194" text-anchor="middle" font-family="Atkinson Hyperlegible, sans-serif" font-size="12" fill="#8A8B86">Back</text>
+</svg>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px 14px 16px">
+<p style="margin: 0; font-size: 15px; color: #A9AAA5"><span style="color: #FF5B4F; font-weight: 700">Shoulders</span>, and triceps too</p>
+<button style="height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid #3A3B3F; background: transparent; color: #F3F3F0; font-size: 15px; display: flex; align-items: center; gap: 8px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg>
+Watch how</button>
+</div>
+</div>
+
+<h1 style="margin: 18px 20px 0 20px; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 38px; line-height: 40px">Shoulder press (machine)</h1>
+<p style="margin: 4px 20px 0 20px; font-size: 17px; color: #A9AAA5">Set 2 of 3</p>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 12px 20px 0 20px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; display: flex; align-items: baseline; gap: 6px"><span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 104px; line-height: 100px">25</span><span style="font-size: 20px; color: #A9AAA5">kg</span></p>
+<div style="display: flex; gap: 10px">
+<button aria-label="2.5 kg less" style="width: 56px; height: 56px; border-radius: 28px; border: none; background: #1B1C1F; color: #F3F3F0; font-size: 26px">−</button>
+<button aria-label="2.5 kg more" style="width: 56px; height: 56px; border-radius: 28px; border: none; background: #1B1C1F; color: #F3F3F0; font-size: 26px">+</button>
+</div>
+<p style="margin: 0; font-size: 14px; color: #8A8B86">Pin at 25 on the stack</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; display: flex; align-items: baseline; gap: 6px"><span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 104px; line-height: 100px">10</span><span style="font-size: 20px; color: #A9AAA5">reps</span></p>
+<div style="display: flex; gap: 10px">
+<button aria-label="One rep fewer" style="width: 56px; height: 56px; border-radius: 28px; border: none; background: #1B1C1F; color: #F3F3F0; font-size: 26px">−</button>
+<button aria-label="One rep more" style="width: 56px; height: 56px; border-radius: 28px; border: none; background: #1B1C1F; color: #F3F3F0; font-size: 26px">+</button>
+</div>
+<p style="margin: 0; font-size: 14px; color: #8A8B86">Aim for 8 to 12</p>
+</div>
+</div>
+
+<p style="margin: 18px 16px 0 16px; padding: 16px; border-radius: 18px; background: #111214; font-size: 16px; line-height: 23px">Last time you did 22.5 kg for 12, 12 and 12, the top of your range, so I added 2.5 kg.</p>
+
+<button style="margin: 18px 16px 0 16px; height: 72px; border-radius: 18px; border: none; background: #F3F3F0; color: #000000; font-size: 21px; font-weight: 700">Done set</button>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 6px 16px 0 16px">
+<button style="height: 48px; border: none; background: transparent; color: #A9AAA5; font-size: 15px">Swap machine</button>
+<button style="height: 48px; border: none; background: transparent; color: #A9AAA5; font-size: 15px">Too heavy</button>
+<button style="height: 48px; border: none; background: transparent; color: #A9AAA5; font-size: 15px">Too easy</button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 12px 20px 0 20px">
+<div style="height: 48px; border-radius: 12px; background: #1B1C1F; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3FD68A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+25 × 10</div>
+<div style="height: 48px; border-radius: 12px; border: 2px solid #F3F3F0; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Set 2 now</div>
+<div style="height: 48px; border-radius: 12px; border: 1px solid #2B2C30; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 15px; color: #A9AAA5">25 × 10</div>
+</div>
+
+<p style="margin: 18px 20px 0 20px; font-size: 15px; line-height: 21px; color: #A9AAA5">Up next: Lat pulldown, 3 sets of 10 at 35 kg</p>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1060}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
