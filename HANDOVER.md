@@ -37,7 +37,7 @@ hands.
 You need Node 22.13 or newer (the tests use the built-in `node:sqlite`) and Expo Go version 58 on a phone.
 
 ```bash
-git clone https://github.com/abdullathief566/fitg.git && cd fitg
+cd fitg                               # this folder (Abdul's copy is github.com/abdullathief566/fitg)
 npm install
 npm test                              # vitest (engine, contracts, data, app domain on real SQLite), then jest (app UI)
 npm run typecheck && npm run lint && npx prettier --check .
@@ -62,16 +62,30 @@ npm run mobile                        # Expo dev server: scan the QR with Expo G
 
 | What                          | State                                                                              |
 | ----------------------------- | ---------------------------------------------------------------------------------- |
-| GitHub `abdullathief566/fitg` | Private. Abdul adds you as a collaborator                                          |
-| Expo / EAS                    | Account `abdikunsama`, project `@abdikunsama/fitg`, channel `main`. Abdul invites you |
+| GitHub                        | Abdul's private copy is `abdullathief566/fitg`. To use your own repo, see below |
+| Expo / EAS                    | Abdul's account `abdikunsama`, project `@abdikunsama/fitg`. To use your own, see below |
 | Supabase, PostHog, Sentry     | Not created yet (Phase 3)                                                          |
 | Anthropic API credit          | None yet. Real AI waits for about $5 (Phase 3 + 5)                                  |
 | Apple Developer, Google Play  | Not yet (Phase 6)                                                                  |
 | RevenueCat                    | Not yet (Phase 7)                                                                  |
 
 There are no secrets in the repo. Only `apps/mobile/.env.example` is committed. Never commit any other `.env*`
-file. Before changing the Expo `owner` or `projectId` in `apps/mobile/app.json`, ask Abdul, because it moves where
-phones get updates from.
+file.
+
+**Your own GitHub repo** (the git history comes with this folder):
+
+```bash
+git remote remove origin
+gh repo create fitg --private --source . --push   # or create an empty repo on github.com, then:
+# git remote add origin https://github.com/<you>/fitg.git && git push -u origin main
+```
+
+**Your own Expo account** (to publish updates to phones):
+
+1. In `apps/mobile/app.json`, delete `owner`, `extra.eas.projectId` and `updates.url`.
+2. Signed in as you, run `npx eas-cli@latest init`, then `npx eas-cli@latest update:configure`, then publish as
+   shown under "Run it".
+3. Send Abdul your new `exp://u.expo.dev/...?channel-name=main` link. His old link stops getting updates.
 
 ## Decisions already made (ask Abdul before reopening any)
 
@@ -117,7 +131,9 @@ phones get updates from.
 - `AGENTS.md` holds the standing rules:
   - docs are the source of truth, so change them with the code;
   - every number comes from code, never from AI text;
-  - habit-only mode shows no food or body numbers;
   - the report format to send Abdul.
+- **Habit-only mode** is for people with a history of eating disorders, and it must never show a food or body
+  number. It's specified in `docs/20-engineering/engines.md` and `ai-orchestration.md`, and covered by the domain
+  tests.
 - `docs/code_review.md` is the checklist to run on your own changes before calling a phase done.
 - Abdul isn't technical. Give him results in plain words: what works, what he must do, and what's next.

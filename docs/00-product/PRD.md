@@ -23,9 +23,9 @@ Research behind this doc: `Fitness-Agent-Research-2026-10-25.md` (kept outside t
 | Decision | Choice |
 |---|---|
 | Name | **FitG** (working name; trademark search before launch; `fitg.app` to be bought) |
-| Look | **Warm Spotter hybrid**: cream + coral for planning/eating surfaces; **gym mode + lock screen always dark and oversized** |
-| Coach persona | The coach speaks **as FitG**. No mascot, no orb. Presence = a pulsing coral dot + card tint. |
-| Build type | **Dev build from Phase 2** (local `npx expo run:*`, EAS later). Expo Go is a fallback only; never design around its limits. |
+| Look | **Dark, data-first** (changed 28 Oct 2026 by Abdul, after the Warm Spotter build read as generic). True black, data colours from competition weight plates, white primary buttons, Big Shoulders Display + Atkinson Hyperlegible. Spec: `docs/30-build/phase-2b-redesign-and-agent.md` §1 |
+| Coach persona | The coach speaks **as FitG**, in the first person. No mascot, no orb. Its presence is what it does: "What I changed" notes with the reason and an undo. |
+| Build type | **Expo Go (SDK 58) until Phase 6** (changed 28 Oct 2026: there's no Xcode on Abdul's Mac, and the App Store's Expo Go only opens SDK 58). Dev builds arrive with Phase 6's native features. |
 | Backend | **Supabase Edge Functions (Deno/TS) + Postgres + pg_cron.** No FastAPI, no Vercel. |
 | AI | Anthropic Claude behind `AI_PROVIDER=mock\|anthropic`. Strong = `claude-opus-5-5`, fast = `claude-haiku-5-5`, vision = benchmark Haiku 5.5 vs Sonnet 5.5. Phases 1–4 run fully on mock. |
 | RAG | None in v1 (catalog fits in a cached prompt; food lookup = aliases + trigram + full-text + ask). pgvector only in v1.1 if beta miss rate > 20%. |

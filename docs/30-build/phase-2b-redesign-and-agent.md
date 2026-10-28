@@ -99,16 +99,22 @@ separate cards. Keep the 4-pt spacing scale and the tap-target rules from `docs/
 - "→" in button text, and emoji anywhere.
 - Gradient washes, glass blur, left-border accent cards, identical card stacks.
 
-Add a unit test over `src/copy/**` that fails on "·", "→" and emoji, next to the existing banned-words test.
+First, move the user-facing strings that still live outside `src/copy` into it. The handover review found "·" in
+`src/domain/today.ts:145`, `src/domain/reveal.ts:58` and `app/settings.tsx:93` and `:103`. Then add a unit test over
+`src/copy/**` that fails on "·", "→" and emoji, next to the existing banned-words test.
 
 ### Files
 
-- `apps/mobile/src/ui/theme.ts`: new tokens. It stays the only place hex values live; ESLint enforces that.
+- `apps/mobile/constants/theme.ts`: the tokens, including the text variants (`micro` lives here). It stays the only
+  place hex values live; ESLint enforces that. `apps/mobile/src/ui/theme.tsx` is only the provider.
 - `apps/mobile/app/_layout.tsx`: font loading.
 - Every component in `apps/mobile/src/ui/`.
-- `apps/mobile/test-node/design-checks.test.ts`: contrast pairs.
-- `docs/10-design/tokens.md`, `screens.md`, `components.md`, `copy.md`. Docs are the source of truth (AGENTS.md),
-  so update them in the same change.
+- A new contrast test in `apps/mobile/test-node/` for the pairs in the colour table. None exists yet.
+- Docs, in the same change (AGENTS.md: docs are the source of truth):
+  - `docs/10-design/tokens.md`, `screens.md`, `components.md`, `copy.md`;
+  - `store-assets.md`: the icon becomes a white mark on black.
+
+  `docs/00-product/PRD.md` and `brand.md` already describe the new look (changed 28 Oct).
 
 ---
 
@@ -126,8 +132,16 @@ Anything the app changes on the user's behalf.
 | `weight_progressed` | Phase 4, after a logged workout                                                                        | Added 2.5 kg to Shoulder press                | You did 12, 12 and 12 last time.                                      | Undo keeps the old weight                                            |
 | `targets_adjusted` | Phase 7, weekly check-in                                                                                | Calories down 150 a day                       | Your weight hasn't moved for 2 weeks.                                 | Undo                                                                 |
 
-One user action gives **one** agent action, however many rows it changed. That settles Abdul's earlier decision
-"one Skip that moves two workouts shows one card": "Moved Full body B to Thursday and Full body A to Saturday."
+**One trigger, one action.**
+
+- **What counts as one trigger:**
+  - one Skip tap;
+  - one catch-up at app open, covering every missed workout it skips (`backend.ts:127-130`).
+- **What the action contains:** everything the trigger moved or dropped. Its kind is `session_moved` if anything
+  moved (drops are listed in the same action), and `session_dropped` only if nothing moved.
+- **Example:** "Moved Full body B to Thursday and Full body A to Saturday."
+
+This settles Abdul's earlier decision that one Skip which moves two workouts shows one card.
 
 ### 2.2 Data
 
@@ -141,19 +155,18 @@ AgentActionRow = {
   user_id: uuid;
   at: Instant;
   kind: 'session_moved' | 'session_dropped' | 'meals_rebalanced' | 'weight_progressed' | 'targets_adjusted';
-  facts: Record<string, string | number>; // names, dates, numbers from the engine, e.g. { session: 'Full body B', toDate, toTime }
-  before: PlanRowSnapshot[];              // the plan rows this action changed, as they were (for undo)
-  after: { id: string; updated_at: Instant }[]; // the same rows right after (to detect later edits)
-  undo: 'restore' | 'change_day' | 'none';
+  facts: Record<string, string | number | string[]>; // names, dates, numbers from the engine
+  undo: PlanCommandBody[] | null; // the inverse plan commands, worked out when the action is written
+  undo_label: 'Undo' | 'Change day' | null;
   status: 'active' | 'undone';
   seen: boolean;
 };
 ```
 
-- **Device table:** `agent_actions`. Add it to `DEVICE_TABLES` with a migration, and add store functions next to
-  the others in `src/db/store.ts`.
-- **Phase 3:** add the same table to `schema.sql` and to sync, so the coach in Phase 5 can read the history as
-  context.
+- **Device table:** `agent_actions`. Add it to `DbTables` and to `docs/20-engineering/schema.sql` in the same
+  change; `packages/contracts/test/db.test.ts:54-56` checks that they match. Then add it to `DEVICE_TABLES` with a
+  migration, and add store functions next to the others in `src/db/store.ts`.
+- **Phase 3:** sync it, so the coach in Phase 5 can read the history as context.
 
 ### 2.3 Writing and undoing
 
@@ -161,10 +174,17 @@ AgentActionRow = {
   - `backend.runCommand` and the missed-workout loop in `backend.loadSnapshot` compare the week before and after a
     `SkipSession`. Moved sessions become one `session_moved` action; a dropped session becomes `session_dropped`.
   - Snap my plate writes `meals_rebalanced` (section 3).
-- **Undo:** add `backend.undoAgentAction(id)`. In one transaction:
-  1. If any row in `after` has a newer `updated_at`, refuse: "Can't undo: your plan changed since."
-  2. Otherwise restore the `before` rows, mark the action `undone`, and queue an outbox command so Phase 3 can
-     replay it on the server.
+- **Undo:** add `backend.undoAgentAction(id)`. It runs the action's inverse commands through the normal command path
+  (`runPlanCommand`), so they're saved and queued for sync like any other edit.
+  - **After a Skip:** for each moved session, `MoveSession` back to its original day and `SetSessionTime` to its
+    original time.
+  - **After Snap:** `SetMealStatus` back to `planned` and delete the food log. The engine re-runs the day's
+    rebalance, so dinner comes back. If the engine refuses `planned` as a target status, allow it for this case.
+  - **If the engine rejects any inverse command** (the plan changed since), apply none and show "Can't undo: your
+    plan changed since."
+  - **Don't detect conflicts with `updated_at`.** `saveWeek` re-stamps every row of the week on every command
+    (`store.ts:180-251`), so any later tap would block every undo.
+- **Missed workouts** get "Change day" instead: a day picker that sends `MoveSession`.
 - **When Undo shows:** only while the affected item is still in the future.
 - **Tests:** add them to `apps/mobile/test-node/` on real SQLite, like `domain.test.ts`.
 
@@ -196,26 +216,48 @@ AgentActionRow = {
 2. **Pick the meal.** It defaults to the planned meal closest to now (within 2 hours). Otherwise one tap: Breakfast,
    Lunch, After gym, Dinner or Snack.
 3. **"Looking at your plate".** Show the PulseDot for at least 1.2 s.
-4. **Show the result.** A sample provider picks one of the sample plates in `fixtures/ai/offplan_parse/`.
-   - Map each item to a `home_dishes` (or recipe) id in the bundle, so names and nutrition come from the bundle,
-     never from the fixture text.
+4. **Show the result** from a sample plate.
+   - **Where the plates live:** in the app, at `apps/mobile/src/ai/samplePlates.ts`. They're shaped like the
+     `offplan_parse` output in `packages/contracts`, and a test validates them against it.
+   - **Three plates, picked by diet**, so a vegetarian never sees chicken (my call):
+     - chicken biryani with raita and onion salad (non-veg; based on
+       `fixtures/ai/offplan_parse/valid_biryani.json`);
+     - egg bhurji with 2 rotis (eggetarian);
+     - dal, rice, roti and a sabzi (veg).
+   - **Other fixtures:** the rest of `fixtures/ai/offplan_parse/` are reject and question cases for Phase 5's
+     validators. Don't use them as plates.
+   - **Bundle ids:** map every item to a `home_dishes` or recipe id in the bundle, so names and nutrition come from
+     the bundle, never from fixture text. Raita maps to the curd food, at ½ katori.
+   - **Provider switch:** the app doesn't use `@fitg/ai`, and nothing reads `EXPO_PUBLIC_AI_PROVIDER` yet. Add
+     `apps/mobile/src/ai/provider.ts` that reads it, with `mock` (the sample plates) as the default.
    - Each item shows its household portion (katori, roti, cup) with a stepper, and its kcal and protein.
    - If a dish is cooked with oil, ask one question: "How oily was it? Light / Normal / Very oily" (+0, +1 or +2 tsp
      at 4.5 g of oil each).
    - A small "Sample answer" tag sits on the photo until real AI is switched on.
-5. **Preview the change.** Run the engine's `rebalanceDay` (`packages/engine/src/meal/rebalance.ts`) as a dry run on
-   the rest of the day. Show one sentence: "When you log this, I'll make dinner lighter: egg bhurji with 1 roti
-   instead of 2. You'll still reach 120 g protein."
-6. **"Log lunch".**
-   - Mark the planned item `replaced` (`SetMealStatus`) and save the food log (`outbox_logs` already exists).
-   - Apply the rebalance and write one `meals_rebalanced` agent action.
-   - Confirm with the toast "Logged lunch".
-7. **Privacy.** In sample mode the photo never leaves the phone. Delete the temporary file after logging.
+5. **Make the rebalance count the logged meal first.**
+   - `SetMealStatus` with `replaced` already rebalances the rest of the day inside the engine
+     (`packages/engine/src/plan/commands.ts:372`).
+   - But `backend.runCommand` passes no `logs` to the engine (`backend.ts:172-178`), so today a replaced meal counts
+     as 0 kcal (`rebalance.ts:33-36`).
+   - Fix: load the day's food logs, with nutrition computed from the bundle, into `PlanState.logs` in `runCommand`.
+6. **Preview the change.** Run the same `SetMealStatus` on a copy of the snapshot, without saving. Show one
+   sentence: "When you log this, I'll make dinner lighter: egg bhurji with 1 roti instead of 2. You'll still reach
+   120 g protein."
+7. **"Log lunch".**
+   - **Save the log** as a `food_logs` row (already a device table) and in `outbox_logs` for Phase 3. Use the existing
+     sync contract for logs the device computed: `source: 'pick'` (`packages/contracts/src/api.ts:202-211`), because
+     the user confirmed a list of bundle items.
+   - **Apply** `SetMealStatus` (`replaced`, with the log's id as `logId`). The engine rebalances the day.
+   - **Write one `meals_rebalanced` agent action.** Its undo is `SetMealStatus` back to `planned`, plus deleting the
+     log.
+   - **Confirm** with the toast "Logged lunch".
+8. **Privacy.** In sample mode the photo never leaves the phone. Delete the temporary file after logging.
 
 - **Habit-only:** no kcal or protein anywhere in the flow; portions only.
 - **Real AI later:**
   - Set `EXPO_PUBLIC_AI_PROVIDER=server`. Phase 3 adds Supabase; Phase 5 adds the `offplan_parse` edge function
     (Haiku vision, about $0.0004 a photo).
+  - Real photos then use the sync path for photos the server parses (`api.ts:214-231`).
   - The result has the same contract shape (`packages/contracts`, offplan_parse), so this screen doesn't change.
 
 ---
@@ -241,16 +283,19 @@ AgentActionRow = {
 
 ### Onboarding (no mockup; follow the system)
 
-- **11 question screens become 7:**
-  1. Goal.
-  2. Body: sex, age, height, weight.
-  3. Training week: days, start time, session length.
-  4. Experience: level, injuries, equipment, gym pin.
-  5. Food: diet, cuisine, who cooks, staples.
-  6. Your day: wake, meals, sleep. Prefilled from the defaults, confirmed with one "Looks right" tap.
-  7. Health check.
+- **11 question screens become 8 (my call),** by merging three pairs of the current steps (`STEPS` in
+  `src/domain/onboarding.ts`):
+  1. `goal`;
+  2. `about`;
+  3. `activity` + `schedule`. Activity sets calories, so it stays;
+  4. `experience` + `equipment`;
+  5. `food`;
+  6. `eating` + `staples`;
+  7. `day`, prefilled from the defaults and confirmed with one "Looks right" tap;
+  8. `health`.
 
-  Then permissions, then the reveal. Keep `stepProblem` validation, regrouped per screen.
+  Each merged screen keeps every field of the steps it merges: name, cook time and budget included. Then
+  permissions, then the reveal. Keep `stepProblem` validation, run per merged screen.
 - **"What I know so far":** a strip pinned above the Next button that grows with each answer, for example "28, 75
   kg, lose fat, gym Mon Wed Fri at 6:30 pm". Tap it to expand.
 - **One coach sentence per step**, reacting to the answer: "Three days is the sweet spot for your first 90 days."
@@ -294,7 +339,8 @@ AgentActionRow = {
   - placeholders that say what will appear: "Your strength chart starts after your first logged workout."
 - **Coach tab (until chat in Phase 5):**
   - "Everything I've changed".
-  - "What I know about you": the onboarding facts; editing opens Settings.
+  - "What I know about you": the onboarding facts, read-only in 2b (my call). Settings is read-only too
+    (`app/settings.tsx:78-106`). Profile editing comes with Phase 7's Settings work.
   - No chat box until chat is real.
 - **Settings:** remove Appearance (dark only). Keep the rest.
 
@@ -305,8 +351,12 @@ AgentActionRow = {
 1. **First workout is always Full body A** on a mid-week signup. Today the rotation can start with B
    (`planner.firstWeek`).
 2. **One Skip that moves two workouts gives one card.** Now one agent action (section 2.1).
-3. **Whey uses ON Gold Standard label values** instead of MuscleBlaze isolate. Use the values on the current pack
-   label, cite it in the data pipeline the same way as the other curated foods, then run `npm run data:build`.
+3. **Whey becomes ON Gold Standard** instead of MuscleBlaze isolate.
+   - It's a whey blend, so don't just relabel the `whey_isolate` key (`data/seed/foods.map.json:660-670`).
+   - Add a curated food for Optimum Nutrition Gold Standard 100% Whey, Double Rich Chocolate. That flavour is my
+     default: ask Abdul which one he buys.
+   - Take its values from the Indian pack's label, cited like the other curated foods.
+   - Point every recipe and protein add-on that used `whey_isolate` at it, then run `npm run data:build`.
 4. **Prices and paywall in the docs** (`docs/20-engineering/analytics-paywall.md`, `docs/10-design/copy.md` §7):
    - India ₹299/month and ₹1,999/year; US $12.99/month and $69.99/year.
    - No "Maybe later": the 7-day trial is required.
@@ -338,18 +388,19 @@ AgentActionRow = {
    - Big Shoulders Display and Atkinson Hyperlegible load in Expo Go on iPhone and Android.
    - No ALL-CAPS label style is left.
    - The copy test fails on "·", "→" and emoji.
-   - The contrast pairs in `design-checks.test.ts` are updated.
+   - A new contrast test covers the colour table's pairs.
 2. **Screens:**
    - Today, the reveal and the workout view match the mockups.
-   - Onboarding is 7 question screens with the "What I know so far" strip.
+   - Onboarding is 8 question screens with the "What I know so far" strip, and no field is lost.
    - Week, Progress, Coach and Settings follow section 4.
 3. **Agent** (vitest on real SQLite):
    - Skip and missed-workout reshuffles each write exactly one action (two moves still make one action).
-   - Undo restores the plan, and refuses after a later change.
+   - Undo runs the inverse commands and restores the plan. It refuses, applying nothing, when the engine rejects
+     one.
    - Habit-only sentences carry no food or body numbers.
 4. **Snap:**
-   - Photo, then sample result, then Log: the planned meal is marked replaced, dinner is rebalanced by the engine,
-     and one agent action is written.
+   - Photo, then sample result, then Log: the planned meal is marked replaced and one agent action is written.
+   - Dinner is rebalanced by the engine, counting the logged meal's real kcal, not 0.
    - It works in airplane mode, the "Sample answer" tag shows, and habit-only shows no numbers.
 5. **Today** renders exactly one next action, the dial and the agent log (jest).
 6. **Checks and release:**
@@ -362,11 +413,12 @@ AgentActionRow = {
 
 ```text
 Goal: Build Phase 2b as specified in docs/30-build/phase-2b-redesign-and-agent.md: the dark redesign (Today with
-the day dial, the 7-screen onboarding, the plan reveal, the workout view, Week, Progress, the Coach tab), the agent's
+the day dial, the 8-screen onboarding, the plan reveal, the workout view, Week, Progress, the Coach tab), the agent's
 "What I changed" log with undo, Snap my plate with sample answers, and the five already-decided items in section 5.
 
 Context: Read HANDOVER.md, AGENTS.md, then the Phase 2b doc. Mockups: docs/10-design/mockups/phase-2b/*.html (open
-in a browser). The app runs fully on the phone: EXPO_PUBLIC_BACKEND=local, EXPO_PUBLIC_AI_PROVIDER=mock. The engine
+in a browser). The app runs fully on the phone: no backend, no AI. .env.example lists EXPO_PUBLIC_BACKEND and
+EXPO_PUBLIC_AI_PROVIDER, but nothing reads them yet; section 3 adds the AI one. The engine
 (packages/engine) already does reshuffles (workout/) and rebalancing (meal/rebalance.ts); the app's domain layer is
 apps/mobile/src/domain, storage apps/mobile/src/db, state apps/mobile/src/state/AppState.tsx.
 

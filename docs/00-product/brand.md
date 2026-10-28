@@ -27,7 +27,7 @@ The friend at the gym who tells you what to do next — and the friend in your k
 
 ## The coach is FitG
 
-- The coach speaks **as the app**. No mascot name, no orb, no avatar face. Its presence is a small pulsing coral dot before every coach line plus a warm tint on the "Next up" card.
+- The coach speaks **as the app**. No mascot name, no orb, no avatar face. Its presence is what it does: "What I changed" notes with the reason and an undo. (Changed on 28 Oct 2026; the coral dot and card tint went with the Warm Spotter look.)
 - Personality in five rules (full guide: `docs/10-design/copy.md`):
   1. One sentence, then the button.
   2. Numbers from code, words from us.
@@ -38,14 +38,16 @@ The friend at the gym who tells you what to do next — and the friend in your k
 
 ## Look
 
-**Warm Spotter hybrid** (tokens in `docs/10-design/tokens.md`):
-- Planning and eating surfaces: cream `#FBF7F0` paper, coral `#F4683A` ink, round corners, Outfit + DM Sans.
-- Gym mode and the lock screen: **always dark** (`#15110E`), oversized type and buttons, coral stays the action colour.
-- Why both: the research says beginners are scared of the gym and overwhelmed by planning; warmth lowers the bar to walk in. At the gym, a dark room and a bright phone need contrast and size, not charm.
+**Dark, data-first.** Abdul chose this on 28 Oct 2026, replacing Warm Spotter after using the cream-and-coral build, which read as generic:
+- True black `#000000` everywhere (OLED), panels `#111214`, text `#F3F3F0`.
+- The data colours come from competition weight plates, each with one meaning: red `#FF5B4F` workouts, blue `#4E8EFF` protein, yellow `#FFD13B` streaks and wins, green `#3FD68A` done.
+- Primary buttons are white with black text.
+- Type: Big Shoulders Display (numbers, titles) and Atkinson Hyperlegible (everything else).
+- Full spec: `docs/30-build/phase-2b-redesign-and-agent.md` §1. The tokens move into `docs/10-design/tokens.md` when Phase 2b is built.
 
 ## Icon
 
-Coral `#F4683A` squircle; a cream `#F6F0E8` mark that is a check whose tail becomes a right-pointing arrow ("done → next"). One stroke. Reads at 29 px. Dark/tinted variants: cream glyph on `#15110E`; monochrome for iOS tinted mode. Detail: `docs/10-design/store-assets.md`.
+A black `#000000` squircle with a white `#F3F3F0` mark: a check whose tail becomes a right-pointing arrow ("done → next"). One stroke. Reads at 29 px. Monochrome variant for iOS tinted mode. Changed on 28 Oct 2026 from the coral squircle (`store-assets.md` gets updated in Phase 2b). Detail: `docs/10-design/store-assets.md`.
 
 ## What FitG is not
 
